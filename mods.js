@@ -2,6 +2,7 @@ var gamejs = "", modBlocking = true;
 var tester = document.getElementsByTagName("script");
 var i = 0, main_out_url = "http://agar.io/main_out.js", discovered_mainouturl = 0;
 var W = '';
+var Ja = '';
 
 for (i=0; i<tester.length; i++ ){
 	src = tester[i].src;
@@ -15,6 +16,8 @@ if(discovered_mainouturl != 0) {
 		gamejs = "window.agariomods = " + data.replace("socket open","socket open (agariomods.com mod in place)");
 		offset = gamejs.search("..b..src");
 		W = gamejs.substr(offset,1);
+		offset = gamejs.search("..=\"poland;");
+		Ja =  gamejs.substr(offset,2);
 		agariomodsRuntimeInjection();
 	});
 }
@@ -42,9 +45,10 @@ function agariomodsRuntimeInjection() {
 function agariomodsRuntimePatches() {
 	gamejs = gamejs.replace(';reddit;',';reddit;electronoob;');
 	gamejs = gamejs.replace(W + '[b]=new Image,'+W+'[b].src="skins/"+b+".png"',W +'[b]=new Image,'+W+'[b].crossOrigin = "Anonymous",'+W+'[b].src="skins/"+b+".png"');
-	gamejs = gamejs.replace('b=this.name.toLowerCase();', 'b=this.name.toLowerCase();var agariomods="";if(b == "electronoob") {agariomods="http://agariomods.com/skins/electronoob";} else {agariomods="http://agar.io/skins/" + this.name.toLowerCase();}');
-	gamejs = gamejs.replace(W +'[b].src="skins/"+b+".png"',W+'[b].src=agariomods+".png"');
+	gamejs = gamejs.replace('b=this.name.toLowerCase();', 'b=this.name.toLowerCase();var agariomods="";if(b == "electronoob") {agariomods="http://agariomods.com/skins/electronoob.png";} else if (b.substring(0, 2) == "i/") {agariomods="http://i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="http://agar.io/skins/" + this.name.toLowerCase() + ".png";}');
+	gamejs = gamejs.replace(W +'[b].src="skins/"+b+".png"',W+'[b].src=agariomods');
 	// lol raven
+	gamejs = gamejs.replace("b=this.name.toLowerCase();", "b=this.name.toLowerCase(); if (b.substring(0, 2) == \"i/\") {" +Ja+ "+=b;} ;");
 	gamejs = gamejs.replace('g.Raven&&g.Raven.config("https://2a85d1d3fb114384a2758cde7de2bef7@app.getsentry.com/43938",{release:"2",whitelistUrls:["agar.io/"]}).install();', "");
 }
 function agariomodsRuntimeHacks() {
@@ -55,14 +59,15 @@ function agariomodsRuntimeHacks() {
 	$( document ).ready(function() {
 	hd = document.getElementById("helloDialog");
 	cachedhd = hd.innerHTML;
-	hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<center><small>AgarioMods.com Evergreen Scripts</small></center>");
+	hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<center><small>AgarioMods.com</small></center>");
 	});
 	//<!-- INTEL's CODE -->
-	document.getElementById("nick").placeholder = "Name";
+	document.getElementById("nick").placeholder = "name or imgur i/[id]";
+	document.getElementById("nick").text = "i/rIWgY2u";
 	$( document ).ready(function() {
 	nh = document.getElementById("overlays");
 	cachednh = nh.innerHTML;
-	nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "");
+	nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "Set name as <b>i/rIWgY2u</b> for skins example.");
 	});
 	nodeDiv.id = "includedContent";
 	nodeDiv.style.width = "640px"
@@ -73,9 +78,9 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.style.left = "-170px";
 	nodeDiv.style.borderRadius = "5px";
 	nodeDiv.style.color = "#dddddd";
-	nodeDiv.innerHTML = "<p><b>Version 1.6.2</b>&nbsp;&nbsp;<small>stupid ravenjs edition.</small></p>";
+	nodeDiv.innerHTML = "<p><b>Version 1.7.0</b>&nbsp;&nbsp;<small>Custom skins are now a reality! CloudFlare has also been added to our service, Sorry for the downtime while we update!</small></p>";
 //<p>Our <a target=\"_blank\" href=\"http://www.agariomods.com/\">website</a>, <a target=\"_blank\" href=\"http://forum.agariomods.com/\">forum</a>, and <a target=\"_blank\" href=\"http://www.agariomods.com/mumble.html\">mumble</a>.</p>";
-nodeDiv.innerHTML += "<h3><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"40px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp;Join us at our new forum here.</a></h3>";
+nodeDiv.innerHTML += "<h3><a target=\"_blank\" href=\"http://forum.agariomods.com/showthread.php?tid=13&pid=18#pid18\"><img width=\"40px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp;Click here - custom skins now released!</a></h3><br><p>1: upload pic to imgur.com, 2: get the id of img, 3: type i/ followed by the id. ex: i/rIWgY2u and just connect as normal!</p>";
 	nodeDiv.innerHTML += "<b>connections steps</b>";
 	nodeDiv.innerHTML += "\
 	<ul>\
