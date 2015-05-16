@@ -50,6 +50,8 @@ function agariomodsRuntimePatches() {
 	// lol raven
 	gamejs = gamejs.replace("b=this.name.toLowerCase();", "b=this.name.toLowerCase(); if (b.substring(0, 2) == \"i/\") {" +Ja+ "+=b;} ;");
 	gamejs = gamejs.replace('g.Raven&&g.Raven.config("https://2a85d1d3fb114384a2758cde7de2bef7@app.getsentry.com/43938",{release:"2",whitelistUrls:["agar.io/"]}).install();', "");
+	//for knicks
+	gamejs = gamejs.replace('"Score: "','"Goodboy points: "');
 }
 function agariomodsRuntimeHacks() {
 	jQuery('#helloDialog').css({top: '-100px'});
