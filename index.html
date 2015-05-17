@@ -53,30 +53,87 @@ div.lesscompress {
   padding: 0px;
   z-index: -1;
 }
-#ScriptButton {
-  background-color: rgba(255,140,0, 0.3);
-	border-radius: 25px;
-	border: 5px solid rgb(255,165,0);
-	padding: 10px;
-	color: rgba(255, 255, 255, 1);
-	font-weight: 900;
-	text-decoration: none;
-}
-#ScriptButton:hover {
-	background-color: rgba(255,215,0, 0.7);
-	border-radius: 25px;
-	padding: 10px;
-}
-table {padding: 50px;}
-</style>
-</head>
-<body>
+				/* HEADER STYLE */
+				header {
+					position: fixed;
+					height: 30px;
+					width: 100%;
+					background: linear-gradient(rgba(0, 0, 0, 1),  rgba(96, 96, 96, 1));
+				}
+				/* HEADER STYLE */
+				#logo {
+					height: 30px;
+				}
+				/* NAVIGATION LINKS STYLE */
+				nav {
+					width: 100%;
+					margin-top: 30px;
+					text-align: center;
+					position: fixed;
+					padding: 15px;
+					background: linear-gradient(rgba(96, 96, 96, 1), rgba(128, 128, 128, 1) 85%, rgba(0, 0, 0, 0));
+				}
+				/* NAVIGATION LINKS STYLE */
+				.globallinktext {
+					border: 1px solid black;
+					box-shadow: blue;
+					margin-left: 10px;
+					margin-right: 10px;
+					text-decoration: none;
+					padding: 5px 15px;
+					color: rgba(245, 245, 245, .8);
+					background: radial-gradient(ellipse, rgba(240, 128, 128, .1) 5%, rgba(48, 48, 48, .9));
+					border-radius: 25px 25px 5px 5px;
+				}
+				/* NAVIGATION LINKS STYLE */
+				.globallinktext:hover {
+					background: radial-gradient(ellipse, rgba(240, 128, 128, .5) 15%, rgba(16, 16, 16, .3));
+				}
+				/* NAVIGATION LINKS STYLE */
+				.globallinktext:active {
+					background: radial-gradient(ellipse, rgba(240, 128, 128, 1) 10%, rgba(16, 16, 16, 1));
+				}
+				/* INSTALL BUTTON STYLE */
+				#ScriptButton {
+					background-color: rgba(255,140,0, 0.3);
+					border-radius: 25px;
+					border: 5px solid rgb(255,165,0);
+					padding: 10px;
+					color: rgba(255, 255, 255, 1);
+					font-weight: 900;
+					text-decoration: none;
+				}
+				/* INSTALL BUTTON STYLE */
+				#ScriptButton:hover {
+					background-color: rgba(255,215,0, 0.7);
+					border-radius: 25px;
+					padding: 10px;
+				}
+				table {padding: 50px;}
+			</style>
+		</head>
+		<!--DIVISION MARKER: HEAD - BODY-->
+		<body>
+			<!--Header-->
+			<header>
+				<img id="logo" src="http://i.imgur.com/vUa6ZqF.png">
+			</header>
+			<!--Navigation Links-->
+			<nav id="globallinks">
+				<a class="globallinktext" href="http://agariomods.com/">HOME</a>
+				<a class="globallinktext" href="">NEWS</a><!--NEEDS TO BE CREATED-->
+				<a class="globallinktext" href="http://forum.agariomods.com/" target="_blank">FORUM</a>
+				<a class="globallinktext" href="https://github.com/electronoob/agarmods" target="_blank">CONTRIBUTE</a>
+				<a class="globallinktext" href="">ABOUT</a><!--NEEDS TO BE CREATED-->
+				<a class="globallinktext" href="http://agariomods.com/mumble.html">MUMBLE</a>
+				<a class="globallinktext" href="https://twitter.com/Agariomods" target="_blank">Twitter</a>
+				<a class="globallinktext" href="http://agar.io" target="_blank">PLAY</a>
+			</nav>
 <div id="lesscompress" class="lesscompress">&nbsp;</div>
 <center>
 <br><br>
 <table style="width: 100%" cellpadding="20">
 <tr><td align="left">
-<img src="http://i.imgur.com/vUa6ZqF.png">
 <h1>electronoob's evergreen agario team server connection script AND NOW with custom skins!!</h1>
 <img src="http://i.gyazo.com/8662b7aeab73a72607febc5423242686.gif"><br><br><h3><a id="ScriptButton" target="_blank" href="http://agariomods.com/mods.user.js.html">CLICK HERE TO INSTALL THE SCRIPT!</a></h3><br>
 <small>To run this script you require either tampermonkey or greasemonkey installed 
@@ -99,13 +156,10 @@ src="//www.youtube.com/embed/lJ-O4H6o9oQ?stupidyoutubeshizzle" frameborder="0" a
 </table>
 </center>
 <br><a href="http://forum.agariomods.com/showthread.php?tid=47">Current version 1.7.3-reddit - Free public skins edition. Our official stance on modding is that we will never enable cheating, it's against our ethos.</a><br>
-<center>
-<h4>Upvote us on <a target="_blank" href="http://www.reddit.com/r/Agario/comments/35gbsp/electronoobs_multiplayer_evergreen_scripts_agario/">Reddit.</a>. Go to our <a target="_blank" href="https://github.com/electronoob/agarmods/issues">Github</a> to talk about issues/ideas for the script. </h4>
-</center>
-<div class="mumble"><a href="mumble.html" target="_blank"><img 
-src="http://i.imgur.com/tDsMp1X.png"></a><span 
-class="mumble">&nbsp;&nbsp;mumble.agariomods.com &nbsp; 2387</span>&nbsp; 
-&nbsp; <a href="http://forum.agariomods.com"><font 
-color="white">Forum</a></a></font>&nbsp;&nbsp; <a href="https://twitter.com/Agariomods"><font color="white">Follow us on twitter!</font></a></div>
-</body>
-</html>
+<center><!--
+				<h4>Upvote us on <a target="_blank" href="http://www.reddit.com/r/Agario/comments/35gbsp/electronoobs_multiplayer_evergreen_scripts_agario/">Reddit.</a>. Go to our <a target="_blank" href="https://github.com/electronoob/agarmods/issues">Github</a> to talk about issues/ideas for the script. </h4>
+			</center>
+			<div class="mumble"><a href="mumble.html" target="_blank"><img src="http://i.imgur.com/tDsMp1X.png"></a>
+				<span class="mumble">&nbsp;&nbsp;mumble.agariomods.com &nbsp; 2387</span>&nbsp; &nbsp; <a href="http://forum.agariomods.com" style="color: #FFFFFF"> Forum</a>&nbsp;&nbsp; <a href="https://twitter.com/Agariomods" style="color: #FFFFFF">Follow us on twitter!</a></div>-->
+		</body>
+	</html>
