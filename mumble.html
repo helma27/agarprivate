@@ -8,10 +8,82 @@ body {
   color: #dadada;
   font-family: 'Ubuntu', sans-serif;
 }
-</style>
-</head>
-<body>
-<img src="http://i.imgur.com/vUa6ZqF.png">
+				/* HEADER STYLE */
+				header {
+					position: fixed;
+					height: 30px;
+					width: 100%;
+					background: linear-gradient(rgba(0, 0, 0, 1),  rgba(96, 96, 96, 1));
+				}
+				/* HEADER STYLE */
+				#logo {
+					height: 30px;
+				}
+				/* NAVIGATION LINKS STYLE */
+				nav {
+					width: 100%;
+					margin-top: 30px;
+					text-align: center;
+					position: fixed;
+					padding: 15px;
+					background: linear-gradient(rgba(96, 96, 96, 1), rgba(128, 128, 128, 1) 85%, rgba(0, 0, 0, 0));
+				}
+				/* NAVIGATION LINKS STYLE */
+				.globallinktext {
+					border: 1px solid black;
+					box-shadow: blue;
+					margin-left: 10px;
+					margin-right: 10px;
+					text-decoration: none;
+					padding: 5px 15px;
+					color: rgba(245, 245, 245, .8);
+					background: radial-gradient(ellipse, rgba(240, 128, 128, .1) 5%, rgba(48, 48, 48, .9));
+					border-radius: 25px 25px 5px 5px;
+				}
+				/* NAVIGATION LINKS STYLE */
+				.globallinktext:hover {
+					background: radial-gradient(ellipse, rgba(240, 128, 128, .5) 15%, rgba(16, 16, 16, .3));
+				}
+				/* NAVIGATION LINKS STYLE */
+				.globallinktext:active {
+					background: radial-gradient(ellipse, rgba(240, 128, 128, 1) 10%, rgba(16, 16, 16, 1));
+				}
+				/* INSTALL BUTTON STYLE */
+				#ScriptButton {
+					background-color: rgba(255,140,0, 0.3);
+					border-radius: 25px;
+					border: 5px solid rgb(255,165,0);
+					padding: 10px;
+					color: rgba(255, 255, 255, 1);
+					font-weight: 900;
+					text-decoration: none;
+				}
+				/* INSTALL BUTTON STYLE */
+				#ScriptButton:hover {
+					background-color: rgba(255,215,0, 0.7);
+					border-radius: 25px;
+					padding: 10px;
+				}
+				table {padding: 50px;}
+			</style>
+		</head>
+		<!--DIVISION MARKER: HEAD - BODY-->
+		<body>
+			<!--Header-->
+			<header>
+				<img id="logo" src="http://i.imgur.com/vUa6ZqF.png">
+			</header>
+			<!--Navigation Links-->
+			<nav id="globallinks">
+				<a class="globallinktext" href="http://agariomods.com/">HOME</a>
+				<a class="globallinktext" href="">NEWS</a><!--NEEDS TO BE CREATED-->
+				<a class="globallinktext" href="http://forum.agariomods.com/" target="_blank">FORUM</a>
+				<a class="globallinktext" href="https://github.com/electronoob/agarmods" target="_blank">CONTRIBUTE</a>
+				<a class="globallinktext" href="">ABOUT</a><!--NEEDS TO BE CREATED-->
+				<a class="globallinktext" href="http://agariomods.com/mumble.html">MUMBLE</a>
+				<a class="globallinktext" href="https://twitter.com/Agariomods" target="_blank">Twitter</a>
+				<a class="globallinktext" href="http://agar.io" target="_blank">PLAY</a>
+			</nav>
 <br><br>
 <p>To connect to the mumble server you first need to install a mumble client for your operating system and enter in the details:</p>
 <p>host: mumble.agariomods.com<br>port: 2387<br>There is no password needed.<br>Huge thanks to Daxx for letting us all use his mumble server!<p>
