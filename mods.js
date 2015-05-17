@@ -54,7 +54,8 @@ function agariomodsRuntimePatches() {
 	gamejs = gamejs.replace('g.Raven&&g.Raven.config("https://2a85d1d3fb114384a2758cde7de2bef7@app.getsentry.com/43938",{release:"2",whitelistUrls:["agar.io/"]}).install();', "");
 	//m
 	gamejs = gamejs.replace("wa=!1", "wa=!0");
-	gamejs = gamejs.replace("(c||0==g.length&&(!this.isVirus||this.isAgitated)&&20<this.size)&&", "");
+/*we have rolled back the mass mod because of the unfair advantage it offers, it's not cool to cheat!****/
+/*	gamejs = gamejs.replace("(c||0==g.length&&(!this.isVirus||this.isAgitated)&&20<this.size)&&", ""); */
 
 }
 function agariomodsRuntimeHacks() {
@@ -65,7 +66,7 @@ function agariomodsRuntimeHacks() {
 	$( document ).ready(function() {
 	hd = document.getElementById("helloDialog");
 	cachedhd = hd.innerHTML;
-	hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<center><small>AgarioMods.com</small></center>");
+	hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<img style=\"position:absolute; padding-left:335px; top:-10px; z-index: -1;\" src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/>");
 	});
 	//<!-- INTEL's CODE -->
 	document.getElementById("nick").placeholder = "name or imgur i/[id]";
@@ -83,9 +84,9 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.style.left = "-170px";
 	nodeDiv.style.borderRadius = "5px";
 	nodeDiv.style.color = "#dddddd";
-	nodeDiv.innerHTML = "<p><b>Version 1.7.3-masseffect</b>&nbsp;&nbsp;<small>Custom skins that other people can see, we rock baby. CloudFlare in place, performance is good. Subtle tweak on skin mod, see if you can spot it! Now with mass turned on by default! Oh and, we made it so you could see every sprite's mass.</small></p>";
+	nodeDiv.innerHTML = "<p><b>Version 1.7.3-reddit</b>&nbsp;&nbsp;<small>Thank you to ayylmao and itchy for the kindness that you have showed us.</small></p>";
 //<p>Our <a target=\"_blank\" href=\"http://www.agariomods.com/\">website</a>, <a target=\"_blank\" href=\"http://forum.agariomods.com/\">forum</a>, and <a target=\"_blank\" href=\"http://www.agariomods.com/mumble.html\">mumble</a>.</p>";
-nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/showthread.php?tid=13&pid=18#pid18\"><img width=\"20px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp;Click here - for information on custom skins!</a></h3><br><p><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</p><p><i>Get your friends using this script and they can see your new avatar too!</i></p>";
+nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"20px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp;Forum</a> - We do not support cheaters, hacks, or mods which offer an unfair advantage. That is why we have rolled back our previous mod for showing everyone's mass.</p><p><font color=\"green\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p><p><i>Get your friends using this script and they can see your new avatar too!</i></p>";
 	nodeDiv.innerHTML += "<b>connections steps</b>";
 	nodeDiv.innerHTML += "\
 	<ul>\
