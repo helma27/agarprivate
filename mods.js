@@ -66,7 +66,7 @@ function agariomodsRuntimeHacks() {
 	$( document ).ready(function() {
 	hd = document.getElementById("helloDialog");
 	cachedhd = hd.innerHTML;
-	hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<img style=\"position:absolute; padding-left:335px; top:-10px; z-index: -1;\" src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/>");
+	hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<astyle=\"position:absolute; padding-left:335px; top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
 	});
 	//<!-- INTEL's CODE -->
 	document.getElementById("nick").placeholder = "name or imgur i/[id]";
@@ -87,7 +87,7 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.innerHTML = "<p><b>Version 1.7.3-reddit</b>&nbsp;&nbsp;<small>Thank you to ayylmao and itchy for the kindness that you have showed us.</small></p>";
 //<p>Our <a target=\"_blank\" href=\"http://www.agariomods.com/\">website</a>, <a target=\"_blank\" href=\"http://forum.agariomods.com/\">forum</a>, and <a target=\"_blank\" href=\"http://www.agariomods.com/mumble.html\">mumble</a>.</p>";
 nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"20px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp;Forum</a> - We do not support cheaters, hacks, or mods which offer an unfair advantage. That is why we have rolled back our previous mod for showing everyone's mass.</p><p><font color=\"green\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p><p><i>Get your friends using this script and they can see your new avatar too!</i></p>";
-	nodeDiv.innerHTML += "<b>connections steps</b>";
+	nodeDiv.innerHTML += "<a href=\"https://www.reddit.com/r/Agario/\">/r/Agario/ is the only offical agar.io subreddit!</a><br><b>connections steps</b>";
 	nodeDiv.innerHTML += "\
 	<ul>\
 	  <li>1: Get ip address from friend.</li>\
