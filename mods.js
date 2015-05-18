@@ -66,7 +66,7 @@ function agariomodsRuntimeHacks() {
 	$( document ).ready(function() {
 	hd = document.getElementById("helloDialog");
 	cachedhd = hd.innerHTML;
-	hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<astyle=\"position:absolute; padding-left:335px; top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
+	hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<a style=\"position:absolute; padding-left:335px; top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
 	});
 	//<!-- INTEL's CODE -->
 	document.getElementById("nick").placeholder = "name or imgur i/[id]";
