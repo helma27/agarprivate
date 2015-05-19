@@ -4,16 +4,109 @@
 <link href='http://fonts.googleapis.com/css?family=Ubuntu:700' rel='stylesheet' type='text/css'>
 <title>AGARIOMODS - SCRIPT</title>
 <style>
-body {
-  background: #000000;
-  color: #dadada;
-  font-family: 'Ubuntu', sans-serif;
-}
-</style>
+				/* BODY STYLE */
+				body {
+					background: #000000;
+					color: #dadada;
+					font-family: 'Ubuntu', sans-serif;
+					padding: 0px;
+					margin: 0px;
+					position: absolute;
+					width: 100%;
+				}
+				/* HEADER STYLE */
+				header {
+					position: fixed;
+					text-align: center;
+					height: 35px;
+					width: 100%;
+					background: linear-gradient(rgba(215, 18, 162, 1),  rgba(76, 0, 153, 1));
+				}
+				/* HEADER STYLE */
+				#logo {
+					height: 40px;
+					text-align: center;
+				}
+				/* NAVIGATION LINKS STYLE */
+				nav {
+					width: 100%;
+					margin-top: 35px;
+					text-align: center;
+					position: fixed;
+					padding: 15px;
+					background: linear-gradient(rgba(76, 0, 153, 1), rgba(0, 0, 0, 1) 85%, rgba(0, 0, 0, 0));
+				}
+				/* NAVIGATION LINKS STYLE */
+				.globallinktext {
+					border: 1px solid black;
+					box-shadow: blue;
+					margin-left: 10px;
+					margin-right: 10px;
+					text-decoration: none;
+					padding: 5px 15px;
+					color: rgba(255, 255, 255, .8);
+					background: radial-gradient(ellipse, rgba(76, 0, 153, .1) 5%, rgba(48, 48, 48, .9));
+					border-radius: 25px 25px 25px 25px;
+				}
+				/* NAVIGATION LINKS STYLE */
+				.globallinktext:hover {
+					background: radial-gradient(ellipse, rgba(76, 0, 153, .5) 15%, rgba(16, 16, 16, .3));
+				}
+				/* NAVIGATION LINKS STYLE */
+				.globallinktext:active {
+					background: radial-gradient(ellipse, rgba(76, 0, 153, 1) 10%, rgba(16, 16, 16, 1));
+				}
+				/* INSTALL BUTTON STYLE */
+				#ScriptButton {
+					background-color: rgba(255,140,0, 0.3);
+					border-radius: 25px;
+					border: 5px solid rgb(255,165,0);
+					padding: 10px;
+					color: rgba(255, 255, 255, 1);
+					font-weight: 900;
+					text-decoration: none;
+				}
+				/* INSTALL BUTTON STYLE */
+				#ScriptButton:hover {
+					background-color: rgba(255,215,0, 0.7);
+					border-radius: 25px;
+					padding: 10px;
+				}
+				/* TEMPORARY FIX */
+				#information {
+					padding-top: 10px;
+				}
+				/* gothic dude speaking head */
+				iframe.gothic {
+					right: -100px;
+					bottom: 0px;
+					position: fixed;
+					z-index: -1;
+				}
+			</style>
 </head>
 <body>
-<img src="http://i.imgur.com/vUa6ZqF.png">
-<br><br>
+			<!-- giggles and shits -->
+		<!--	<iframe class="gothic" id="gothic" width="240" height="135" src="https://www.youtube.com/embed/R8eQjnlSkd4?autoplay=1&rel=0&amp;controls=0&amp;showinfo=0" frameborder="0" allowfullscreen></iframe> -->
+			<!--Header-->
+			<header>
+				<img id="logo" src="http://i.imgur.com/vUa6ZqF.png">
+			</header>
+			<!--Navigation Links-->
+			<nav id="globallinks">
+				<a class="globallinktext" href="http://agariomods.com/">HOME</a>
+				<a class="globallinktext" href="http://forum.agariomods.com/" target="_blank">FORUM</a>
+				<a class="globallinktext" href="https://github.com/electronoob/agarmods" target="_blank">CONTRIBUTE</a>
+				<a class="globallinktext" href="http://agariomods.com/mumble.html">MUMBLE</a>
+				<a class="globallinktext" href="https://twitter.com/Agariomods" target="_blank">TWITTER</a>
+				<a class="globallinktext" href="http://agariomods.com/about.html">ABOUT</a>
+				<a class="globallinktext" href="http://agar.io" target="_blank">PLAY</a>
+			</nav>
+			<center>
+			<p id="information">
+			<br><br><br>
+						<h2><a href="https://www.reddit.com/r/Agario/">/r/Agario - Official Subreddit</a></h2>
+					
 Your file should begin downloading in 3 seconds, or you can click <a href="mods.user.js">here</a>.
 </body>
 </html>
