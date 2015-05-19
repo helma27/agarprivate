@@ -5,7 +5,6 @@ Agarmods Evergreen Server Selector.
 
 Navigation: [Website][4] | **Script Repository** | [Agar Game][5]
 
-![electronoob as a skin playing agar.io](http://agariomods.com/preview.gif "electronoob playing agar.io with our script.")
 
 We are presently rolling out custom skins!
 
