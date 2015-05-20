@@ -1,5 +1,5 @@
 // ==UserScript==
-// @name         New Agar Server Selector
+// @name       AgarioMods Server Selector
 // @namespace	 electronoob-agarmods
 // @version      1.5.2
 // @description  community run mod feature set for agar.io
@@ -17,6 +17,6 @@ repo:
 https://github.com/electronoob/agarmods
 
 common website for all mods from anybody:
-http://www.agarmods.com
+http://www.agariomods.com
 
 */
