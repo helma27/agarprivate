@@ -41,6 +41,10 @@ function agariomodsRuntimeInjection() {
 	script.innerHTML = gamejs;
 	document.head.appendChild(script);
 	agariomodsRuntimeHacks();
+	
+	window.onbeforeunload = function() {
+		return 'Are you sure you want to quit agar.io?';
+	};
 }
 function agariomodsRuntimePatches() {
 	//s
