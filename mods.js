@@ -98,7 +98,6 @@ nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com
 	<div style=\"background-color: #ffffff; color: #000000;\">\
 	<b>Disable adblocking software!</b>&nbsp;<small>We finally tracked down an issue to adblocking software, Turns out that it breaks the game and our modifications in random and unexpected ways. Beside Zeach provides this game free and we all need to support him!</small>\
 	</div>\
-<span style=\"left:0px; bottom: -100px; position: fixed; z-index: 200000;\"><h3>agariomods.com</h3></span>\
 	";
 	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
 	jQuery('#region').parent().get(0).appendChild(nodeDiv);
