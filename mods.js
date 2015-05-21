@@ -91,7 +91,7 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.innerHTML = "<p><b>Version 1.7.3-reddit</b>&nbsp;&nbsp;<small>Thank you to ayylmao and itchy for the kindness that you have showed us.</small></p>";
 //<p>Our <a target=\"_blank\" href=\"http://www.agariomods.com/\">website</a>, <a target=\"_blank\" href=\"http://forum.agariomods.com/\">forum</a>, and <a target=\"_blank\" href=\"http://www.agariomods.com/mumble.html\">mumble</a>.</p>";
 nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"20px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp;Forum</a> - We do not support cheaters, hacks, or mods which offer an unfair advantage. That is why we have rolled back our previous mod for showing everyone's mass.</p><p><font color=\"green\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p><p><i>Get your friends using this script and they can see your new avatar too!</i></p>";
-	nodeDiv.innerHTML += "<a href=\"https://www.reddit.com/r/Agario/\">/r/Agario/ is the only offical agar.io subreddit!</a><br><b>connections steps</b>";
+	nodeDiv.innerHTML += "<a href=\"https://www.reddit.com/r/Agario/\">/r/Agario - Official Subreddit</a><br><b>connections steps</b>";
 	nodeDiv.innerHTML += "\
 	<ul>\
 	  <li>1: Get ip address from friend.</li>\
