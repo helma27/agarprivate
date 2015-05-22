@@ -87,7 +87,7 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.innerHTML += "<b>connections steps</b>";
 	nodeDiv.innerHTML += "\
 	<ul>\
-	  <li>1: hi guys whats up.</li>\
+	  <li>1: Get ip address from friend.</li>\
 	  <li>2: Put it in text box below.</li>\
 	  <li>3: Press the swirly icon next to it.</li>\
 	  <p><b>Note:</b> Check with your friend to see whos #1 on the leaderboard</p>\
