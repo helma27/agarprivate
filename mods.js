@@ -41,34 +41,32 @@ function agariomodsRuntimeInjection() {
 	script.innerHTML = gamejs;
 	document.head.appendChild(script);
 	agariomodsRuntimeHacks();
+	
+	window.onbeforeunload = function() {
+		return 'Are you sure you want to quit agar.io?';
+	};
 }
 function agariomodsRuntimePatches() {
 	//s
-	gamejs = gamejs.replace(';reddit;',';reddit;electronoob;');
+	var ourskins = "711;hydro;knicks;rockets;spurs;electronoob;love;space";
+	gamejs = gamejs.replace(';reddit;',';reddit;'+ourskins+';');
 	gamejs = gamejs.replace(W + '[b]=new Image,'+W+'[b].src="skins/"+b+".png"',W +'[b]=new Image,'+W+'[b].crossOrigin = "Anonymous",'+W+'[b].src="skins/"+b+".png"');
-	gamejs = gamejs.replace('b=this.name.toLowerCase();', 'b=this.name.toLowerCase();var agariomods="";if(b == "electronoob") {agariomods="http://agariomods.com/skins/electronoob.png";} else if (b.substring(0, 2) == "i/") {agariomods="http://i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="http://agar.io/skins/" + this.name.toLowerCase() + ".png";}');
+	gamejs = gamejs.replace('b=this.name.toLowerCase();', 'b=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if((b.length >0) && (ourskins.indexOf(b)>-1)) {agariomods="http://skins.agariomods.com/i/"+b+".png";} else if (b.substring(0, 2) == "i/") {agariomods="http://i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="http://agar.io/skins/" + this.name.toLowerCase() + ".png";}');
 	gamejs = gamejs.replace(W +'[b].src="skins/"+b+".png"',W+'[b].src=agariomods');
 	gamejs = gamejs.replace("this._stroke&&b.strokeText(c,3,e-g/2);b.fillText(c,3,e-g/2)", "if (String(c).substring(0, 2) != \"i/\") {this._stroke&&b.strokeText(c,3,e-g/2);b.fillText(c,3,e-g/2)}");
-	// lol raven
 	gamejs = gamejs.replace("b=this.name.toLowerCase();", "b=this.name.toLowerCase(); if (b.substring(0, 2) == \"i/\") {" +Ja+ "+=b;} ;");
-	gamejs = gamejs.replace('g.Raven&&g.Raven.config("https://2a85d1d3fb114384a2758cde7de2bef7@app.getsentry.com/43938",{release:"2",whitelistUrls:["agar.io/"]}).install();', "");
-	//m
-	gamejs = gamejs.replace("wa=!1", "wa=!0");
-/*we have rolled back the mass mod because of the unfair advantage it offers, it's not cool to cheat!****/
-/*	gamejs = gamejs.replace("(c||0==g.length&&(!this.isVirus||this.isAgitated)&&20<this.size)&&", ""); */
-//	gamejs = gamejs.replace("Score: ", "agariomods.com\nScore: ");
+	// turn on mass by default.
+	gamejs = gamejs.replace("wa=!1", "wa=!0"); 
 }
 function agariomodsRuntimeHacks() {
 	jQuery('#helloDialog').css({top: '-100px'});
 	jQuery('#helloDialog').css({margin: '5px auto'});
 	var nodeDiv = document.createElement("div");
-	//<!-- HYDRO's CODE -->
 	$( document ).ready(function() {
 	hd = document.getElementById("helloDialog");
 	cachedhd = hd.innerHTML;
 	hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<a style=\"position:absolute; padding-left:335px; top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
 	});
-	//<!-- INTEL's CODE -->
 	document.getElementById("nick").placeholder = "name or imgur i/[id]";
 	$( document ).ready(function() {
 	nh = document.getElementById("overlays");
@@ -84,10 +82,9 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.style.left = "-170px";
 	nodeDiv.style.borderRadius = "5px";
 	nodeDiv.style.color = "#dddddd";
-	nodeDiv.innerHTML = "<p><b>Version 1.7.3-reddit</b>&nbsp;&nbsp;<small>Thank you to ayylmao and itchy for the kindness that you have showed us.</small></p>";
-//<p>Our <a target=\"_blank\" href=\"http://www.agariomods.com/\">website</a>, <a target=\"_blank\" href=\"http://forum.agariomods.com/\">forum</a>, and <a target=\"_blank\" href=\"http://www.agariomods.com/mumble.html\">mumble</a>.</p>";
-nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"20px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp;Forum</a> - We do not support cheaters, hacks, or mods which offer an unfair advantage. That is why we have rolled back our previous mod for showing everyone's mass.</p><p><font color=\"green\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p><p><i>Get your friends using this script and they can see your new avatar too!</i></p>";
-	nodeDiv.innerHTML += "<a href=\"https://www.reddit.com/r/Agario/\">/r/Agario - Official Subreddit</a><br><b>connections steps</b>";
+	nodeDiv.innerHTML = "<p><b>Version 1.7.4-respect</b>&nbsp;&nbsp;<small><a href=\"https://www.reddit.com/r/Agario/\">/r/Agario is the <b>only</b> Official Subreddit for agar.io</a></small></p>";
+	nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"20px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp</a><small>Thank you for being a decent member of the community by supporting responsible mods like ours.</small></p><p><i>Get your friends using this script and they can see your new avatar too!</i></p><p><font color=\"yellow\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p>";
+	nodeDiv.innerHTML += "<b>connections steps</b>";
 	nodeDiv.innerHTML += "\
 	<ul>\
 	  <li>1: Get ip address from friend.</li>\
