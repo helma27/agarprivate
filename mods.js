@@ -14,6 +14,7 @@ for (i=0; i<tester.length; i++ ){
 if(discovered_mainouturl != 0) {
 	httpGet(discovered_mainouturl, function(data) {
 		gamejs = "window.agariomods = " + data.replace("socket open","socket open (agariomods.com mod in place)");
+		gamejs = gamejs.replace(/\n/g, "");
 		offset = gamejs.search("..b..src");
 		W = gamejs.substr(offset,1);
 		offset = gamejs.search("..=\"poland;");
@@ -48,7 +49,7 @@ function agariomodsRuntimeInjection() {
 }
 function agariomodsRuntimePatches() {
 	//s
-	var ourskins = "711;hydro;knicks;rockets;spurs;electronoob;love;space";
+	var ourskins = "711;hydro;knicks;rockets;spurs;electronoob;love;space;white light;controless";
 	gamejs = gamejs.replace(';reddit;',';reddit;'+ourskins+';');
 	gamejs = gamejs.replace(W + '[b]=new Image,'+W+'[b].src="skins/"+b+".png"',W +'[b]=new Image,'+W+'[b].crossOrigin = "Anonymous",'+W+'[b].src="skins/"+b+".png"');
 	gamejs = gamejs.replace('b=this.name.toLowerCase();', 'b=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if((b.length >0) && (ourskins.indexOf(b)>-1)) {agariomods="http://skins.agariomods.com/i/"+b+".png";} else if (b.substring(0, 2) == "i/") {agariomods="http://i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="http://agar.io/skins/" + this.name.toLowerCase() + ".png";}');
@@ -82,7 +83,7 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.style.left = "-170px";
 	nodeDiv.style.borderRadius = "5px";
 	nodeDiv.style.color = "#dddddd";
-	nodeDiv.innerHTML = "<p><b>Version 1.7.4-respect</b>&nbsp;&nbsp;<small><a href=\"https://www.reddit.com/r/Agario/\">/r/Agario is the <b>only</b> Official Subreddit for agar.io</a></small></p>";
+	nodeDiv.innerHTML = "<p><b>Version 1.7.5-reporter301</b>&nbsp;&nbsp;Custom skins were broken for a few hours after a gamecode change, all is well in the world of agariomods skins now, thanks for your patience.<br><small><a href=\"https://www.reddit.com/r/Agario/\">/r/Agario is the <b>only</b> Official Subreddit for agar.io</a></small></p>";
 	nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"20px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp</a><small>Thank you for being a decent member of the community by supporting responsible mods like ours.</small></p><p><i>Get your friends using this script and they can see your new avatar too!</i></p><p><font color=\"yellow\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p>";
 	nodeDiv.innerHTML += "<b>connections steps</b>";
 	nodeDiv.innerHTML += "\
@@ -143,7 +144,7 @@ function agariomodsRuntimeHacks() {
 	    modBlocking = false;
 	});
 	jQuery('#playBtn').off();
-	$('.btn-needs-server').prop('disabled', false);
+	$('.btn-needs-server').prop('disabled', true);
 	jQuery('#playBtn').click(function() {
 	    setNick(document.getElementById('nick').value);
 	    return false;
