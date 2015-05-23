@@ -44,7 +44,7 @@ AgarioMods Evergreen server selector script is distributed under the terms of th
 Credits
 ------------------------------------------------------------------------
 
-**Owner**
+**Manager**
  - [Electronoob][9]
 
 **Contributors**
