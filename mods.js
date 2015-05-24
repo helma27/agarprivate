@@ -46,7 +46,10 @@ function agariomodsRuntimeInjection() {
 	window.onbeforeunload = function() {
 		return 'Are you sure you want to quit agar.io?';
 	};
-
+	// as a trackpad user, this fix should reduce the frequency at which I am killed.
+	$("#canvas").on('mousedown', function(event){
+		event.preventDefault();
+	}
 	/* added an advert unit to the landing page as we now have server rental to consider */
 	var iframe = document.createElement("iframe");
 	iframe.id = "agariomods";
