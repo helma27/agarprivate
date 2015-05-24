@@ -22,7 +22,8 @@ func main() {
 	fmt.Print(strings.Join(namesSlice, ":"));
 	fmt.Println("\";");
 	fmt.Println("grabbing source from github");
-
+return;
+	/* a work in progress */
 	cmd := exec.Command("git", "clone", "https://github.com/electronoob/agarmods.git");
 	err := cmd.Start();
 	if err != nil {

@@ -84,11 +84,11 @@ function agariomodsRuntimeHacks() {
 		cachedhd = hd.innerHTML;
 		hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<a style=\"position:absolute; padding-left:335px; top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
 	});
-	document.getElementById("nick").placeholder = "name or imgur i/[id]";
+	document.getElementById("nick").placeholder = "name";
 	$( document ).ready(function() {
 		nh = document.getElementById("overlays");
 		cachednh = nh.innerHTML;
-		nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "Set name as <b>i/D2yH9r8</b> for skins example.");
+		nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "<a href='http://skins.agariomods.com'>click here for list of agariomods skins</a>");
 	});
 	nodeDiv.id = "includedContent";
 	nodeDiv.style.width = "640px"
