@@ -46,6 +46,22 @@ function agariomodsRuntimeInjection() {
 	window.onbeforeunload = function() {
 		return 'Are you sure you want to quit agar.io?';
 	};
+
+	/* added an advert unit to the landing page as we now have server rental to consider */
+	var iframe = document.createElement("iframe");
+        iframe.id = "agariomods";
+        iframe.style.width = "468px";
+	iframe.style.height = "20px";
+        iframe.style.zIndex = 3;
+        iframe.style.position = "relative";
+        iframe.style.padding = "0px";
+	iframe.style.margin = "0px";
+        iframe.style.left = "0px";
+	iframe.style.overflow = "hidden";
+        iframe.style.border = "0px";
+        iframe.src = "http://agariomods.com/adverts.mod.js.html";
+	var overlay = document.getElementById("includedContent");
+	overlay.appendChild(iframe);
 }
 function agariomodsRuntimePatches() {
 	//s
@@ -83,8 +99,8 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.style.left = "-170px";
 	nodeDiv.style.borderRadius = "5px";
 	nodeDiv.style.color = "#dddddd";
-	nodeDiv.innerHTML = "<p><b>Version 1.7.5-reporter301</b>&nbsp;&nbsp;Custom skins were broken for a few hours after a gamecode change, all is well in the world of agariomods skins now, thanks for your patience.<br><small><a href=\"https://www.reddit.com/r/Agario/\">/r/Agario is the <b>only</b> Official Subreddit for agar.io</a></small></p>";
-	nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"20px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp</a><small>Thank you for being a decent member of the community by supporting responsible mods like ours.</small></p><p><i>Get your friends using this script and they can see your new avatar too!</i></p><p><font color=\"yellow\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p>";
+	nodeDiv.innerHTML = "<p><b>Version 1.7.5-reporter301</b>&nbsp;&nbsp;<small><a href=\"https://www.reddit.com/r/Agario/\">/r/Agario is the <b>only</b> Official Subreddit for agar.io</a></small></p>";
+	nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"15px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp</a><i>Get your friends using this script so they can see your new avatar too!</i><p><font color=\"yellow\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p>";
 	nodeDiv.innerHTML += "<b>connections steps</b>";
 	nodeDiv.innerHTML += "\
 	<ul>\
@@ -94,7 +110,7 @@ function agariomodsRuntimeHacks() {
 	  <p><b>Note:</b> Check with your friend to see whos #1 on the leaderboard</p>\
 	</ul>\
 	<div style=\"background-color: #ffffff; color: #000000;\">\
-	<b>Disable adblocking software!</b>&nbsp;<small>We finally tracked down an issue to adblocking software, Turns out that it breaks the game and our modifications in random and unexpected ways. Beside Zeach provides this game free and we all need to support him!</small>\
+	<b>Disable adblocking software!</b>&nbsp;<small>We finally tracked down an issue to adblocking software, Turns out that it breaks the game and our modifications in random and unexpected ways.</small>\
 	</div>\
 	";
 	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
