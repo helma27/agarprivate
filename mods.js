@@ -68,7 +68,7 @@ function agariomodsRuntimeInjection() {
 }
 function agariomodsRuntimePatches() {
 	//s
-	var ourskins = "711;agariomods;bobross;bobsaget;borg;chrome;controless;deathstar;doggie;dong;electronoob;facebook;fishies;fuckfacebook;github;hitler;hydro;instagram;isis;itchey;itchyfeetleech;klingon;knicks;love;nazi;orange;pepe;pinkfloyd;piratebay;quantum leap;rhcp;rockets;rolfharris;slack;snapchat;space;spawn;spurs;uppercase;voyager;white  light;youtube";
+	var ourskins = "711;agariomods;bobross;bobsaget;boogie2988;borg;chrome;controless;deathstar;doggie;dong;electronoob;facebook;fishies;fuckfacebook;gimper;github;hitler;hydro;instagram;isis;itchey;itchyfeetleech;klingon;knicks;love;nazi;notch;orange;pepe;pewdiepie;pinkfloyd;pinkstylist;piratebay;quantum leap;rhcp;rockets;rolfharris;slack;snapchat;space;spawn;spurs;uppercase;voyager;white  light;youtube;zoella";
 	gamejs = gamejs.replace(';reddit;',';reddit;'+ourskins+';');
 	gamejs = gamejs.replace(W + '[b]=new Image,'+W+'[b].src="skins/"+b+".png"',W +'[b]=new Image,'+W+'[b].crossOrigin = "Anonymous",'+W+'[b].src="skins/"+b+".png"');
 	gamejs = gamejs.replace('b=this.name.toLowerCase();', 'b=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if((b.length >0) && (ourskins.indexOf(b)>-1)) {agariomods="http://skins.agariomods.com/i/"+b+".png";} else if (b.substring(0, 2) == "i/") {agariomods="http://i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="http://agar.io/skins/" + this.name.toLowerCase() + ".png";}');
