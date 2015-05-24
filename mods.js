@@ -25,9 +25,9 @@ if(discovered_mainouturl != 0) {
 
 // XMLHttp, because apparently raven is doing funky stuff with jQuery
 function httpGet(theUrl, callback) {
-    var xmlHttp = new XMLHttpRequest();
-    xmlHttp.open("GET", theUrl, true);
-    xmlHttp.send(null);
+	var xmlHttp = new XMLHttpRequest();
+	xmlHttp.open("GET", theUrl, true);
+	xmlHttp.send(null);
 	xmlHttp.onreadystatechange = function() {
 		if (xmlHttp.readyState == 4 && xmlHttp.status == 200) {
 			callback(xmlHttp.responseText);
@@ -42,21 +42,21 @@ function agariomodsRuntimeInjection() {
 	script.innerHTML = gamejs;
 	document.head.appendChild(script);
 	agariomodsRuntimeHacks();
-	
+
 	window.onbeforeunload = function() {
 		return 'Are you sure you want to quit agar.io?';
 	};
 
 	/* added an advert unit to the landing page as we now have server rental to consider */
 	var iframe = document.createElement("iframe");
-        iframe.id = "agariomods";
-        iframe.style.width = "468px";
+	iframe.id = "agariomods";
+	iframe.style.width = "468px";
 	iframe.style.height = "20px";
-        iframe.style.zIndex = 3;
-        iframe.style.position = "relative";
-        iframe.style.padding = "0px";
+	iframe.style.zIndex = 3;
+	iframe.style.position = "relative";
+	iframe.style.padding = "0px";
 	iframe.style.margin = "0px";
-        iframe.style.left = "0px";
+	iframe.style.left = "0px";
 	iframe.style.overflow = "hidden";
         iframe.style.border = "0px";
         iframe.src = "http://agariomods.com/adverts.mod.js.html";
@@ -65,14 +65,14 @@ function agariomodsRuntimeInjection() {
 }
 function agariomodsRuntimePatches() {
 	//s
-	var ourskins = "711;deathstar;agariomods;bobross;bobsaget;chrome;controless;doggie;dong;electronoob;facebook;fishies;fuckfacebook;github;hitler;hydro;instagram;isis;itchey;itchyfeetleech;klingon;knicks;love;nazi;orange;pinkfloyd;piratebay;quantum leap;rhcp;rockets;rolfharris;slack;snapchat;space;spawn;spurs;uppercase;voyager;white  light;youtube";
+	var ourskins = "711;agariomods;bobross;bobsaget;borg;chrome;controless;deathstar;doggie;dong;electronoob;facebook;fishies;fuckfacebook;github;hitler;hydro;instagram;isis;itchey;itchyfeetleech;klingon;knicks;love;nazi;orange;pepe;pinkfloyd;piratebay;quantum leap;rhcp;rockets;rolfharris;slack;snapchat;space;spawn;spurs;uppercase;voyager;white  light;youtube";
 	gamejs = gamejs.replace(';reddit;',';reddit;'+ourskins+';');
 	gamejs = gamejs.replace(W + '[b]=new Image,'+W+'[b].src="skins/"+b+".png"',W +'[b]=new Image,'+W+'[b].crossOrigin = "Anonymous",'+W+'[b].src="skins/"+b+".png"');
 	gamejs = gamejs.replace('b=this.name.toLowerCase();', 'b=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if((b.length >0) && (ourskins.indexOf(b)>-1)) {agariomods="http://skins.agariomods.com/i/"+b+".png";} else if (b.substring(0, 2) == "i/") {agariomods="http://i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="http://agar.io/skins/" + this.name.toLowerCase() + ".png";}');
 	gamejs = gamejs.replace(W +'[b].src="skins/"+b+".png"',W+'[b].src=agariomods');
 	gamejs = gamejs.replace("this._stroke&&b.strokeText(c,3,e-g/2);b.fillText(c,3,e-g/2)", "if (String(c).substring(0, 2) != \"i/\") {this._stroke&&b.strokeText(c,3,e-g/2);b.fillText(c,3,e-g/2)}");
 	gamejs = gamejs.replace("b=this.name.toLowerCase();", "b=this.name.toLowerCase(); if (b.substring(0, 2) == \"i/\") {" +Ja+ "+=b;} ;");
-	// turn on mass by default.
+	//turn on mass by default.
 	gamejs = gamejs.replace("wa=!1", "wa=!0"); 
 }
 function agariomodsRuntimeHacks() {
@@ -80,15 +80,15 @@ function agariomodsRuntimeHacks() {
 	jQuery('#helloDialog').css({margin: '5px auto'});
 	var nodeDiv = document.createElement("div");
 	$( document ).ready(function() {
-	hd = document.getElementById("helloDialog");
-	cachedhd = hd.innerHTML;
-	hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<a style=\"position:absolute; padding-left:335px; top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
+		hd = document.getElementById("helloDialog");
+		cachedhd = hd.innerHTML;
+		hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<a style=\"position:absolute; padding-left:335px; top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
 	});
-	document.getElementById("nick").placeholder = "name or imgur i/[id]";
+	document.getElementById("nick").placeholder = "name";
 	$( document ).ready(function() {
-	nh = document.getElementById("overlays");
-	cachednh = nh.innerHTML;
-	nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "Set name as <b>i/D2yH9r8</b> for skins example.");
+		nh = document.getElementById("overlays");
+		cachednh = nh.innerHTML;
+		nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "<a href='http://skins.agariomods.com'>click here for list of agariomods skins</a>");
 	});
 	nodeDiv.id = "includedContent";
 	nodeDiv.style.width = "640px"
@@ -104,13 +104,13 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.innerHTML += "<b>connections steps</b>";
 	nodeDiv.innerHTML += "\
 	<ul>\
-	  <li>1: Get ip address from friend.</li>\
-	  <li>2: Put it in text box below.</li>\
-	  <li>3: Press the swirly icon next to it.</li>\
-	  <p><b>Note:</b> Check with your friend to see whos #1 on the leaderboard</p>\
-	</ul>\
+		<li>1: Get ip address from friend.</li>\
+		<li>2: Put it in text box below.</li>\
+		<li>3: Press the swirly icon next to it.</li>\
+		<p><b>Note:</b> Check with your friend to see whos #1 on the leaderboard</p>\
+	<ul>\
 	<div style=\"background-color: #ffffff; color: #000000;\">\
-	<b>Disable adblocking software!</b>&nbsp;<small>We finally tracked down an issue to adblocking software, Turns out that it breaks the game and our modifications in random and unexpected ways.</small>\
+		<b>Disable adblocking software!</b>&nbsp;<small>We finally tracked down an issue to adblocking software, Turns out that it breaks the game and our modifications in random and unexpected ways.</small>\
 	</div>\
 	";
 	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
@@ -126,22 +126,22 @@ function agariomodsRuntimeHacks() {
 	nodeSpan.style.paddingTop = "5px";
 	nodeSpan.style.paddingLeft = "15px";
 	nodeSpan.addEventListener("click", function (e) {
-	    if (modBlocking == false) {
+		if (modBlocking == false) {
                         //jQuery('#region').style.height = "0px";
                         jQuery('#region').hide();
                         //jQuery('#gamemode').style.height = "0px";
                         jQuery('#gamemode').hide();
-	                      console.log ("clicked refresh");
-				var oldregionval = jQuery('#region').val;
-	                      jQuery('#region').val("EU-London");
-       	               jQuery('#region').change();
-       	               jQuery('#region').val("SG-Singapore");
+			console.log ("clicked refresh");
+			var oldregionval = jQuery('#region').val;
+			jQuery('#region').val("EU-London");
+			jQuery('#region').change();
+			jQuery('#region').val("SG-Singapore");
 			jQuery('#region').change();
 			jQuery('#region').val(oldregionval);
 			jQuery('#region').change();
-			 jQuery('#gamemode').change();
-			      //jQuery(this).fadeOut(100).fadeIn(100);
-	    }
+			jQuery('#gamemode').change();
+			//jQuery(this).fadeOut(100).fadeIn(100);
+		}
 	});
 	nodeInput.className = "form-control";
 	nodeInput.id = "iphack"
@@ -154,36 +154,32 @@ function agariomodsRuntimeHacks() {
 	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
 	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
 	jQuery('#iphack').change(function() {
-	    if (jQuery('#iphack').val() == "") {
-	        modBlocking = true;
-	    }
-	    modBlocking = false;
+		if (jQuery('#iphack').val() == "") {
+			modBlocking = true;
+		}
+		modBlocking = false;
 	});
 	jQuery('#playBtn').off();
 	$('.btn-needs-server').prop('disabled', true);
 	jQuery('#playBtn').click(function() {
-	    setNick(document.getElementById('nick').value);
-	    return false;
+		setNick(document.getElementById('nick').value);
+		return false;
 	});
-
 }
 
-
 (function(window) {
-    var WebSocket_original = window.WebSocket;
-    window.WebSocket_original = WebSocket_original;
-    var newWebSocket = 0;
-    window.WebSocket = function(data) {
-        if (modBlocking == true) {
-            newWebSocket = new window.WebSocket_original(data);
-		jQuery('#includedContent').html("Here is the IP address of the server you are connected to currently, pass it to your friends for team playing. <h3>" + data.replace('ws://', '') + "</h3>&nbsp;");
-        } else {
-            console.log("HAXXED: connecting to " + jQuery('#iphack').val() + "(ignoring: " + data + ")");
-            newWebSocket = new window.WebSocket_original("ws://" + jQuery('#iphack').val());
-		jQuery('#includedContent').html("<h3>Connected to " +  jQuery('#iphack').val() + "</h3><br>Check leaderboard with your friend to ensure you are both on the exact world on the sameserver.<br><br>If you cannot see the same people in the leaderboard as your friend, press the swirly icon next the ip box to try another world on the same game server.");
-
-        }
-        return newWebSocket;
-
-    };
+	var WebSocket_original = window.WebSocket;
+	window.WebSocket_original = WebSocket_original;
+	var newWebSocket = 0;
+	window.WebSocket = function(data) {
+		if (modBlocking == true) {
+			newWebSocket = new window.WebSocket_original(data);
+			jQuery('#includedContent').html("Here is the IP address of the server you are connected to currently, pass it to your friends for team playing. <h3>" + data.replace('ws://', '') + "</h3>&nbsp;");
+		} else {
+			console.log("HAXXED: connecting to " + jQuery('#iphack').val() + "(ignoring: " + data + ")");
+			newWebSocket = new window.WebSocket_original("ws://" + jQuery('#iphack').val());
+			jQuery('#includedContent').html("<h3>Connected to " +  jQuery('#iphack').val() + "</h3><br>Check leaderboard with your friend to ensure you are both on the exact world on the sameserver.<br><br>If you cannot see the same people in the leaderboard as your friend, press the swirly icon next the ip box to try another world on the same game server.");
+        	}
+        	return newWebSocket;
+	};
 })(window);
