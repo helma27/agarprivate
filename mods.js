@@ -94,7 +94,7 @@ function agariomodsRuntimeHacks() {
 		nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "<a target=\"_blank\" href='http://skins.agariomods.com'>click here for list of agariomods skins</a>");
 	});
 	nodeDiv.id = "includedContent";
-	nodeDiv.style.width = "700px"
+	nodeDiv.style.width = "640px"
 	nodeDiv.style.backgroundColor = "#000000";
 	nodeDiv.style.zIndex = 9999999999;
 	nodeDiv.style.position = "relative";
@@ -104,7 +104,7 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.style.color = "#dddddd";
 	nodeDiv.innerHTML = "<small>Version 1.7.6&nbsp;&nbsp;The very best in skin modding</small>";
 //	nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"15px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp</a><i>Get your friends using this script so they can see your new avatar too!</i><p><font color=\"yellow\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p>";
-	nodeDiv.innerHTML += "<b>connections steps</b>";
+	nodeDiv.innerHTML += "<br><b>connections steps</b>";
 	nodeDiv.innerHTML += "\
 	<ul>\
 		<li>1: Get ip address from friend.</li>\
@@ -115,7 +115,7 @@ function agariomodsRuntimeHacks() {
 	<div style=\"background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;\">\
 		<small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
 	</div>\
-	<center><a href=\"http://skins.agariomods.com\" target=\"_blank\"><img src=\"http://i.imgur.com/WvIcNhw.png\"/></a></center>\
+	<center><a href=\"http://skins.agariomods.com\" target=\"_blank\"><img src=\"http://i.imgur.com/WvIcNhw.png\"/></a></center><br>\
 	";
 	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
 	jQuery('#region').parent().get(0).appendChild(nodeDiv);
