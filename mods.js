@@ -37,12 +37,12 @@ function httpGet(theUrl, callback) {
 function agariomodsRuntimeInjection() {
 	var tester = document.getElementsByTagName("head");
 	var oldhtml = tester[0].innerHTML;
-	oldhtml = oldhtml.replace('width:350px;', '', -1);
-//	oldhtml = oldhtml.replace('top:50%;margin-right:-50%;transform:translate(-50%,-50%);', 'width:650px;', -1);
-oldhtml = oldhtml.replace('-webkit-transform:translate(-50%,-50%);', '', -1);
-oldhtml = oldhtml.replace('-ms-transform:translate(-50%,-50%);', '', -1);
-oldhtml = oldhtml.replace('transform:translate(-50%,-50%);', '', -1);
-oldhtml = oldhtml.replace('top:50%;left:50%;','margin:10px;',-1);
+	oldhtml = oldhtml.replace('width:350px;', '');
+//	oldhtml = oldhtml.replace('top:50%;margin-right:-50%;transform:translate(-50%,-50%);', 'width:650px;');
+oldhtml = oldhtml.replace('-webkit-transform:translate(-50%,-50%);', '');
+oldhtml = oldhtml.replace('-ms-transform:translate(-50%,-50%);', '');
+oldhtml = oldhtml.replace('transform:translate(-50%,-50%);', '');
+oldhtml = oldhtml.replace('top:50%;left:50%;','margin:10px;');
 	tester[0].innerHTML = oldhtml;
 	var script = document.createElement("script");
 	agariomodsRuntimePatches();
@@ -119,8 +119,11 @@ function agariomodsRuntimeHacks() {
 	<div style=\"background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;\">\
 		<small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
 	</div>\
-	<center><a href=\"http://skins.agariomods.com\" target=\"_blank\"><img src=\"http://i.imgur.com/WvIcNhw.png\"/></a></center><br>\
+			<center><br><h3><a href=\"http://chat.agariomods.com\" target=\"_blank\">While game is down, join me [ electronoob ] in chat here</a></h3><br></center>\
 	";
+//	<center><a href=\"http://skins.agariomods.com\" target=\"_blank\"><img src=\"http://i.imgur.com/WvIcNhw.png\"/></a></center><br>\
+
+http://chat.agariomods.com/
 	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
 	jQuery('#region').parent().get(0).appendChild(nodeDiv);
 	var selector = jQuery('#region');
