@@ -35,8 +35,15 @@ function httpGet(theUrl, callback) {
 	};
 }
 function agariomodsRuntimeInjection() {
-	var tester = document.getElementsByTagName("html");
+	var tester = document.getElementsByTagName("head");
 	var oldhtml = tester[0].innerHTML;
+	oldhtml = oldhtml.replace('width:350px;', '', -1);
+//	oldhtml = oldhtml.replace('top:50%;margin-right:-50%;transform:translate(-50%,-50%);', 'width:650px;', -1);
+oldhtml = oldhtml.replace('-webkit-transform:translate(-50%,-50%);', '', -1);
+oldhtml = oldhtml.replace('-ms-transform:translate(-50%,-50%);', '', -1);
+oldhtml = oldhtml.replace('transform:translate(-50%,-50%);', '', -1);
+oldhtml = oldhtml.replace('top:50%;left:50%;','margin:10px;',-1);
+	tester[0].innerHTML = oldhtml;
 	var script = document.createElement("script");
 	agariomodsRuntimePatches();
 	script.innerHTML = gamejs;
@@ -79,39 +86,36 @@ function agariomodsRuntimePatches() {
 	gamejs = gamejs.replace("wa=!1", "wa=!0");
 }
 function agariomodsRuntimeHacks() {
-	jQuery('#helloDialog').css({top: '-100px'});
-	jQuery('#helloDialog').css({margin: '5px auto'});
+//	jQuery('#helloDialog').css({left: 'auto;'});
+//	jQuery('#helloDialog').css({left: '0px;'});
 	var nodeDiv = document.createElement("div");
 	$( document ).ready(function() {
 		hd = document.getElementById("helloDialog");
 		cachedhd = hd.innerHTML;
-		hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:335px; top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
+		hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:650px;top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
 	});
-	document.getElementById("nick").placeholder = "name";
+	document.getElementById("nick").placeholder = "!! agar.io is currently down/unreliable - this isn't our mod causing the trouble !!";
 	$( document ).ready(function() {
 		nh = document.getElementById("overlays");
 		cachednh = nh.innerHTML;
-		nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "<a target=\"_blank\" href='http://skins.agariomods.com'>click here for list of agariomods skins</a>");
+		nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "<small>Version 1.7.7-BestAgarPlayer2015</small>&nbsp;<a target=\"_blank\" href='http://skins.agariomods.com'>click here for list of agariomods skins</a>");
 	});
 	nodeDiv.id = "includedContent";
 	nodeDiv.style.width = "640px"
 	nodeDiv.style.backgroundColor = "#000000";
 	nodeDiv.style.zIndex = 9999999999;
-	nodeDiv.style.position = "relative";
+//	nodeDiv.style.position = "relative";
 	nodeDiv.style.padding = "5px";
-	nodeDiv.style.left = "-170px";
+//	nodeDiv.style.left = "-170px";
 	nodeDiv.style.borderRadius = "5px";
 	nodeDiv.style.color = "#dddddd";
-	nodeDiv.innerHTML = "<small>Version 1.7.6&nbsp;&nbsp;The very best in skin modding</small>";
+//	nodeDiv.innerHTML = "<small>Version 1.7.7-BestAgarPlayer2015&nbsp;&nbsp;The very best in skin modding</small>";
 //	nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"15px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp</a><i>Get your friends using this script so they can see your new avatar too!</i><p><font color=\"yellow\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p>";
-	nodeDiv.innerHTML += "<br><b>connections steps</b>";
 	nodeDiv.innerHTML += "\
-	<ul>\
-		<li>1: Get ip address from friend.</li>\
-		<li>2: Put it in text box below.</li>\
-		<li>3: Press the swirly icon next to it.</li>\
+		Get IP address from friend.\
+		Put it in text box below.\
+		Press the swirly icon next to it.\
 		<p><b>Note:</b> Check with your friend to see whos #1 on the leaderboard</p>\
-	</ul>\
 	<div style=\"background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;\">\
 		<small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
 	</div>\
