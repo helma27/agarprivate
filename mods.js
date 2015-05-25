@@ -37,12 +37,12 @@ function httpGet(theUrl, callback) {
 function agariomodsRuntimeInjection() {
 	var tester = document.getElementsByTagName("head");
 	var oldhtml = tester[0].innerHTML;
-	oldhtml = oldhtml.replace('width:350px;', '', -1);
-//	oldhtml = oldhtml.replace('top:50%;margin-right:-50%;transform:translate(-50%,-50%);', 'width:650px;', -1);
-oldhtml = oldhtml.replace('-webkit-transform:translate(-50%,-50%);', '', -1);
-oldhtml = oldhtml.replace('-ms-transform:translate(-50%,-50%);', '', -1);
-oldhtml = oldhtml.replace('transform:translate(-50%,-50%);', '', -1);
-oldhtml = oldhtml.replace('top:50%;left:50%;','margin:10px;',-1);
+	oldhtml = oldhtml.replace('width:350px;', '');
+//	oldhtml = oldhtml.replace('top:50%;margin-right:-50%;transform:translate(-50%,-50%);', 'width:650px;');
+oldhtml = oldhtml.replace('-webkit-transform:translate(-50%,-50%);', '');
+oldhtml = oldhtml.replace('-ms-transform:translate(-50%,-50%);', '');
+oldhtml = oldhtml.replace('transform:translate(-50%,-50%);', '');
+oldhtml = oldhtml.replace('top:50%;left:50%;','margin:10px;');
 	tester[0].innerHTML = oldhtml;
 	var script = document.createElement("script");
 	agariomodsRuntimePatches();
