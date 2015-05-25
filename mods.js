@@ -87,18 +87,20 @@ function agariomodsRuntimePatches() {
 }
 function agariomodsRuntimeHacks() {
 //	jQuery('#helloDialog').css({left: 'auto;'});
-//	jQuery('#helloDialog').css({left: '0px;'});
+	jQuery('#helloDialog').css({margin: '0px'});
+	jQuery('#helloDialog').css({margin-left: 'auto'});
+	jQuery('#helloDialog').css({margin-right: 'auto'});
 	var nodeDiv = document.createElement("div");
 	$( document ).ready(function() {
 		hd = document.getElementById("helloDialog");
 		cachedhd = hd.innerHTML;
 		hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:650px;top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
 	});
-	document.getElementById("nick").placeholder = "!! agar.io is currently down/unreliable - this isn't our mod causing the trouble !!";
+	document.getElementById("nick").placeholder = "agariomods.com";
 	$( document ).ready(function() {
 		nh = document.getElementById("overlays");
 		cachednh = nh.innerHTML;
-		nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "<small>Version 1.7.7-BestAgarPlayer2015</small>&nbsp;<a target=\"_blank\" href='http://skins.agariomods.com'>click here for list of agariomods skins</a>");
+		nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "<small>Version 1.7.7</small>&nbsp;<a target=\"_blank\" href='http://skins.agariomods.com'>click here for list of agariomods skins</a>");
 	});
 	nodeDiv.id = "includedContent";
 	nodeDiv.style.width = "640px"
@@ -119,7 +121,7 @@ function agariomodsRuntimeHacks() {
 	<div style=\"background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;\">\
 		<small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
 	</div>\
-			<center><br><h3><a href=\"http://chat.agariomods.com\" target=\"_blank\">While game is down, join me [ electronoob ] in chat here</a></h3><br></center>\
+			<center><a href=\"http://chat.agariomods.com\" target=\"_blank\">Come join us in agariomods chat. Seriously, click here, please?</a></center>\
 	";
 //	<center><a href=\"http://skins.agariomods.com\" target=\"_blank\"><img src=\"http://i.imgur.com/WvIcNhw.png\"/></a></center><br>\
 
