@@ -119,8 +119,11 @@ function agariomodsRuntimeHacks() {
 	<div style=\"background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;\">\
 		<small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
 	</div>\
-	<center><a href=\"http://skins.agariomods.com\" target=\"_blank\"><img src=\"http://i.imgur.com/WvIcNhw.png\"/></a></center><br>\
+			<center><br><h3><a href=\"http://chat.agariomods.com\" target=\"_blank\">While game is down, join me [ electronoob ] in chat here</a></h3><br></center>\
 	";
+//	<center><a href=\"http://skins.agariomods.com\" target=\"_blank\"><img src=\"http://i.imgur.com/WvIcNhw.png\"/></a></center><br>\
+
+http://chat.agariomods.com/
 	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
 	jQuery('#region').parent().get(0).appendChild(nodeDiv);
 	var selector = jQuery('#region');
