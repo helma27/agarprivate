@@ -88,8 +88,8 @@ function agariomodsRuntimePatches() {
 function agariomodsRuntimeHacks() {
 //	jQuery('#helloDialog').css({left: 'auto;'});
 	jQuery('#helloDialog').css({margin: '0px'});
-	jQuery('#helloDialog').css({margin-left: 'auto'});
-	jQuery('#helloDialog').css({margin-right: 'auto'});
+	jQuery('#helloDialog').css({marginLeft: 'auto'});
+	jQuery('#helloDialog').css({marginRight: 'auto'});
 	var nodeDiv = document.createElement("div");
 	$( document ).ready(function() {
 		hd = document.getElementById("helloDialog");
