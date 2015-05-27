@@ -1,8 +1,8 @@
 // ==UserScript==
-// @name       AgarioMods Server Selector
+// @name       AgarioMods Script
 // @namespace	 electronoob-agarmods
-// @version      1.7.3
-// @description  community run mod feature set for agar.io
+// @version      1.7.7
+// @description  Multiplayer Script For Agar.io
 // @author       electronoob
 // @match        http://agar.io
 // @grant        none
