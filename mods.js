@@ -84,6 +84,8 @@ function agariomodsRuntimePatches() {
 	gamejs = gamejs.replace("b=this.name.toLowerCase();", "b=this.name.toLowerCase(); if (b.substring(0, 2) == \"i/\") {" +Ja+ "+=b;} ;");
 	//turn on mass by default.
 	gamejs = gamejs.replace("wa=!1", "wa=!0");
+	// sorry but the on-start connection stuff sucks ass
+	gamejs = gamejs.replace("get(\"http://gc.agar.io\"", "get(\"http://255.255.255.255\"");
 }
 function agariomodsRuntimeHacks() {
 //	jQuery('#helloDialog').css({left: 'auto;'});
@@ -94,7 +96,7 @@ function agariomodsRuntimeHacks() {
 	$( document ).ready(function() {
 		hd = document.getElementById("helloDialog");
 		cachedhd = hd.innerHTML;
-		hd.innerHTML = cachedhd.replace("<center>Hello</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:650px;top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
+		hd.innerHTML = cachedhd.replace("<center>Agar.io</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:650px;top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
 	});
 	document.getElementById("nick").placeholder = "agariomods.com";
 	$( document ).ready(function() {
@@ -121,8 +123,7 @@ function agariomodsRuntimeHacks() {
 	<div style=\"background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;\">\
 		<small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
 	</div>\
-			<br><center><a href=\"http://chat.agariomods.com\" target=\"_blank\">Come join us in agariomods chat. Seriously, click here, please?</a></center><br>\
-			<center><font color=\"#fff\">We have our own agar servers and are adding more soon!</font><br>usa.agariomods.com:1234 &nbsp; and &nbsp; europe.agariomods.com:443</center><br>\
+			<center><a href=\"http://chat.agariomods.com\" target=\"_blank\">Come join us in agariomods chat. Seriously, click here, please?</a></center>\
 	";
 //	<center><a href=\"http://skins.agariomods.com\" target=\"_blank\"><img src=\"http://i.imgur.com/WvIcNhw.png\"/></a></center><br>\
 
