@@ -184,7 +184,8 @@ function agariomodsRuntimeHacks() {
 	nodeInput.style.width = "85%";
 	nodeInput.style.cssFloat = "left";
 	nodeInput.style.cssClear = "right";
-	nodeInput.style.border = "2px solid green";
+	nodeInput.style.border = "4px solid purple";
+	nodeInput.style.padding = "5px"
 	nodeInput.placeholder = "Alternative server ip:port here.";
 	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
 	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
