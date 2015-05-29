@@ -1,3 +1,5 @@
+var ourskins = "agariomods.com;albania;apple;atari;awesome;baka;bandaid;baseball;beats;bitcoin;blobfish;bobross;bobsaget;boogie2988;borg;bp;buckballs;burgundy;butters;byzantium;chechenya;chrome;cj;cokacola;controless;converse;cornella;creeper;cyprus;czechrepublic;deathstar;derp;dickbutt;doggie;domo;dong;dreamcast;ebin;egypt;eye;facebook;fastforward;fbi;fishies;freemason;friesland;frogout;fuckfacebook;getinmybelly;getinthebox;gimper;github;giygas;gnomechild;halflife3;handicapped;hap;hipsterwhale;hitler;honeycomb;hydro;iceland;illuminati;imgur;imperialjapan;instagram;isaac;isis;isreal;itchyfeetleech;jew;jimmies;kenny;kingdomoffrance;kingjoffrey;klingon;knightstemplar;knowyourmeme;kyle;lenny;libertyy;liechtenstien;love;macedonia;malta;maryland;masterball;mastercheif;mcdonalds;meatboy;megamilk;moldova;mortalkombat;mr.bean;mr.popo;nasa;nazi;nick;northbrabant;nosmoking;notch;osu;pedobear;peka;pepe;pepsi;pewdiepie;pi;pig;pinkfloyd;pinkstylist;piratebay;playstation;quantum leap;rageface;rewind;rockstar;rolfharris;serbia;shell;shrek;sinistar;slack;slovakia;slovenia;snafu;snapchat;soccer;soliare;somalia;space;spawn;spore;spy;starbucks;superman;tintin;tubbymcfatfuck;turkey;ukip;uppercase;uruguay;voyager;wewlad;white  light;wwf;wykop;ylilauta;yourmom;zoella";
+
 var gamejs = "", modBlocking = true;
 var tester = document.getElementsByTagName("script");
 var i = 0, main_out_url = "http://agar.io/main_out.js", discovered_mainouturl = 0;
@@ -5,6 +7,7 @@ var W = '';
 var Ja = '';
 var b = '';
 var c3eg2 = '';
+var iframe = 0;
 
 /* lets start to deal with regressions */
 var test = 0;
@@ -59,7 +62,6 @@ function agariomodsRuntimeInjection() {
 	script.innerHTML = gamejs;
 	document.head.appendChild(script);
 	agariomodsRuntimeHacks();
-
 	window.onbeforeunload = function() {
 		return 'Are you sure you want to quit agar.io?';
 	};
@@ -68,7 +70,7 @@ function agariomodsRuntimeInjection() {
 		event.preventDefault();
 	});
 	/* added an advert unit to the landing page as we now have server rental to consider */
-	var iframe = document.createElement("iframe");
+	iframe = document.createElement("iframe");
 	iframe.id = "agariomods";
 	iframe.style.width = "468px";
 	iframe.style.height = "20px";
@@ -80,11 +82,10 @@ function agariomodsRuntimeInjection() {
 	iframe.style.overflow = "hidden";
         iframe.style.border = "0px";
         iframe.src = "http://agariomods.com/adverts.mod.js.html";
-	var overlay = document.getElementById("includedContent");
-	overlay.appendChild(iframe);
+	//var overlay = document.getElementById("includedContent");
+	//overlay.appendChild(iframe);
 }
 function agariomodsRuntimePatches() {
-	var ourskins = "agariomods.com;albania;apple;atari;awesome;baka;bandaid;baseball;beats;bitcoin;blobfish;bobross;bobsaget;boogie2988;borg;bp;buckballs;burgundy;butters;byzantium;chechenya;chrome;cj;cokacola;controless;converse;cornella;creeper;cyprus;czechrepublic;deathstar;derp;dickbutt;doggie;domo;dong;dreamcast;ebin;egypt;eye;facebook;fastforward;fbi;fishies;freemason;friesland;frogout;fuckfacebook;getinmybelly;getinthebox;gimper;github;giygas;gnomechild;halflife3;handicapped;hap;hipsterwhale;hitler;honeycomb;hydro;iceland;illuminati;imgur;imperialjapan;instagram;isaac;isis;isreal;itchyfeetleech;jew;jimmies;kenny;kingdomoffrance;kingjoffrey;klingon;knightstemplar;knowyourmeme;kyle;lenny;libertyy;liechtenstien;love;macedonia;malta;maryland;masterball;mastercheif;mcdonalds;meatboy;megamilk;moldova;mortalkombat;mr.bean;mr.popo;nasa;nazi;nick;northbrabant;nosmoking;notch;osu;pedobear;peka;pepe;pepsi;pewdiepie;pi;pig;pinkfloyd;pinkstylist;piratebay;playstation;quantum leap;rageface;rewind;rockstar;rolfharris;serbia;shell;shrek;sinistar;slack;slovakia;slovenia;snafu;snapchat;soccer;soliare;somalia;space;spawn;spore;spy;starbucks;superman;tintin;tubbymcfatfuck;turkey;ukip;uppercase;uruguay;voyager;wewlad;white  light;wwf;wykop;ylilauta;yourmom;zoella";
         gamejs = gamejs.replace(';reddit;',';reddit;'+ourskins+';');
         gamejs = gamejs.replace(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="http://skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/") {agariomods="http://i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="http://agar.io/skins/" + this.name.toLowerCase() + ".png";}');
         gamejs = gamejs.replace(W +'['+b+'].src="skins/"+'+b+'+".png"',W+'['+b+'].src=agariomods');
@@ -119,35 +120,19 @@ function agariomodsRuntimeHacks() {
 	$( document ).ready(function() {
 		hd = document.getElementById("helloDialog");
 		cachedhd = hd.innerHTML;
-		hd.innerHTML = cachedhd.replace("<center>Agar.io</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:650px;top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
+		hd.innerHTML = cachedhd.replace("<center>Agar.io</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:520px;top:-10px; z-index: -1; height:200px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"200px\"/></a>");
 	});
 	document.getElementById("nick").placeholder = "agariomods.com";
-	$( document ).ready(function() {
-		nh = document.getElementById("overlays");
-		cachednh = nh.innerHTML;
-		nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "<small>Version 1.7.8</small>");
-	});
 	nodeDiv.id = "includedContent";
-	nodeDiv.style.width = "640px"
+	nodeDiv.style.width = "500px"
 	nodeDiv.style.backgroundColor = "#000000";
 	nodeDiv.style.zIndex = 9999999999;
 	nodeDiv.style.position = "relative";
 	nodeDiv.style.padding = "8px";
-	nodeDiv.style.left = "-170px";
-	nodeDiv.style.marginBottom = "10px";
 	nodeDiv.style.borderRadius = "5px";
 	nodeDiv.style.color = "#dddddd";
-	nodeDiv.innerHTML = "<small>Version 1.7.8</small>";
-//	nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"15px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp</a><i>Get your friends using this script so they can see your new avatar too!</i><p><font color=\"yellow\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p>";
+	nodeDiv.style.margin = "10px";
 	nodeDiv.innerHTML += "\
-		Get IP address from friend.\
-		Put it in text box below.\
-		Press the swirly icon next to it.\
-		<p><b>Note:</b> Check with your friend to see whos #1 on the leaderboard</p>\
-	<div style=\"background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;\">\
-		<small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
-	</div>\
-			<center><a href=\"http://chat.agariomods.com\" target=\"_blank\">Come join us in agariomods chat. Seriously, click here, please?</a></center>\
 	";
 	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
 	jQuery('#region').parent().get(0).appendChild(nodeDiv);
@@ -156,6 +141,11 @@ function agariomodsRuntimeHacks() {
 	var nodeInput = document.createElement("input");
 	var nodeSpan = document.createElement("span");
 	var nodeBr = document.createElement("br");
+	var nodeLinks = document.createElement("div");
+	nodeLinks.innerHTML = "Our <a href='http://skins.agariomods.com' target='_blank'>Skins browser</a> - <a href='http://forum.agariomods.com' target='_blank'>NEW forum</a> - <a href='http://chat.agariomods.com' target='_blank'>Chatroom</a> - <a href='http://agariomods.com/mumble.html' target='_blank'>Mumble</a> - <a href='http://agariomods.com' target='_blank'>Website</a> - <a href='http://agariomods.com/help.html' target='_blank'>Help me!</a>";
+	nodeLinks.style.position = "absolute";
+	nodeLinks.style.top = "5em";
+
 	nodeSpan.className = "glyphicon glyphicon-refresh";
 	nodeSpan.style.fontSize = "1.5em";
 	nodeSpan.style.cssFloat = "left";
@@ -184,9 +174,9 @@ function agariomodsRuntimeHacks() {
 	nodeInput.style.width = "85%";
 	nodeInput.style.cssFloat = "left";
 	nodeInput.style.cssClear = "right";
-	nodeInput.style.border = "4px solid purple";
+	nodeInput.style.border = "2px solid green";
 	nodeInput.placeholder = "Alternative server ip:port here.";
-	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
+	jQuery(playBtn).parent().get(0).appendChild(nodeLinks);
 	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
 	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
 	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
@@ -211,7 +201,16 @@ function agariomodsRuntimeHacks() {
 	window.WebSocket = function(data) {
 		if (modBlocking == true) {
 			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html("electronoob says, \"I am deeply sorry for taking over 24 hours to fix the skin modification, it is now fixed and I have added some unit testing to make sure that It's easier to track in the future. As a thank you for your patience I will begin the boring process of adding another 300 or so skins to the game which I was able to collect from reddit posts, these additions will take a while but it's the least I can do for making everyone wait so long to have their skins back.\"<br><br>Here is the IP address of the server you are connected to currently, pass it to your friends for team playing.<br><h1>" + data.replace('ws://', '') + "</h1>&nbsp;");
+			jQuery('#includedContent').html("v1.8.0<br>electronoob says, <small>\"I'm sorry for taking over 24 hours to fix the skin modification, as you may know I strive for fast bug fixes but this one took a lot of work. You shall be compensated soon, with a nifty surprise.\"\
+<br><br>Here is the IP address of the server you are connected to currently, pass it to your friends for team playing.<h1>" + data.replace('ws://', '') + "</h1>&nbsp;\
+                Get IP address from friend.\
+                Put it in text box below.\
+                Press the swirly icon next to it.\
+                <br><b>Note:</b> Check with your friend to see whos #1 on the leaderboard\
+        <div style=\"background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;\">\
+                <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
+        </div>\
+");
 		} else {
 			console.log("HAXXED: connecting to " + jQuery('#iphack').val() + "(ignoring: " + data + ")");
 			newWebSocket = new window.WebSocket_original("ws://" + jQuery('#iphack').val());
