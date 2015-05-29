@@ -125,7 +125,7 @@ function agariomodsRuntimeHacks() {
 	$( document ).ready(function() {
 		nh = document.getElementById("overlays");
 		cachednh = nh.innerHTML;
-		nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "<small>Version 1.7.7</small>&nbsp;<a target=\"_blank\" href='http://skins.agariomods.com'>click here for list of agariomods skins</a>");
+		nh.innerHTML = cachednh.replace("<p>Type your nick or leave it empty:</p>", "<small>Version 1.7.8</small>");
 	});
 	nodeDiv.id = "includedContent";
 	nodeDiv.style.width = "640px"
@@ -137,7 +137,7 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.style.marginBottom = "10px";
 	nodeDiv.style.borderRadius = "5px";
 	nodeDiv.style.color = "#dddddd";
-//	nodeDiv.innerHTML = "<small>Version 1.7.7-BestAgarPlayer2015&nbsp;&nbsp;The very best in skin modding</small>";
+	nodeDiv.innerHTML = "<small>Version 1.7.8</small>";
 //	nodeDiv.innerHTML += "<p><a target=\"_blank\" href=\"http://forum.agariomods.com/\"><img width=\"15px\" src=\"http://i.imgur.com/oWFWwDo.png\">&nbsp</a><i>Get your friends using this script so they can see your new avatar too!</i><p><font color=\"yellow\"><b>1:</b> upload pic to imgur.com, <b>2:</b> get the id of img, <b>3:</b> type i/ followed by the id. ex: i/rIWgY2u</font></p>";
 	nodeDiv.innerHTML += "\
 		Get IP address from friend.\
@@ -185,7 +185,6 @@ function agariomodsRuntimeHacks() {
 	nodeInput.style.cssFloat = "left";
 	nodeInput.style.cssClear = "right";
 	nodeInput.style.border = "4px solid purple";
-	nodeInput.style.padding = "5px"
 	nodeInput.placeholder = "Alternative server ip:port here.";
 	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
 	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
