@@ -132,9 +132,8 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.style.backgroundColor = "#000000";
 	nodeDiv.style.zIndex = 9999999999;
 //	nodeDiv.style.position = "relative";
-	nodeDiv.style.padding = "8px";
+	nodeDiv.style.padding = "5px";
 //	nodeDiv.style.left = "-170px";
-	nodeDiv.style.marginBottom = "10px";
 	nodeDiv.style.borderRadius = "5px";
 	nodeDiv.style.color = "#dddddd";
 //	nodeDiv.innerHTML = "<small>Version 1.7.7-BestAgarPlayer2015&nbsp;&nbsp;The very best in skin modding</small>";
@@ -149,6 +148,9 @@ function agariomodsRuntimeHacks() {
 	</div>\
 			<center><a href=\"http://chat.agariomods.com\" target=\"_blank\">Come join us in agariomods chat. Seriously, click here, please?</a></center>\
 	";
+//	<center><a href=\"http://skins.agariomods.com\" target=\"_blank\"><img src=\"http://i.imgur.com/WvIcNhw.png\"/></a></center><br>\
+
+http://chat.agariomods.com/
 	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
 	jQuery('#region').parent().get(0).appendChild(nodeDiv);
 	var selector = jQuery('#region');
@@ -189,7 +191,6 @@ function agariomodsRuntimeHacks() {
 	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
 	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
 	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
-	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
 	jQuery('#iphack').change(function() {
 		if (jQuery('#iphack').val() == "") {
 			modBlocking = true;
@@ -211,7 +212,7 @@ function agariomodsRuntimeHacks() {
 	window.WebSocket = function(data) {
 		if (modBlocking == true) {
 			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html("electronoob says, \"I am deeply sorry for taking over 24 hours to fix the skin modification, it is now fixed and I have added some unit testing to make sure that It's easier to track in the future. As a thank you for your patience I will begin the boring process of adding another 300 or so skins to the game which I was able to collect from reddit posts, these additions will take a while but it's the least I can do for making everyone wait so long to have their skins back.\"<br><br>Here is the IP address of the server you are connected to currently, pass it to your friends for team playing.<br><h1>" + data.replace('ws://', '') + "</h1>&nbsp;");
+			jQuery('#includedContent').html("Here is the IP address of the server you are connected to currently, pass it to your friends for team playing. <h3>fixing the skins now, sorry! - electronoob</h3><h2>" + data.replace('ws://', '') + "</h2>&nbsp;");
 		} else {
 			console.log("HAXXED: connecting to " + jQuery('#iphack').val() + "(ignoring: " + data + ")");
 			newWebSocket = new window.WebSocket_original("ws://" + jQuery('#iphack').val());

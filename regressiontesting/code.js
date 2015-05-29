@@ -16,7 +16,7 @@ b = gamejs.substr(offset+2,1);
 offset = gamejs.search(".."+b+"..src");
 W = gamejs.substr(offset,1);
 offset = gamejs.search(/strokeText\(c,3,.{1,8}\);/g);
-var components = /strokeText\((c,3,.{1,8})\);/g.exec(gamejs);
+var components = /strokeText\((c,3,.{1,8})\);/.exec(gamejs);
 c3eg2 = components[1];
 
 var ourskins = "agariomods.com;albania;apple;atari;awesome;baka;bandaid;baseball;beats;bitcoin;blobfish;bobross;bobsaget;boogie2988;borg;bp;buckballs;burgundy;butters;byzantium;chechenya;chrome;cj;cokacola;controless;converse;cornella;creeper;cyprus;czechrepublic;deathstar;derp;dickbutt;doggie;domo;dong;dreamcast;ebin;egypt;eye;facebook;fastforward;fbi;fishies;freemason;friesland;frogout;fuckfacebook;getinmybelly;getinthebox;gimper;github;giygas;gnomechild;halflife3;handicapped;hap;hipsterwhale;hitler;honeycomb;hydro;iceland;illuminati;imgur;imperialjapan;instagram;isaac;isis;isreal;itchyfeetleech;jew;jimmies;kenny;kingdomoffrance;kingjoffrey;klingon;knightstemplar;knowyourmeme;kyle;lenny;libertyy;liechtenstien;love;macedonia;malta;maryland;masterball;mastercheif;mcdonalds;meatboy;megamilk;moldova;mortalkombat;mr.bean;mr.popo;nasa;nazi;nick;northbrabant;nosmoking;notch;osu;pedobear;peka;pepe;pepsi;pewdiepie;pi;pig;pinkfloyd;pinkstylist;piratebay;playstation;quantum leap;rageface;rewind;rockstar;rolfharris;serbia;shell;shrek;sinistar;slack;slovakia;slovenia;snafu;snapchat;soccer;soliare;somalia;space;spawn;spore;spy;starbucks;superman;tintin;tubbymcfatfuck;turkey;ukip;uppercase;uruguay;voyager;wewlad;white  light;wwf;wykop;ylilauta;yourmom;zoella";
