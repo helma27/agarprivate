@@ -131,9 +131,9 @@ function agariomodsRuntimeHacks() {
 	nodeDiv.style.width = "640px"
 	nodeDiv.style.backgroundColor = "#000000";
 	nodeDiv.style.zIndex = 9999999999;
-//	nodeDiv.style.position = "relative";
+	nodeDiv.style.position = "relative";
 	nodeDiv.style.padding = "8px";
-//	nodeDiv.style.left = "-170px";
+	nodeDiv.style.left = "-170px";
 	nodeDiv.style.marginBottom = "10px";
 	nodeDiv.style.borderRadius = "5px";
 	nodeDiv.style.color = "#dddddd";
