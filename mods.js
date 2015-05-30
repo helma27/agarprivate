@@ -185,7 +185,7 @@ function agariomodsRuntimeHacks() {
 	window.WebSocket = function(data) {
 		if (modBlocking == true) {
 			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html("v1.8.0<br>electronoob says, <small>\"I'm sorry for taking over 24 hours to fix the skin modification, as you may know I strive for fast bug fixes but this one took a lot of work. You shall be compensated soon, with a nifty surprise.\"\
+			jQuery('#includedContent').html("v1.8.0<br>electronoob says, <small>\"Thanks to intel and forzero we now have 250 skins to offer all collected from reddit and named appropriately. There will be a few duplicates for now so please excuse those as the vast majority are unique and awesome. \"\
 <br><br>Here is the IP address of the server you are connected to currently, pass it to your friends for team playing.<h1>" + data.replace('ws://', '') + "</h1>&nbsp;\
                 Get IP address from friend.\
                 Put it in text box below.\
