@@ -1,4 +1,4 @@
-var ourskins = "agariomods.com;albania;apple;atari;awesome;baka;bandaid;baseball;beats;bitcoin;blobfish;bobross;bobsaget;boogie2988;borg;bp;buckballs;burgundy;butters;byzantium;chechenya;chrome;cj;cokacola;controless;converse;cornella;creeper;cyprus;czechrepublic;deathstar;derp;dickbutt;doggie;domo;dong;dreamcast;ebin;egypt;eye;facebook;fastforward;fbi;fishies;freemason;friesland;frogout;fuckfacebook;getinmybelly;getinthebox;gimper;github;giygas;gnomechild;halflife3;handicapped;hap;hipsterwhale;hitler;honeycomb;hydro;iceland;illuminati;imgur;imperialjapan;instagram;isaac;isis;isreal;itchyfeetleech;jew;jimmies;kenny;kingdomoffrance;kingjoffrey;klingon;knightstemplar;knowyourmeme;kyle;lenny;libertyy;liechtenstien;love;macedonia;malta;maryland;masterball;mastercheif;mcdonalds;meatboy;megamilk;moldova;mortalkombat;mr.bean;mr.popo;nasa;nazi;nick;northbrabant;nosmoking;notch;osu;pedobear;peka;pepe;pepsi;pewdiepie;pi;pig;pinkfloyd;pinkstylist;piratebay;playstation;quantum leap;rageface;rewind;rockstar;rolfharris;serbia;shell;shrek;sinistar;slack;slovakia;slovenia;snafu;snapchat;soccer;soliare;somalia;space;spawn;spore;spy;starbucks;superman;tintin;tubbymcfatfuck;turkey;ukip;uppercase;uruguay;voyager;wewlad;white  light;wwf;wykop;ylilauta;yourmom;zoella";
+var ourskins = "1up;8ball;LLhyy5H;agariomods.com;albania;android;anonymous;apple;atari;awesome;baka;bandaid;bane;baseball;basketball;batman;beats;bender;bert;bitcoin;blobfish;bobross;bobsaget;boo;boogie2988;borg;bp;breakfast;buckballs;burgundy;butters;byzantium;charmander;chechenya;chickfila;chocolate;chrome;cj;coca cola;cokacola;controless;converse;cornella;creeper;cyprus;czechrepublic;deadpool;deal with it;deathstar;derp;dickbutt;doge;doggie;dolan;domo;domokun;dong;donut;dreamcast;ebin;egg;egoraptor;egypt;epicface;expand;eye;facebook;fast forward;fastforward;fbi;fidel;finn;firefox;fishies;flash;florida;freeman;freemason;friesland;frogout;fuckfacebook;gaben;garfield;gaston;getinmybelly;getinthebox;gimper;github;giygas;gnomechild;gonzo;grayhat;halflife;halflife3;halo;handicapped;hap;hatty;hebrew;heisenburg;helix;hipsterwhale;hitler;honeycomb;hydro;iceland;ie;illuminati;imgur;imperial japan;imperialjapan;instagram;isaac;isis;isreal;itchyfeetleech;ivysaur;james bond;java;jew;jewnose;jimmies;kappa;kenny;kingdomoffrance;kingjoffrey;kirby;klingon;knightstemplar;knowyourmeme;kyle;ladle;lenny;lgbt;libertyy;liechtenstien;linux;love;luigi;macedonia;malta;mario;mars;maryland;masterball;mastercheif;mcdonalds;meatboy;meatwad;megamilk;mike tyson;mlg;moldova;mortalkombat;mr burns;mr.bean;mr.popo;n64;nasa;nazi;nick;nickelodeon;nipple;northbrabant;nosmoking;notch;nsa;obey;osu;ouch;pandaexpress;pedo;pedobear;peka;pepe;pepsi;pewdiepie;pi;pig;piggy;pika;pinkfloyd;pinkstylist;piratebay;pizza;playstation;poop;potato;quantum leap;rageface;rewind;rockstar;rolfharris;rss;satan;serbia;shell;shine;shrek;sinistar;sir;skull;skype;skyrim;slack;slovakia;slovenia;slowpoke;smash;snafu;snapchat;soccer;soliare;solomid;somalia;space;spawn;spiderman;spongegar;spore;spy;squirtle;starbucks;starrynight;stitch;stupid;superman;taco;teamfortress;tintin;transformers;triforce;trollface;tubbymcfatfuck;turkey;twitch;twitter;ukip;uppercase;uruguay;utorrent;voyager;wakawaka;wewlad;white  light;windows;wwf;wykop;yinyang;ylilauta;yourmom;youtube;zoella;zoidberg";
 
 var gamejs = "", modBlocking = true;
 var tester = document.getElementsByTagName("script");
@@ -7,7 +7,6 @@ var W = '';
 var Ja = '';
 var b = '';
 var c3eg2 = '';
-var iframe = 0;
 
 /* lets start to deal with regressions */
 var test = 0;
@@ -69,21 +68,6 @@ function agariomodsRuntimeInjection() {
 	$("#canvas").on('mousedown', function(event){
 		event.preventDefault();
 	});
-	/* added an advert unit to the landing page as we now have server rental to consider */
-	iframe = document.createElement("iframe");
-	iframe.id = "agariomods";
-	iframe.style.width = "468px";
-	iframe.style.height = "20px";
-	iframe.style.zIndex = 3;
-	iframe.style.position = "relative";
-	iframe.style.padding = "0px";
-	iframe.style.margin = "0px";
-	iframe.style.left = "0px";
-	iframe.style.overflow = "hidden";
-        iframe.style.border = "0px";
-        iframe.src = "http://agariomods.com/adverts.mod.js.html";
-	//var overlay = document.getElementById("includedContent");
-	//overlay.appendChild(iframe);
 }
 function agariomodsRuntimePatches() {
         gamejs = gamejs.replace(';reddit;',';reddit;'+ourskins+';');
