@@ -14,7 +14,7 @@ func main() {
 <html>
 	<head>
 		<head>
-			<title>AGARIOMODS - LINKS</title>
+			<title>AGARIOMODS - SKINS - we have got you covered !</title>
 			<link rel="shortcut icon" href="//www.iconj.com/ico/o/x/oxfb9bqt6o.ico" type="image/x-icon" />
 			<meta charset="utf-8">
 			<link rel="stylesheet" type="text/css" href="//agariomods.com/sitestyle.css">
@@ -43,7 +43,7 @@ func main() {
 				   <li><a href="http://agariomods.com/mumble.html">Mumble</a></li>
 				   <li><a href="http://agariomods.com/about.html">About</a></li> 
 				   <li><a href="http://agariomods.com/links.html">Links</a></li>
-				   <li><a class="active" href="http://skins.agariomods.com">Skins</a></li>
+				   <li class="active"><a href="http://skins.agariomods.com">Skins</a></li>
                                    <li><a href="http://chat.agariomods.com">Chatroom</a></li>
                                    <li><a href="http://agariomods.com/twitch.html">Twitch</a></li>
 				 </ul>
