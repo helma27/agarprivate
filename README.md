@@ -1,30 +1,26 @@
-AgarioMods Evergreen Server Selector.
+AgarioMods Evergreen
 ========================================================================
-
-[![Join the chat at https://gitter.im/electronoob/agarmods](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/electronoob/agarmods?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
 
 Navigation: [Website][4] | **Script Repository** | [Agar Game][5]
 
 
-We are presently rolling out custom skins!
+Key Features of our mod
+------------------------------------------------------------------------
+
+We do not provide a means to allow cheating, we believe in fair play, but it doesn't have to be boring and vanilla. Which is why we added custom skins, be it in the form of agariomods provided skins which we collect from reddit or the alternative mode where users can provide an imgur image ID. For example:  i/vUa6ZqF   placed inside of the name box, will show our logo on your blob for other users to see. We have just rolled out with an excellent mass-grah mod given to us by mikeyk730.
 
 
 [1]: https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?utm_source=chrome-ntp-icon
 [2]: https://addons.mozilla.org/en-Us/firefox/addon/greasemonkey/
-[3]: http://botb.club/~e/agar.io/mods.user.js.html
+[3]: http://agariomods.com/mods.user.js.html
 [4]: http://agariomods.com/
 [5]: http://agar.io
 [6]: https://github.com/electronoob/agarmods/blob/master/LICENSE
-[7]: https://github.com/Irraquated
-[8]: https://github.com/shipguy55
-[9]: https://github.com/electronoob
-[10]: https://github.com/IntelHD400
-[11]: https://github.com/HYDROagar
 
 
 Introduction
 ------------------------------------------------------------------------
-This is the source code of AgarioMods Evergreen server selector script. Evergreen means that you will never have to re-install the script to update, it does this automatically.
+This is the source code of AgarioMods Evergreen. Evergreen means that you will never have to re-install the script to update, it does this automatically.
 
 Installation
 ------------------------------------------------------------------------
@@ -39,18 +35,4 @@ Enjoy!
 
 License
 ------------------------------------------------------------------------
-AgarioMods Evergreen server selector script is distributed under the terms of the [MIT License][6].
-
-Credits
-------------------------------------------------------------------------
-
-**Manager**
- - [Electronoob][9]
-
-**Contributors**
- - [Irraquated][7]
- - [Shipguy55][8]
- - [IntelHD400][10]
- - [HYDRO][11]
-
-
+AgarioMods Evergreen is distributed under the terms of the [MIT License][6].
