@@ -12,7 +12,7 @@ We do not provide a means to allow cheating, we believe in fair play, but it doe
 
 [1]: https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?utm_source=chrome-ntp-icon
 [2]: https://addons.mozilla.org/en-Us/firefox/addon/greasemonkey/
-[3]: http://agariomods.com/mods.user.js.html
+[3]: http://agariomods.com/mods.user.js
 [4]: http://agariomods.com/
 [5]: http://agar.io
 [6]: https://github.com/electronoob/agarmods/blob/master/LICENSE
