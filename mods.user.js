@@ -4,7 +4,7 @@
 // @version      1.7.7
 // @description  Multiplayer Script For Agar.io
 // @author       electronoob
-// @match        http://agar.io
+// @match        http://agar.io/
 // @grant        none
 // ==/UserScript==
 
