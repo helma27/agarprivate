@@ -14,7 +14,7 @@ Navigation: [Website][4] | **Script Repository** | [Agar Game][5]
 [9]: https://github.com/electronoob
 [10]: https://github.com/IntelHD400
 [11]: https://github.com/HYDROagar
-
+[12]: https://addons.opera.com/en/extensions/details/violent-monkey/
 
 Introduction
 ------------------------------------------------------------------------
@@ -22,11 +22,12 @@ This is the source code of agarmods Evergreen server selector script. Evergreen 
 
 Installation
 ------------------------------------------------------------------------
-To install this script please download one of the following 2 items:
+To install this script please download one of the following 3 items:
 - [Tampermonkey (Google Chrome)][1]
 - [Greasemonkey (Mozzila Firefox)][2]
+- [Violent monkey (Opera)][12]
 
-Once you have downloaded & installed [Tampermonkey][1] or [Greasemonkey][2] please [Click Here][3] to install the script.
+Once you have downloaded & installed [Tampermonkey][1], [Greasemonkey][2] or [Violent monkey][12] please [Click Here][3] to install the script.
 After this has installed you are ready to go! Visit [Agar.io][5] and read the instructions that appear in the info-box!
 
 Enjoy!
