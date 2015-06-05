@@ -1,7 +1,7 @@
 // ==UserScript==
 // @name       AgarioMods Script
 // @namespace	 electronoob-agarmods
-// @version      1.7.7
+// @version      1.8.2
 // @description  Multiplayer Script For Agar.io
 // @author       electronoob
 // @match        http://agar.io/
