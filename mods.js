@@ -237,7 +237,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	window.WebSocket = function(data) {
 		if (modBlocking == true) {
 			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html("v1.8.2: <font color=\"yellow\">Thanks to mikeyk730 for the fantastic stats!</font>\
+			jQuery('#includedContent').html("v1.8.3: <font color=\"purple\">Thanks mikeyk730 for the <u>fantastic</u> stats. Checkbox settings are now saved automatically thanks to mevin1 and programjm on the agariomods team.</font>\
 <br><br>Here is the IP address of the server you are connected to currently, pass it to your friends for team playing.<h1>" + data.replace('ws://', '') + "</h1>\
                 Get IP from friend.\
                 Put in box below.\
@@ -734,3 +734,22 @@ window.OnDraw = function(context)
 {
     display_stats && stat_canvas && context.drawImage(stat_canvas, 10, 10);   
 }
+window.onpageshow = function() {
+    $("div#settings.checkbox label").change(function() {
+        $("div#settings.checkbox input").each(function() {
+            localStorage.setItem("setting"+$(this).parent().text().replace(" ","_"),this.checked);
+        });
+
+    });
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent("change", false, true);
+	$("div#settings.checkbox input").each(function() {
+            this.dispatchEvent(evt);
+	});
+}
+
+$(document).ready(function() {
+	$("div#settings.checkbox input").each(function() {
+			$(this).attr("checked",(localStorage.getItem("setting"+$(this).parent().text().replace(" ","_")))=="true");
+	});
+})
