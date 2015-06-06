@@ -361,7 +361,7 @@ function AppendCheckbox(e, id, label, checked, on_change)
     jQuery('#'+id).attr('checked', checked);
     jQuery('#'+id).change(function(){
         on_change(this.checked);
-		alert(this.checked);    
+		//alert(this.checked);    
 	});
     on_change(checked);
 }
