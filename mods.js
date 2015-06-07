@@ -9,9 +9,9 @@ var b = '';
 var c3eg2 = '';
 
 /*bgm*/
-var bgmusic = '';
+//var bgmusic = '';
 //$('#audiotemplate').clone()[0];
-var tracks = ['BotB 17936 Isolation Tank.mp3','BotB 17934 bubblybubblebubblingbubbles.mp3','BotB 17935 bloblobloblboblbolboblboblbobolbloblob.mp3','BotB 17937 Woofytunes.mp3','BotB 17938 slowgrow.mp3'];
+//var tracks = ['BotB 17936 Isolation Tank.mp3','BotB 17934 bubblybubblebubblingbubbles.mp3','BotB 17935 bloblobloblboblbolboblboblbobolbloblob.mp3','BotB 17937 Woofytunes.mp3','BotB 17938 slowgrow.mp3'];
 /*sfx*/
 
 var sfxs = [
@@ -27,7 +27,8 @@ var sfxs = [
     'gameover'
 ];
 function sfx_event(id) {
-    var event = sfxs[id];
+    return;    
+var event = sfxs[id];
     var sfx = new Audio("http://skins.agariomods.com/botb/sfx/" + event + ".mp3");
     sfx.loop = false;
     sfx.play();
@@ -112,8 +113,8 @@ function agariomodsRuntimeInjection() {
 	script.innerHTML = gamejs;
 	document.head.appendChild(script);
 	agariomodsRuntimeHacks();
-	bgmusic = $('#audiotemplate').clone()[0];
-	bgmusic.volume = 0.2;
+	//bgmusic = $('#audiotemplate').clone()[0];
+	//bgmusic.volume = 0.2;
 	window.onbeforeunload = function() {
 		return 'Are you sure you want to quit agar.io?';
 	};
@@ -245,9 +246,9 @@ jQuery('#helloDialog').css({width: '450px'});
 	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
 	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
 	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
-	var nodeAudio = document.createElement("audio");
-	nodeAudio.id = 'audiotemplate';
-	jQuery(playBtn).parent().get(0).appendChild(nodeAudio);
+	//var nodeAudio = document.createElement("audio");
+	//nodeAudio.id = 'audiotemplate';
+	//jQuery(playBtn).parent().get(0).appendChild(nodeAudio);
 	jQuery('#iphack').change(function() {
 		if (jQuery('#iphack').val() == "") {
 			modBlocking = true;
@@ -269,7 +270,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	window.WebSocket = function(data) {
 		if (modBlocking == true) {
 			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html("v1.8.4: <font color=\"blue\">Thanks mikeyk730 for the <u>fantastic</u> stats. Checkbox settings are now saved automatically thanks to mevin1 and programjm on the agariomods team. oh, we now have bgm and sfx which you can't turn off. Yup, you're welcome.</font>\
+			jQuery('#includedContent').html("v1.8.5: <font color=\"pink\">Thanks mikeyk730 for the <u>fantastic</u> stats. Checkbox settings are now saved automatically thanks to mevin1 and programjm on the agariomods team. <s>oh, we now have bgm and sfx which you can't turn off.</s> - sound removed for now.</font>\
 <br><br>Here is the IP address of the server you are connected to currently, pass it to your friends for team playing.<h1>" + data.replace('ws://', '') + "</h1>\
                 Get IP from friend.\
                 Put in box below.\
@@ -739,6 +740,8 @@ window.OnGameStart = function(cells)
     sfx_event(3);
     StartBGM();
 }
+/*
+ *
 window.StartBGM = function ()
 {
     var track = tracks[Math.floor(Math.random() * tracks.length)];
@@ -751,11 +754,13 @@ window.StartBGM = function ()
         bgmusic.play();
     }
 }
+
 window.StopBGM = function ()
 {
      bgmusic.src = "";
      bgmusic.play();
 }
+*/
 window.OnShowOverlay = function(game_in_progress)
 {
     DrawStats(!game_in_progress);
