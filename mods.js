@@ -1,4 +1,4 @@
-var ourskins = "1up;8ball;LLhyy5H;agariomods.com;albania;android;anonymous;apple;atari;awesome;baka;bandaid;bane;baseball;basketball;batman;beats;bender;bert;bitcoin;blobfish;bobross;bobsaget;boo;boogie2988;borg;bp;breakfast;buckballs;burgundy;butters;byzantium;charmander;chechenya;chickfila;chocolate;chrome;cj;coca cola;cokacola;controless;converse;cornella;creeper;cyprus;czechrepublic;deadpool;deal with it;deathstar;derp;dickbutt;doge;doggie;dolan;domo;domokun;dong;donut;dreamcast;drunken;ebin;egg;egoraptor;egypt;electrokitty;epicface;expand;eye;facebook;fast forward;fastforward;fbi;fidel;finn;firefox;fishies;flash;florida;freeman;freemason;friesland;frogout;fuckfacebook;gaben;garfield;gaston;getinmybelly;getinthebox;gimper;github;giygas;gnomechild;gonzo;grayhat;halflife;halflife3;halo;handicapped;hap;hatty;hebrew;heisenburg;helix;hipsterwhale;hitler;honeycomb;hydro;iceland;ie;illuminati;imgur;imperial japan;imperialjapan;instagram;isaac;isis;isreal;itchyfeetleech;ivysaur;james bond;java;jew;jewnose;jimmies;kappa;kenny;kingdomoffrance;kingjoffrey;kirby;kitty;klingon;knightstemplar;knowyourmeme;kyle;ladle;lenny;lgbt;libertyy;liechtenstien;linux;love;luigi;macedonia;malta;mario;mars;maryland;masterball;mastercheif;mcdonalds;meatboy;meatwad;megamilk;mike tyson;mlg;moldova;mortalkombat;mr burns;mr.bean;mr.popo;n64;nasa;nazi;nick;nickelodeon;nipple;northbrabant;nosmoking;notch;nsa;obey;osu;ouch;pandaexpress;pedo;pedobear;peka;pepe;pepsi;pewdiepie;pi;pig;piggy;pika;pinkfloyd;pinkstylist;piratebay;pizza;playstation;poop;potato;quantum leap;rageface;rewind;rockstar;rolfharris;rss;satan;serbia;shell;shine;shrek;sinistar;sir;skull;skype;skyrim;slack;slovakia;slovenia;slowpoke;smash;snafu;snapchat;soccer;soliare;solomid;somalia;space;spawn;spiderman;spongegar;spore;spy;squirtle;starbucks;starrynight;stitch;stupid;summit1g;superman;taco;teamfortress;tintin;transformers;triforce;trollface;tubbymcfatfuck;turkey;twitch;twitter;ukip;uppercase;uruguay;utorrent;voyager;wakawaka;wewlad;white  light;windows;wwf;wykop;yinyang;ylilauta;yourmom;youtube;zoella;zoidberg";
+var ourskins = "1up;8ball;transformer;agariomods.com;albania;android;anonymous;apple;atari;awesome;baka;bandaid;bane;baseball;basketball;batman;beats;bender;bert;bitcoin;blobfish;bobross;bobsaget;boo;boogie2988;borg;bp;breakfast;buckballs;burgundy;butters;byzantium;charmander;chechenya;chickfila;chocolate;chrome;cj;coca cola;cokacola;controless;converse;cornella;creeper;cyprus;czechrepublic;deadpool;deal with it;deathstar;derp;dickbutt;doge;doggie;dolan;domo;domokun;dong;donut;dreamcast;drunken;ebin;egg;egoraptor;egypt;electrokitty;epicface;expand;eye;facebook;fast forward;fastforward;fbi;fidel;finn;firefox;fishies;flash;florida;freeman;freemason;friesland;frogout;fuckfacebook;gaben;garfield;gaston;getinmybelly;getinthebox;gimper;github;giygas;gnomechild;gonzo;grayhat;halflife;halflife3;halo;handicapped;hap;hatty;hebrew;heisenburg;helix;hipsterwhale;hitler;honeycomb;hydro;iceland;ie;illuminati;imgur;imperial japan;imperialjapan;instagram;isaac;isis;isreal;itchyfeetleech;ivysaur;james bond;java;jew;jewnose;jimmies;kappa;kenny;kingdomoffrance;kingjoffrey;kirby;kitty;klingon;knightstemplar;knowyourmeme;kyle;ladle;lenny;lgbt;libertyy;liechtenstien;linux;love;luigi;macedonia;malta;mario;mars;maryland;masterball;mastercheif;mcdonalds;meatboy;meatwad;megamilk;mike tyson;mlg;moldova;mortalkombat;mr burns;mr.bean;mr.popo;n64;nasa;nazi;nick;nickelodeon;nipple;northbrabant;nosmoking;notch;nsa;obey;osu;ouch;pandaexpress;pedo;pedobear;peka;pepe;pepsi;pewdiepie;pi;pig;piggy;pika;pinkfloyd;pinkstylist;piratebay;pizza;playstation;poop;potato;quantum leap;rageface;rewind;rockstar;rolfharris;rss;satan;serbia;shell;shine;shrek;sinistar;sir;skull;skype;skyrim;slack;slovakia;slovenia;slowpoke;smash;snafu;snapchat;soccer;soliare;solomid;somalia;space;spawn;spiderman;spongegar;spore;spy;squirtle;starbucks;starrynight;stitch;stupid;summit1g;superman;taco;teamfortress;tintin;transformers;triforce;trollface;tubbymcfatfuck;turkey;twitch;twitter;ukip;uppercase;uruguay;utorrent;voyager;wakawaka;wewlad;white  light;windows;wwf;wykop;yinyang;ylilauta;yourmom;youtube;zoella;zoidberg";
 
 var gamejs = "", modBlocking = true;
 var tester = document.getElementsByTagName("script");
@@ -8,6 +8,33 @@ var Ja = '';
 var b = '';
 var c3eg2 = '';
 
+/*bgm*/
+var bgmusic = '';
+//$('#audiotemplate').clone()[0];
+var tracks = ['BotB 17936 Isolation Tank.mp3','BotB 17934 bubblybubblebubblingbubbles.mp3','BotB 17935 bloblobloblboblbolboblboblbobolbloblob.mp3','BotB 17937 Woofytunes.mp3','BotB 17938 slowgrow.mp3'];
+/*sfx*/
+
+var sfxs = [
+    'pellet',
+    'split',
+    'eat',
+    'spawn',
+    'bounce',
+    'merge',
+    'virusfeed',
+    'virusshoot',
+    'virushit',
+    'gameover'
+];
+function sfx_event(id) {
+    var event = sfxs[id];
+    var sfx = new Audio("http://skins.agariomods.com/botb/sfx/" + event + ".mp3");
+    sfx.loop = false;
+    sfx.play();
+    sfx.onended = function() {
+        $(this).remove();
+    }
+}
 /* lets start to deal with regressions */
 var test = 0;
 var passed = 0;
@@ -85,6 +112,8 @@ function agariomodsRuntimeInjection() {
 	script.innerHTML = gamejs;
 	document.head.appendChild(script);
 	agariomodsRuntimeHacks();
+	bgmusic = $('#audiotemplate').clone()[0];
+	bgmusic.volume = 0.2;
 	window.onbeforeunload = function() {
 		return 'Are you sure you want to quit agar.io?';
 	};
@@ -216,6 +245,9 @@ jQuery('#helloDialog').css({width: '450px'});
 	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
 	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
 	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
+	var nodeAudio = document.createElement("audio");
+	nodeAudio.id = 'audiotemplate';
+	jQuery(playBtn).parent().get(0).appendChild(nodeAudio);
 	jQuery('#iphack').change(function() {
 		if (jQuery('#iphack').val() == "") {
 			modBlocking = true;
@@ -237,7 +269,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	window.WebSocket = function(data) {
 		if (modBlocking == true) {
 			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html("v1.8.3: <font color=\"purple\">Thanks mikeyk730 for the <u>fantastic</u> stats. Checkbox settings are now saved automatically thanks to mevin1 and programjm on the agariomods team.</font>\
+			jQuery('#includedContent').html("v1.8.4: <font color=\"blue\">Thanks mikeyk730 for the <u>fantastic</u> stats. Checkbox settings are now saved automatically thanks to mevin1 and programjm on the agariomods team. oh, we now have bgm and sfx which you can't turn off. Yup, you're welcome.</font>\
 <br><br>Here is the IP address of the server you are connected to currently, pass it to your friends for team playing.<h1>" + data.replace('ws://', '') + "</h1>\
                 Get IP from friend.\
                 Put in box below.\
@@ -361,7 +393,7 @@ function AppendCheckbox(e, id, label, checked, on_change)
     jQuery('#'+id).attr('checked', checked);
     jQuery('#'+id).change(function(){
         on_change(this.checked);
-		alert(this.checked);    
+		//alert(this.checked);    
 	});
     on_change(checked);
 }
@@ -473,10 +505,12 @@ function OnGainMass(me, other)
     if (other.isVirus){
         stats.viruses.num++;
         stats.viruses.mass += mass; /*TODO: shouldn't add if  game mode is teams*/
+	sfx_event(8);
     }
     else if (Math.floor(mass) <= 400 && !other.name){
         stats.pellets.num++;
         stats.pellets.mass += mass;
+	sfx_event(0);
     }
 	/* heuristic to determine if mass is 'w', not perfect */
     else if (!other.name && mass <= 1444 && (mass >= 1369 || (other.x == other.ox && other.y == other.oy))){
@@ -485,6 +519,7 @@ function OnGainMass(me, other)
             stats.w.num++;
             stats.w.mass += mass;
         }
+	sfx_event(2);
     }
     else { 
 	    /*console.log('cell', mass, other.name, other);*/
@@ -495,6 +530,7 @@ function OnGainMass(me, other)
             stats.gains[key] = {num: 0, mass: 0};
         stats.gains[key].num++;
         stats.gains[key].mass += mass;
+	sfx_event(2);
     }
 }
 
@@ -506,6 +542,7 @@ function OnLoseMass(me, other)
         stats.losses[key] = {num: 0, mass: 0};;
     stats.losses[key].num++;
     stats.losses[key].mass += mass;
+    sfx_event(2);
 }
 
 function DrawPie(pellet, w, cells, viruses)
@@ -575,7 +612,8 @@ function DrawStats(game_over)
     
     if (game_over){
         stats.time_of_death = Date.now();
-	}
+	sfx_event(9);
+    }
     var time = stats.time_of_death ? stats.time_of_death : Date.now();
     var seconds = (time - stats.birthday)/1000;
 	
@@ -698,8 +736,26 @@ window.OnGameStart = function(cells)
     ResetChart();
     ResetStats();
     RenderStats(true);
+    sfx_event(3);
+    StartBGM();
 }
-
+window.StartBGM = function ()
+{
+    var track = tracks[Math.floor(Math.random() * tracks.length)];
+    bgmusic.src = "http://skins.agariomods.com/botb/" + track;
+    bgmusic.play();
+    bgmusic.loop = false;
+    bgmusic.onended = function() {
+        var track = tracks[Math.floor(Math.random() * tracks.length)];
+        bgmusic.src = "http://skins.agariomods.com/botb/" + track;
+        bgmusic.play();
+    }
+}
+window.StopBGM = function ()
+{
+     bgmusic.src = "";
+     bgmusic.play();
+}
 window.OnShowOverlay = function(game_in_progress)
 {
     DrawStats(!game_in_progress);
