@@ -738,7 +738,7 @@ window.OnGameStart = function(cells)
     ResetStats();
     RenderStats(true);
     sfx_event(3);
-    StartBGM();
+//    StartBGM();
 }
 /*
  *
