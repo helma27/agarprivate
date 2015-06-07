@@ -270,7 +270,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	window.WebSocket = function(data) {
 		if (modBlocking == true) {
 			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html("v1.8.4: <font color=\"blue\">Thanks mikeyk730 for the <u>fantastic</u> stats. Checkbox settings are now saved automatically thanks to mevin1 and programjm on the agariomods team. oh, we now have bgm and sfx which you can't turn off. Yup, you're welcome.</font>\
+			jQuery('#includedContent').html("v1.8.5: <font color=\"pink\">Thanks mikeyk730 for the <u>fantastic</u> stats. Checkbox settings are now saved automatically thanks to mevin1 and programjm on the agariomods team. <s>oh, we now have bgm and sfx which you can't turn off.</s> - sound removed for now.</font>\
 <br><br>Here is the IP address of the server you are connected to currently, pass it to your friends for team playing.<h1>" + data.replace('ws://', '') + "</h1>\
                 Get IP from friend.\
                 Put in box below.\
