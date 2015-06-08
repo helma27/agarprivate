@@ -9,6 +9,8 @@ Key Features of our mod
 
 We do not provide a means to allow cheating, we believe in fair play, but it doesn't have to be boring and vanilla. Which is why we added custom skins, be it in the form of agariomods provided skins which we collect from reddit or the alternative mode where users can provide an imgur image ID. For example:  i/vUa6ZqF   placed inside of the name box, will show our logo on your blob for other users to see. We have just rolled out with an excellent mass-grah mod given to us by mikeyk730.
 
+We now also have sound effects, background music, FPS counter and more!
+
 
 [1]: https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?utm_source=chrome-ntp-icon
 [2]: https://addons.mozilla.org/en-Us/firefox/addon/greasemonkey/
