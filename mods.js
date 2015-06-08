@@ -401,7 +401,7 @@ jQuery(document).ready(function()
 {
     jQuery('body').append(`<div id="chart-container" style="display:none; position:absolute; height:176px; width:300px; left:10px; bottom:44px"></div>
 			   <div id="chart-container-agariomods" style="opacity: 0.7; position:absolute; height:20px; width:300px; right:10px; bottom:10px;">&nbsp;agariomods.com - modding <b>without</b> cheating</div>
-			   <div id="fps-agariomods" style="color: white; position:absolute; height:20px; width:300px; top:5px; left:10px; display: none;"><b>FPS: </b><span>0</span></div>
+			   <div id="fps-agariomods" style="color: white; position:absolute; top:5px; left:10px; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>
 			   `);
   	var checkbox_div = jQuery('#settings input[type=checkbox]').closest('div');
     checkbox_div.append('<label><input type="checkbox" onchange="setAcid($(this).is(\':checked\'));">Acid</label>');
