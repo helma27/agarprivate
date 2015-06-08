@@ -283,7 +283,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	window.WebSocket = function(data) {
 		if (modBlocking == true) {
 			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html(`v1.9.0-mevin1rocks: <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font>
+			jQuery('#includedContent').html(`v1.9.1-mevin1rocks: <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font>
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>
         </div>`); //backticks for multiline strings, cannot be used for single line strings. (oh now I have to un-escape everything) ~Mevin1
@@ -403,6 +403,10 @@ jQuery(document).ready(function()
 			   <div id="chart-container-agariomods" style="opacity: 0.7; position:absolute; height:20px; width:300px; right:10px; bottom:10px;">&nbsp;agariomods.com - modding <b>without</b> cheating</div>
 			   <div id="fps-agariomods" style="color: white; position:absolute; top:5px; left:10px; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>
 			   `);
+	jQuery('#instructions').remove();
+	jQuery('.btn-settings').remove();
+	jQuery('#playBtn').width('294px')
+	jQuery('#settings').show();
   	var checkbox_div = jQuery('#settings input[type=checkbox]').closest('div');
     checkbox_div.append('<label><input type="checkbox" onchange="setAcid($(this).is(\':checked\'));">Acid</label>');
 	checkbox_div.append('<label><input type="checkbox" onchange="if(this.checked){jQuery(\'#chart-container\').show()}else{jQuery(\'#chart-container\').hide()}">Show chart</label>');
@@ -851,7 +855,7 @@ $(document).ready(function() {
 var kd = false;
 $(document).keydown(function(e) {
 	//Stats Shortcut
-	if (e.keyCode == 223) {
+	if (e.keyCode == 192) {
 		//e.preventDefault();
 		if (kd == false && document.getElementById("overlays").style.display == 'none') {
 			kd = true;
@@ -863,8 +867,8 @@ $(document).keydown(function(e) {
 		}
 	}
 	//FPS Hotkey
-	if (e.keyCode == 49) {
-		//e.preventDefault();
+	if (e.ctrlKey && e.keyCode == 90) {
+		e.preventDefault();
 		showfps = !showfps;
 		document.getElementById("fps-agariomods").style.display = showfps?"block":"none";
 	}
@@ -882,7 +886,7 @@ $(document).keydown(function(e) {
 	}
 });
 $(document).keyup(function(e) {
-	if (e.keyCode == 223) {
+	if (e.keyCode == 192) {
 		//e.preventDefault();
 		if (kd == true) {
 			kd = false;
