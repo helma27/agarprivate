@@ -882,7 +882,7 @@ $(document).keydown(function(e) {
 	}
 });
 $(document).keyup(function(e) {
-	if (e.keyCode == 9) {
+	if (e.keyCode == 223) {
 		//e.preventDefault();
 		if (kd == true) {
 			kd = false;
