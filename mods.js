@@ -852,7 +852,7 @@ var kd = false;
 $(document).keydown(function(e) {
 	//Stats Shortcut
 	if (e.keyCode == 9) {
-		e.preventDefault();
+		//e.preventDefault();
 		if (kd == false && document.getElementById("overlays").style.display == 'none') {
 			kd = true;
 			document.getElementById("overlays").style.display = "block";
@@ -864,7 +864,7 @@ $(document).keydown(function(e) {
 	}
 	//FPS Hotkey
 	if (e.keyCode == 49) {
-		e.preventDefault();
+		//e.preventDefault();
 		showfps = !showfps;
 		document.getElementById("fps-agariomods").style.display = showfps?"block":"none";
 	}
@@ -883,7 +883,7 @@ $(document).keydown(function(e) {
 });
 $(document).keyup(function(e) {
 	if (e.keyCode == 9) {
-		e.preventDefault();
+		//e.preventDefault();
 		if (kd == true) {
 			kd = false;
 			document.getElementById("overlays").style.display = "none";
