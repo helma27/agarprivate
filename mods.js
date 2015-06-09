@@ -1,3 +1,14 @@
+// ==UserScript==
+// @name         My Fancy New Userscript
+// @namespace    http://your.homepage/
+// @version      0.1
+// @description  enter something useful
+// @author       You
+// @match        http://agar.io/
+// @grant        none
+// ==/UserScript==
+
+
 var ourskins = "1up;8ball;transformer;agariomods.com;albania;android;anonymous;apple;atari;awesome;baka;bandaid;bane;baseball;basketball;batman;beats;bender;bert;bitcoin;blobfish;bobross;bobsaget;boo;boogie2988;borg;bp;breakfast;buckballs;burgundy;butters;byzantium;charmander;chechenya;chickfila;chocolate;chrome;cj;coca cola;cokacola;controless;converse;cornella;creeper;cyprus;czechrepublic;deadpool;deal with it;deathstar;derp;dickbutt;doge;doggie;dolan;domo;domokun;dong;donut;dreamcast;drunken;ebin;egg;egoraptor;egypt;electrokitty;epicface;expand;eye;facebook;fast forward;fastforward;fbi;fidel;finn;firefox;fishies;flash;florida;freeman;freemason;friesland;frogout;fuckfacebook;gaben;garfield;gaston;getinmybelly;getinthebox;gimper;github;giygas;gnomechild;gonzo;grayhat;halflife;halflife3;halo;handicapped;hap;hatty;hebrew;heisenburg;helix;hipsterwhale;hitler;honeycomb;hydro;iceland;ie;illuminati;imgur;imperial japan;imperialjapan;instagram;isaac;isis;isreal;itchyfeetleech;ivysaur;james bond;java;jew;jewnose;jimmies;kappa;kenny;kingdomoffrance;kingjoffrey;kirby;kitty;klingon;knightstemplar;knowyourmeme;kyle;ladle;lenny;lgbt;libertyy;liechtenstien;linux;love;luigi;macedonia;malta;mario;mars;maryland;masterball;mastercheif;mcdonalds;meatboy;meatwad;megamilk;mike tyson;mlg;moldova;mortalkombat;mr burns;mr.bean;mr.popo;n64;nasa;nazi;nick;nickelodeon;nipple;northbrabant;nosmoking;notch;nsa;obey;osu;ouch;pandaexpress;pedo;pedobear;peka;pepe;pepsi;pewdiepie;pi;pig;piggy;pika;pinkfloyd;pinkstylist;piratebay;pizza;playstation;poop;potato;quantum leap;rageface;rewind;rockstar;rolfharris;rss;satan;serbia;shell;shine;shrek;sinistar;sir;skull;skype;skyrim;slack;slovakia;slovenia;slowpoke;smash;snafu;snapchat;soccer;soliare;solomid;somalia;space;spawn;spiderman;spongegar;spore;spy;squirtle;starbucks;starrynight;stitch;stupid;summit1g;superman;taco;teamfortress;tintin;transformers;triforce;trollface;tubbymcfatfuck;turkey;twitch;twitter;ukip;uppercase;uruguay;utorrent;voyager;wakawaka;wewlad;white  light;windows;wwf;wykop;yinyang;ylilauta;yourmom;youtube;zoella;zoidberg";
 
 var showsh = false;
@@ -20,7 +31,7 @@ var bgmusic = '';
 $('#audiotemplate').clone()[0];
 var tracks = ['BotB 17936 Isolation Tank.mp3','BotB 17934 bubblybubblebubblingbubbles.mp3','BotB 17935 bloblobloblboblbolboblboblbobolbloblob.mp3','BotB 17937 Woofytunes.mp3','BotB 17938 slowgrow.mp3'];
 /*sfx*/
-var sfxs = [
+var sfxlist = [
     'pellet',
     'split',
     'eat',
@@ -32,16 +43,20 @@ var sfxs = [
     'virushit',
     'gameover'
 ];
-function sfx_event(id) {
-    if (document.getElementById("sfx").value==0) return;
-	var event = sfxs[id];
-    var sfx = new Audio("http://skins.agariomods.com/botb/sfx/" + event + ".mp3");
-    sfx.loop = false;
-	sfx.volume = document.getElementById("sfx").value;
-    sfx.play();
-    sfx.onended = function() {
+var sfxs = [];
+for (i=0;i<sfxlist.length;i++) {
+	var newsfx = new Audio("http://skins.agariomods.com/botb/sfx/" + sfxlist[i] + ".mp3");
+	newsfx.loop = false;
+	newsfx.onended = function() {
         $(this).remove();
     }
+	sfxs.push(newsfx);
+}
+function sfx_event(id) {
+    if (document.getElementById("sfx").value==0) return;
+	var event = jQuery.clone(sfxs[id]);
+	event.volume = document.getElementById("sfx").value;
+    event.play();
 }
 /* lets start to deal with regressions */
 var test = 0;
@@ -121,7 +136,14 @@ function agariomodsRuntimeInjection() {
 	document.head.appendChild(script);
 	agariomodsRuntimeHacks();
 	bgmusic = $('#audiotemplate').clone()[0];
-	bgmusic.volume = 0.2;
+    bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
+    bgmusic.load();
+    bgmusic.loop = false;
+    bgmusic.onended = function() {
+        var track = tracks[Math.floor(Math.random() * tracks.length)];
+        bgmusic.src = "http://skins.agariomods.com/botb/" + track;
+        bgmusic.play();
+    }
 	window.onbeforeunload = function() {
 		return 'Are you sure you want to quit agar.io?';
 	};
@@ -405,7 +427,6 @@ jQuery(document).ready(function()
 			   `);
 	jQuery('#instructions').remove();
 	jQuery('.btn-settings').remove();
-	jQuery('#playBtn').width('294px')
 	jQuery('#settings').show();
   	var checkbox_div = jQuery('#settings input[type=checkbox]').closest('div');
     checkbox_div.append('<label><input type="checkbox" onchange="setAcid($(this).is(\':checked\'));">Acid</label>');
@@ -414,6 +435,7 @@ jQuery(document).ready(function()
 	checkbox_div.append('<label>BGM<input type="range" id="bgm" value="0" step=".1" min="0" max="1" oninput="volBGM(this.value);"></label>');
     jQuery('#overlays').append('<div id="stats" style="opacity: 0.85; position: absolute; top:330px; left: 460px; width: 480px; display: none; background-color: #FFFFFF; border-radius: 15px; padding: 5px 15px 5px 15px; transform: translate(0,-50%); white-space: nowrap; overflow:hidden;"><div id="statArea" style="vertical-align:top; width:250px; display:inline-block;"></div><div id="pieArea" style="vertical-align: top; width:200px; height:150px; display:inline-block; vertical-align:top"> </div><div id="gainArea" style="width:500px;  vertical-align:top"></div><div id="lossArea" style="width:500px; "></div><div id="chartArea" style="width:450px; display:inline-block; vertical-align:top"></div></div>');
     jQuery('#stats').hide(0);   
+	jQuery('#playBtn').width('74%');
 });
 
 function ResetChart() 
@@ -744,21 +766,17 @@ window.OnGameStart = function(cells)
 window.StartBGM = function ()
 {
     if (document.getElementById("bgm").value==0) return;
-    var track = tracks[Math.floor(Math.random() * tracks.length)];
-    bgmusic.src = "http://skins.agariomods.com/botb/" + track;
+    if (bgmusic.src == "") bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)]; //i guess i'll leave this here ~mevin1
 	bgmusic.volume = document.getElementById("bgm").value;
     bgmusic.play();
-    bgmusic.loop = false;
-    bgmusic.onended = function() {
-        var track = tracks[Math.floor(Math.random() * tracks.length)];
-        bgmusic.src = "http://skins.agariomods.com/botb/" + track;
-        bgmusic.play();
-    }
 }
 
 window.StopBGM = function ()
 {
-    bgmusic.pause();
+	if (document.getElementById("bgm").value==0) return;
+	bgmusic.pause()
+	bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
+	bgmusic.load()
 }
 
 window.volBGM = function (vol)
