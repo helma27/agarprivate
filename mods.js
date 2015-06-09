@@ -855,9 +855,9 @@ $(document).ready(function() {
 var kd = false;
 $(document).keydown(function(e) {
 	//Stats Shortcut
-	if (e.keyCode == 9) {
+	if (e.keyCode == 90) {
+		//e.preventDefault(); //unneeded
 		if (kd == false && document.getElementById("overlays").style.display == 'none') {
-                        e.preventDefault();
 			kd = true;
 			document.getElementById("overlays").style.display = "block";
 			document.getElementById("overlays").style.backgroundColor = "rgba(0,0,0,0)";
@@ -867,8 +867,8 @@ $(document).keydown(function(e) {
 		}
 	}
 	//FPS Hotkey
-	if (e.ctrlKey && e.keyCode == 90) {
-		e.preventDefault();
+	if (e.altKey && e.keyCode == 49) {
+		//e.preventDefault(); //unneeded
 		showfps = !showfps;
 		document.getElementById("fps-agariomods").style.display = showfps?"block":"none";
 	}
@@ -886,8 +886,8 @@ $(document).keydown(function(e) {
 	}
 });
 $(document).keyup(function(e) {
-	if (e.keyCode == 9) {
-		e.preventDefault(); //doesn't break tab
+	if (e.keyCode == 90) {
+		//e.preventDefault(); //unneeded
 		if (kd == true) {
 			kd = false;
 			document.getElementById("overlays").style.display = "none";
