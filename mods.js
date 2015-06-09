@@ -20,7 +20,7 @@ var bgmusic = '';
 $('#audiotemplate').clone()[0];
 var tracks = ['BotB 17936 Isolation Tank.mp3','BotB 17934 bubblybubblebubblingbubbles.mp3','BotB 17935 bloblobloblboblbolboblboblbobolbloblob.mp3','BotB 17937 Woofytunes.mp3','BotB 17938 slowgrow.mp3'];
 /*sfx*/
-var sfxs = [
+var sfxlist = [
     'pellet',
     'split',
     'eat',
@@ -32,16 +32,20 @@ var sfxs = [
     'virushit',
     'gameover'
 ];
-function sfx_event(id) {
-    if (document.getElementById("sfx").value==0) return;
-	var event = sfxs[id];
-    var sfx = new Audio("http://skins.agariomods.com/botb/sfx/" + event + ".mp3");
-    sfx.loop = false;
-	sfx.volume = document.getElementById("sfx").value;
-    sfx.play();
-    sfx.onended = function() {
+var sfxs = [];
+for (i=0;i<sfxlist.length;i++) {
+	var newsfx = new Audio("http://skins.agariomods.com/botb/sfx/" + sfxlist[i] + ".mp3");
+	newsfx.loop = false;
+	newsfx.onended = function() {
         $(this).remove();
     }
+	sfxs.push(newsfx);
+}
+function sfx_event(id) {
+    if (document.getElementById("sfx").value==0) return;
+	var event = jQuery.clone(sfxs[id]);
+	event.volume = document.getElementById("sfx").value;
+    event.play();
 }
 /* lets start to deal with regressions */
 var test = 0;
@@ -121,7 +125,14 @@ function agariomodsRuntimeInjection() {
 	document.head.appendChild(script);
 	agariomodsRuntimeHacks();
 	bgmusic = $('#audiotemplate').clone()[0];
-	bgmusic.volume = 0.2;
+    bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
+    bgmusic.load();
+    bgmusic.loop = false;
+    bgmusic.onended = function() {
+        var track = tracks[Math.floor(Math.random() * tracks.length)];
+        bgmusic.src = "http://skins.agariomods.com/botb/" + track;
+        bgmusic.play();
+    }
 	window.onbeforeunload = function() {
 		return 'Are you sure you want to quit agar.io?';
 	};
@@ -210,8 +221,8 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.margin = "10px";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
-	nodeDiv.innerHTML += `
-	`;
+	nodeDiv.innerHTML += "\
+	";
 	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
 	jQuery('#region').parent().get(0).appendChild(nodeDiv);
 	var selector = jQuery('#region');
@@ -283,10 +294,10 @@ jQuery('#helloDialog').css({width: '450px'});
 	window.WebSocket = function(data) {
 		if (modBlocking == true) {
 			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html(`v1.9.1-mevin1rocks: <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font>
-        <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">
-                <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>
-        </div>`); //backticks for multiline strings, cannot be used for single line strings. (oh now I have to un-escape everything) ~Mevin1
+			jQuery('#includedContent').html('v1.9.1-mevin1rocks: <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font>\
+        <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
+                <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
+        </div>'); //backticks for multiline strings, cannot be used for single line strings. (oh now I have to un-escape everything) ~Mevin1 Noobs be using outdated browsers, so we have to keep using the ghetto backslashes to escape newlines
 		//This div started to become a box where we threw a bunch of information into, it was starting to get too big for the smallest pc display that is still HD.
 		jQuery('#ip').html(data.replace('ws://', ''));
 		} else {
@@ -399,13 +410,12 @@ function secondsToHms(d)
 ////////////////////////////////////////////////////////////////
 jQuery(document).ready(function() 
 {
-    jQuery('body').append(`<div id="chart-container" style="display:none; position:absolute; height:176px; width:300px; left:10px; bottom:44px"></div>
-			   <div id="chart-container-agariomods" style="opacity: 0.7; position:absolute; height:20px; width:300px; right:10px; bottom:10px;">&nbsp;agariomods.com - modding <b>without</b> cheating</div>
-			   <div id="fps-agariomods" style="color: white; position:absolute; top:5px; left:10px; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>
-			   `);
+    jQuery('body').append('<div id="chart-container" style="display:none; position:absolute; height:176px; width:300px; left:10px; bottom:44px"></div>\
+			   <div id="chart-container-agariomods" style="opacity: 0.7; position:absolute; height:20px; width:300px; right:10px; bottom:10px;">&nbsp;agariomods.com - modding <b>without</b> cheating</div>\
+			   <div id="fps-agariomods" style="color: white; position:absolute; top:5px; left:10px; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>\
+			   ');
 	jQuery('#instructions').remove();
 	jQuery('.btn-settings').remove();
-	jQuery('#playBtn').width('294px')
 	jQuery('#settings').show();
   	var checkbox_div = jQuery('#settings input[type=checkbox]').closest('div');
     checkbox_div.append('<label><input type="checkbox" onchange="setAcid($(this).is(\':checked\'));">Acid</label>');
@@ -414,6 +424,7 @@ jQuery(document).ready(function()
 	checkbox_div.append('<label>BGM<input type="range" id="bgm" value="0" step=".1" min="0" max="1" oninput="volBGM(this.value);"></label>');
     jQuery('#overlays').append('<div id="stats" style="opacity: 0.85; position: absolute; top:330px; left: 460px; width: 480px; display: none; background-color: #FFFFFF; border-radius: 15px; padding: 5px 15px 5px 15px; transform: translate(0,-50%); white-space: nowrap; overflow:hidden;"><div id="statArea" style="vertical-align:top; width:250px; display:inline-block;"></div><div id="pieArea" style="vertical-align: top; width:200px; height:150px; display:inline-block; vertical-align:top"> </div><div id="gainArea" style="width:500px;  vertical-align:top"></div><div id="lossArea" style="width:500px; "></div><div id="chartArea" style="width:450px; display:inline-block; vertical-align:top"></div></div>');
     jQuery('#stats').hide(0);   
+	jQuery('#playBtn').width('74%');
 });
 
 function ResetChart() 
@@ -744,21 +755,17 @@ window.OnGameStart = function(cells)
 window.StartBGM = function ()
 {
     if (document.getElementById("bgm").value==0) return;
-    var track = tracks[Math.floor(Math.random() * tracks.length)];
-    bgmusic.src = "http://skins.agariomods.com/botb/" + track;
+    if (bgmusic.src == "") bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)]; //i guess i'll leave this here ~mevin1
 	bgmusic.volume = document.getElementById("bgm").value;
     bgmusic.play();
-    bgmusic.loop = false;
-    bgmusic.onended = function() {
-        var track = tracks[Math.floor(Math.random() * tracks.length)];
-        bgmusic.src = "http://skins.agariomods.com/botb/" + track;
-        bgmusic.play();
-    }
 }
 
 window.StopBGM = function ()
 {
-    bgmusic.pause();
+	if (document.getElementById("bgm").value==0) return;
+	bgmusic.pause()
+	bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
+	bgmusic.load()
 }
 
 window.volBGM = function (vol)
