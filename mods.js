@@ -1,14 +1,3 @@
-// ==UserScript==
-// @name         My Fancy New Userscript
-// @namespace    http://your.homepage/
-// @version      0.1
-// @description  enter something useful
-// @author       You
-// @match        http://agar.io/
-// @grant        none
-// ==/UserScript==
-
-
 var ourskins = "1up;8ball;transformer;agariomods.com;albania;android;anonymous;apple;atari;awesome;baka;bandaid;bane;baseball;basketball;batman;beats;bender;bert;bitcoin;blobfish;bobross;bobsaget;boo;boogie2988;borg;bp;breakfast;buckballs;burgundy;butters;byzantium;charmander;chechenya;chickfila;chocolate;chrome;cj;coca cola;cokacola;controless;converse;cornella;creeper;cyprus;czechrepublic;deadpool;deal with it;deathstar;derp;dickbutt;doge;doggie;dolan;domo;domokun;dong;donut;dreamcast;drunken;ebin;egg;egoraptor;egypt;electrokitty;epicface;expand;eye;facebook;fast forward;fastforward;fbi;fidel;finn;firefox;fishies;flash;florida;freeman;freemason;friesland;frogout;fuckfacebook;gaben;garfield;gaston;getinmybelly;getinthebox;gimper;github;giygas;gnomechild;gonzo;grayhat;halflife;halflife3;halo;handicapped;hap;hatty;hebrew;heisenburg;helix;hipsterwhale;hitler;honeycomb;hydro;iceland;ie;illuminati;imgur;imperial japan;imperialjapan;instagram;isaac;isis;isreal;itchyfeetleech;ivysaur;james bond;java;jew;jewnose;jimmies;kappa;kenny;kingdomoffrance;kingjoffrey;kirby;kitty;klingon;knightstemplar;knowyourmeme;kyle;ladle;lenny;lgbt;libertyy;liechtenstien;linux;love;luigi;macedonia;malta;mario;mars;maryland;masterball;mastercheif;mcdonalds;meatboy;meatwad;megamilk;mike tyson;mlg;moldova;mortalkombat;mr burns;mr.bean;mr.popo;n64;nasa;nazi;nick;nickelodeon;nipple;northbrabant;nosmoking;notch;nsa;obey;osu;ouch;pandaexpress;pedo;pedobear;peka;pepe;pepsi;pewdiepie;pi;pig;piggy;pika;pinkfloyd;pinkstylist;piratebay;pizza;playstation;poop;potato;quantum leap;rageface;rewind;rockstar;rolfharris;rss;satan;serbia;shell;shine;shrek;sinistar;sir;skull;skype;skyrim;slack;slovakia;slovenia;slowpoke;smash;snafu;snapchat;soccer;soliare;solomid;somalia;space;spawn;spiderman;spongegar;spore;spy;squirtle;starbucks;starrynight;stitch;stupid;summit1g;superman;taco;teamfortress;tintin;transformers;triforce;trollface;tubbymcfatfuck;turkey;twitch;twitter;ukip;uppercase;uruguay;utorrent;voyager;wakawaka;wewlad;white  light;windows;wwf;wykop;yinyang;ylilauta;yourmom;youtube;zoella;zoidberg";
 
 var showsh = false;
@@ -232,8 +221,8 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.margin = "10px";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
-	nodeDiv.innerHTML += `
-	`;
+	nodeDiv.innerHTML += "\
+	";
 	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
 	jQuery('#region').parent().get(0).appendChild(nodeDiv);
 	var selector = jQuery('#region');
@@ -305,10 +294,10 @@ jQuery('#helloDialog').css({width: '450px'});
 	window.WebSocket = function(data) {
 		if (modBlocking == true) {
 			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html(`v1.9.1-mevin1rocks: <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font>
-        <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">
-                <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>
-        </div>`); //backticks for multiline strings, cannot be used for single line strings. (oh now I have to un-escape everything) ~Mevin1
+			jQuery('#includedContent').html('v1.9.1-mevin1rocks: <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font>\
+        <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
+                <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
+        </div>'); //backticks for multiline strings, cannot be used for single line strings. (oh now I have to un-escape everything) ~Mevin1 Noobs be using outdated browsers, so we have to keep using the ghetto backslashes to escape newlines
 		//This div started to become a box where we threw a bunch of information into, it was starting to get too big for the smallest pc display that is still HD.
 		jQuery('#ip').html(data.replace('ws://', ''));
 		} else {
@@ -421,10 +410,10 @@ function secondsToHms(d)
 ////////////////////////////////////////////////////////////////
 jQuery(document).ready(function() 
 {
-    jQuery('body').append(`<div id="chart-container" style="display:none; position:absolute; height:176px; width:300px; left:10px; bottom:44px"></div>
-			   <div id="chart-container-agariomods" style="opacity: 0.7; position:absolute; height:20px; width:300px; right:10px; bottom:10px;">&nbsp;agariomods.com - modding <b>without</b> cheating</div>
-			   <div id="fps-agariomods" style="color: white; position:absolute; top:5px; left:10px; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>
-			   `);
+    jQuery('body').append('<div id="chart-container" style="display:none; position:absolute; height:176px; width:300px; left:10px; bottom:44px"></div>\
+			   <div id="chart-container-agariomods" style="opacity: 0.7; position:absolute; height:20px; width:300px; right:10px; bottom:10px;">&nbsp;agariomods.com - modding <b>without</b> cheating</div>\
+			   <div id="fps-agariomods" style="color: white; position:absolute; top:5px; left:10px; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>\
+			   ');
 	jQuery('#instructions').remove();
 	jQuery('.btn-settings').remove();
 	jQuery('#settings').show();
