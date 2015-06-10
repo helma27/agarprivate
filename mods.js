@@ -13,7 +13,7 @@ var W = '';
 var Ja = '';
 var b = '';
 var c3eg2 = '';
-
+var in_game = false;
 		
 /*bgm*/
 var bgmusic = '';
@@ -157,15 +157,9 @@ function agariomodsRuntimeInjection() {
 	$("#canvas").on('mousedown', function(event){
 		event.preventDefault();
 	});
-        $("#chart-container").on('mousedown', function(event){
-                event.preventDefault();
-        });
-        $("#chart-container-agariomods").on('mousedown', function(event){
-                event.preventDefault();
-        });
-        $("#fps-agariomods").on('mousedown', function(event){
-                event.preventDefault();
-        });
+	$("#chart-container").css("pointerEvents", "none");
+	$("#chart-container-agariomods").css("pointerEvents", "none");
+	$("#fps-agariomods").css("pointerEvents", "none");
 
 }
 function agariomodsRuntimePatches() {
@@ -177,6 +171,7 @@ function agariomodsRuntimePatches() {
     gamejs = addChartHooks(gamejs);
     gamejs = addOnCellEatenHook(gamejs);
     gamejs = addOnShowOverlayHook(gamejs);
+    gamejs = addOnHideOverlayHook(gamejs); //Because I don't want to detect when we hide it, only when the game does.
     gamejs = addLeaderboardHook(gamejs);
     gamejs = addOnDrawHook(gamejs)
 	//gamejs = gamejs.replace('('+chart_s+'='+chart_m+'.x', '(ResetChart(), '+chart_s+'='+chart_m+'.x');
@@ -389,6 +384,12 @@ function addOnShowOverlayHook(script) {
     var match = script.match(/\w+\("#overlays"\).fadeIn\((\w+)\?\w+:\w+\);/);    
     var split = script.split(match[0]);
     return split[0] + match[0] + 'OnShowOverlay(' + match[1] + ');' + split[1];
+}
+
+function addOnHideOverlayHook(script) {
+    var match = script.match(/\w+\("#overlays"\).hide\(\)/);    
+    var split = script.split(match[0]);
+    return split[0] + match[0] + ';OnHideOverlay()' + split[1];
 }
 
 function addOnDrawHook(script) {
@@ -621,7 +622,7 @@ function AppendTopN(n, p, list)
 
 function DrawStats(game_over)
 {
-    //if (!stats) return;
+    if (!game_over != in_game) return;
             
 	jQuery('#statArea').empty();
     jQuery('#pieArea').empty();
@@ -753,6 +754,7 @@ jQuery(window).resize(function() {
 
 window.OnGameStart = function(cells)
 {
+	in_game = true;
     my_cells = cells;
     ResetChart();
     ResetStats();
@@ -762,6 +764,7 @@ window.OnGameStart = function(cells)
 		showsh = false;
 		document.getElementById("overlays").style.display = "none";
 		document.getElementById("overlays").style.backgroundColor = "rgba(0,0,0,.498039)";
+		document.getElementById("overlays").style.pointerEvents = "auto";
 		document.getElementById("helloDialog").style.display = "block";
 		kd = false;
 	}
@@ -792,14 +795,30 @@ window.volBGM = function (vol)
 
 window.OnShowOverlay = function(game_in_progress)
 {
+	if (!game_in_progress) in_game = false;
     DrawStats(!game_in_progress);
-	if (!game_in_progress && kd == true) {
-		showsh = false;
+	if (kd == true) {
 		document.getElementById("overlays").style.display = "block";
 		document.getElementById("overlays").style.backgroundColor = "rgba(0,0,0,.498039)";
+		document.getElementById("overlays").style.pointerEvents = "auto";
 		document.getElementById("helloDialog").style.display = "block";
 		kd = false;
 	}
+	if (in_game) {
+		showsh = true;
+		canvas.onmousedown(0,0);
+	} 
+	else
+	{
+		showsh = false;
+	}
+}
+
+var fired = false; //for some reason OnHideOverlay fires twice
+window.OnHideOverlay = function()
+{
+	if (fired == true) {fired = false; return;} else {fired = true;} //Only continue on first fire
+	if (showsh == true) showsh = false;
 }
 
 window.OnUpdateMass = function(mass) 
@@ -885,6 +904,7 @@ $(document).keydown(function(e) {
 			kd = true;
 			document.getElementById("overlays").style.display = "block";
 			document.getElementById("overlays").style.backgroundColor = "rgba(0,0,0,0)";
+			document.getElementById("overlays").style.pointerEvents = "none";
 			document.getElementById("helloDialog").style.display = "none";
 			showsh = true;
 			DrawStats(false);
@@ -916,6 +936,7 @@ $(document).keyup(function(e) {
 			kd = false;
 			document.getElementById("overlays").style.display = "none";
 			document.getElementById("overlays").style.backgroundColor = "rgba(0,0,0,.498039)";
+			document.getElementById("overlays").style.pointerEvents = "auto";
 			document.getElementById("helloDialog").style.display = "block";
 			showsh = false;
 		}
