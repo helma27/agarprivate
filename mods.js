@@ -20,17 +20,34 @@ var bgmusic = '';
 $('#audiotemplate').clone()[0];
 var tracks = ['BotB 17936 Isolation Tank.mp3','BotB 17934 bubblybubblebubblingbubbles.mp3','BotB 17935 bloblobloblboblbolboblboblbobolbloblob.mp3','BotB 17937 Woofytunes.mp3','BotB 17938 slowgrow.mp3'];
 /*sfx*/
+//sfx play on event (only one of each sfx can play - for sfx that won't overlap with itself)
+var ssfxlist = [
+    'spawn',
+    'gameover'
+];
+var ssfxs = [];
+for (i=0;i<ssfxlist.length;i++) {
+	var newsfx = new Audio("http://skins.agariomods.com/botb/sfx/" + ssfxlist[i] + ".mp3");
+	newsfx.loop = false;
+	ssfxs.push(newsfx);
+}
+function sfx_play(id) {
+	if (document.getElementById("sfx").value==0) return;
+	var event = ssfxs[id];
+	event.volume = document.getElementById("sfx").value;
+    event.play();
+}
+
+//sfx insertion on event (multiple of same sfx can be played simultaneously)
 var sfxlist = [
     'pellet',
     'split',
     'eat',
-    'spawn',
     'bounce',
     'merge',
     'virusfeed',
     'virusshoot',
-    'virushit',
-    'gameover'
+    'virushit'
 ];
 var sfxs = [];
 for (i=0;i<sfxlist.length;i++) {
@@ -294,7 +311,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	window.WebSocket = function(data) {
 		if (modBlocking == true) {
 			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html('v1.9.1 <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font><br>shout out to <a href="https://www.youtube.com/watch?v=YRC0VUBhSkE" target="_blank">Generikb</a>: you now have your own skin in our mod.\
+			jQuery('#includedContent').html('v1.9.2: <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font>\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
         </div>'); //backticks for multiline strings, cannot be used for single line strings. (oh now I have to un-escape everything) ~Mevin1 Noobs be using outdated browsers, so we have to keep using the ghetto backslashes to escape newlines
@@ -508,7 +525,7 @@ function OnGainMass(me, other)
     if (other.isVirus){
         stats.viruses.num++;
         if (document.getElementById("gamemode").value!=":teams") stats.viruses.mass += mass; /*DONE: shouldn't add if game mode is teams. TODO: Find a better way of doing this. ~Mevin1*/
-		sfx_event(8);
+		sfx_event(7);
     }
     else if (Math.floor(mass) <= 400 && !other.name){
         stats.pellets.num++;
@@ -614,7 +631,7 @@ function DrawStats(game_over)
     jQuery('#stats').show();
     
     if (game_over){
-        sfx_event(9);
+        sfx_play(1);
 		StopBGM();
 	}
 	stats.time_of_death = Date.now();
@@ -749,7 +766,7 @@ window.OnGameStart = function(cells)
 		kd = false;
 	}
 	StartBGM();
-	sfx_event(3);
+	sfx_play(0);
 }
 
 window.StartBGM = function ()
