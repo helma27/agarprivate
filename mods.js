@@ -249,7 +249,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeLinks.style.position = "absolute";
 	nodeLinks.style.top = "5em";
 
-	nodeSpan.className = "glyphicon glyphicon-refresh";
+	nodeSpan.className = "glyphicon glyphicon-chevron-right";
 	nodeSpan.style.fontSize = "1.5em";
 	nodeSpan.style.cssFloat = "left";
 	nodeSpan.style.paddingTop = "5px";
@@ -257,9 +257,9 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeSpan.addEventListener("click", function (e) {
 		if (modBlocking == false) {
                         //jQuery('#region').style.height = "0px";
-                        jQuery('#region').hide();
+                        //jQuery('#region').hide(); //WHY?
                         //jQuery('#gamemode').style.height = "0px";
-                        jQuery('#gamemode').hide();
+                        //jQuery('#gamemode').hide(); //WHY?
 			console.log ("clicked refresh");
 			var oldregionval = jQuery('#region').val;
 			jQuery('#region').val("EU-London");
@@ -435,7 +435,11 @@ jQuery(document).ready(function()
 			   <div id="fps-agariomods" style="color: white; position:absolute; top:5px; left:10px; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>\
 			   ');
 	jQuery('#instructions').remove();
-	jQuery('.btn-settings').remove();
+	jQuery('.glyphicon-cog').addClass("glyphicon-refresh")
+	jQuery('.glyphicon-cog').removeClass("glyphicon-cog");
+	jQuery('.btn-settings').attr('onclick','connect("ws://"+document.getElementById("ip").innerHTML);OnShowOverlay(false);return false;');
+	jQuery('#gamemode').removeAttr('required');
+	//jQuery('.btn-settings').removeClass("btn-settings");
 	jQuery('#settings').show();
   	var checkbox_div = jQuery('#settings input[type=checkbox]').closest('div');
     checkbox_div.append('<label><input type="checkbox" onchange="setAcid($(this).is(\':checked\'));">Acid</label>');
@@ -444,7 +448,7 @@ jQuery(document).ready(function()
 	checkbox_div.append('<label>BGM<input type="range" id="bgm" value="0" step=".1" min="0" max="1" oninput="volBGM(this.value);"></label>');
     jQuery('#overlays').append('<div id="stats" style="opacity: 0.85; position: absolute; top:330px; left: 460px; width: 480px; display: none; background-color: #FFFFFF; border-radius: 15px; padding: 5px 15px 5px 15px; transform: translate(0,-50%); white-space: nowrap; overflow:hidden;"><div id="statArea" style="vertical-align:top; width:250px; display:inline-block;"></div><div id="pieArea" style="vertical-align: top; width:200px; height:150px; display:inline-block; vertical-align:top"> </div><div id="gainArea" style="width:500px;  vertical-align:top"></div><div id="lossArea" style="width:500px; "></div><div id="chartArea" style="width:450px; display:inline-block; vertical-align:top"></div></div>');
     jQuery('#stats').hide(0);   
-	jQuery('#playBtn').width('74%');
+	//jQuery('#playBtn').width('74%');
 });
 
 function ResetChart() 
