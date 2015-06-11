@@ -1,15 +1,15 @@
 // ==UserScript==
 // @name        AgarioMods Server Selector
 // @namespace	 AgarioMods
-// @version      1.5.2
+// @version      1.9
 // @description  community run mod feature set for agar.io
 // @author       electronoob
-// @match        http://agar.io/
+// @match        http*://agar.io/
 // @grant        none
 // ==/UserScript==
 
 var script = document.createElement('script');
-script.src = "http://agariomods.com/mods.js";
+script.src = document.location.protocol+"//agariomods.com/mods.js";
 (document.body || document.head || document.documentElement).appendChild(script);
 
 /*
