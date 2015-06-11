@@ -4,11 +4,13 @@ var showsh = false;
 
 var showfps = false;
 
+var proto = document.location.protocol;
+
 setInterval(function(){if (showsh) DrawStats(false);},500);
 
 var gamejs = "", modBlocking = true;
 var tester = document.getElementsByTagName("script");
-var i = 0, main_out_url = "http://agar.io/main_out.js", discovered_mainouturl = 0;
+var i = 0, main_out_url = proto+"//agar.io/main_out.js", discovered_mainouturl = 0;
 var W = '';
 var Ja = '';
 var b = '';
@@ -27,7 +29,7 @@ var ssfxlist = [
 ];
 var ssfxs = [];
 for (i=0;i<ssfxlist.length;i++) {
-	var newsfx = new Audio("http://skins.agariomods.com/botb/sfx/" + ssfxlist[i] + ".mp3");
+	var newsfx = new Audio(proto+"//skins.agariomods.com/botb/sfx/" + ssfxlist[i] + ".mp3");
 	newsfx.loop = false;
 	ssfxs.push(newsfx);
 }
@@ -51,7 +53,7 @@ var sfxlist = [
 ];
 var sfxs = [];
 for (i=0;i<sfxlist.length;i++) {
-	var newsfx = new Audio("http://skins.agariomods.com/botb/sfx/" + sfxlist[i] + ".mp3");
+	var newsfx = new Audio(proto+"//skins.agariomods.com/botb/sfx/" + sfxlist[i] + ".mp3");
 	newsfx.loop = false;
 	newsfx.onended = function() {
         $(this).remove();
@@ -82,7 +84,7 @@ var chart_k = '';
 for (i=0; i<tester.length; i++ ){
 	src = tester[i].src;
 	if (src.substring(0, main_out_url.length ) == main_out_url) {
-		discovered_mainouturl = src.replace("http://agar.io/","");
+		discovered_mainouturl = src.replace(proto+"//agar.io/","");
 	}
 }
 
@@ -142,12 +144,12 @@ function agariomodsRuntimeInjection() {
 	document.head.appendChild(script);
 	agariomodsRuntimeHacks();
 	bgmusic = $('#audiotemplate').clone()[0];
-    bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
+    bgmusic.src = proto+"//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
     bgmusic.load();
     bgmusic.loop = false;
     bgmusic.onended = function() {
         var track = tracks[Math.floor(Math.random() * tracks.length)];
-        bgmusic.src = "http://skins.agariomods.com/botb/" + track;
+        bgmusic.src = proto+"//skins.agariomods.com/botb/" + track;
         bgmusic.play();
     }
 	window.onbeforeunload = function() {
@@ -164,7 +166,7 @@ function agariomodsRuntimeInjection() {
 }
 function agariomodsRuntimePatches() {
         gamejs = gamejs.replace(';reddit;',';reddit;'+ourskins+';');
-        gamejs = gamejs.replace(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="http://skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/") {agariomods="http://i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="http://agar.io/skins/" + this.name.toLowerCase() + ".png";}');
+        gamejs = gamejs.replace(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="'+proto+'//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/" && document.getElementById("imgur").checked) {agariomods="'+proto+'//i.imgur.com/"+this.name.substring(2)+".jpg";} else if (document.getElementById("imgur").checked) {agariomods="'+proto+'//agar.io/skins/" + this.name.toLowerCase() + ".png";}');
         gamejs = gamejs.replace(W +'['+b+'].src="skins/"+'+b+'+".png"',W+'['+b+'].src=agariomods');
         gamejs = gamejs.replace("this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")", "if (String(c).substring(0, 2) != \"i/\") {this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")}");
         gamejs = gamejs.replace(b+"=this.name.toLowerCase();", b+"=this.name.toLowerCase(); if ("+b+".substring(0, 2) == \"i/\") {" +Ja+ "+="+b+";} ;");
@@ -219,7 +221,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	$( document ).ready(function() {
 		hd = document.getElementById("helloDialog");
 		cachedhd = hd.innerHTML;
-		hd.innerHTML = cachedhd.replace("<center>Agar.io</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:435px;top:-10px; z-index: -1; height:120px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"120px\"/></a>");
+		hd.innerHTML = cachedhd.replace("<center>Agar.io</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:435px;top:-10px; z-index: -1; height:120px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\""+proto+"//i.imgur.com/TkTWOrc.png\" height=\"120px\"/></a>");
 	});
 	document.getElementById("nick").placeholder = "agariomods.com";
 	nodeDiv.id = "includedContent";
@@ -247,7 +249,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeLinks.style.position = "absolute";
 	nodeLinks.style.top = "5em";
 
-	nodeSpan.className = "glyphicon glyphicon-refresh";
+	nodeSpan.className = "glyphicon glyphicon-chevron-right";
 	nodeSpan.style.fontSize = "1.5em";
 	nodeSpan.style.cssFloat = "left";
 	nodeSpan.style.paddingTop = "5px";
@@ -255,9 +257,9 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeSpan.addEventListener("click", function (e) {
 		if (modBlocking == false) {
                         //jQuery('#region').style.height = "0px";
-                        jQuery('#region').hide();
+                        jQuery('#region').hide(); //Why do we have this setup so we have to do this?
                         //jQuery('#gamemode').style.height = "0px";
-                        jQuery('#gamemode').hide();
+                        jQuery('#gamemode').hide(); //Why do we have this setup so we have to do this?
 			console.log ("clicked refresh");
 			var oldregionval = jQuery('#region').val;
 			jQuery('#region').val("EU-London");
@@ -433,16 +435,21 @@ jQuery(document).ready(function()
 			   <div id="fps-agariomods" style="color: white; position:absolute; top:5px; left:10px; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>\
 			   ');
 	jQuery('#instructions').remove();
-	jQuery('.btn-settings').remove();
+	jQuery('.glyphicon-cog').addClass("glyphicon-refresh")
+	jQuery('.glyphicon-cog').removeClass("glyphicon-cog");
+	jQuery('.btn-settings').attr('onclick','connect("ws://"+document.getElementById("ip").innerHTML);OnShowOverlay(false);return false;');
+	jQuery('#gamemode').removeAttr('required');
+	//jQuery('.btn-settings').removeClass("btn-settings");
 	jQuery('#settings').show();
   	var checkbox_div = jQuery('#settings input[type=checkbox]').closest('div');
     checkbox_div.append('<label><input type="checkbox" onchange="setAcid($(this).is(\':checked\'));">Acid</label>');
+	checkbox_div.append('<label><input id="imgur" type="checkbox">Imgur Skins</label>');
 	checkbox_div.append('<label><input type="checkbox" onchange="if(this.checked){jQuery(\'#chart-container\').show()}else{jQuery(\'#chart-container\').hide()}">Show chart</label>');
 	checkbox_div.append('<label>SFX<input id="sfx" type="range" value="0" step=".1" min="0" max="1"></label>');
 	checkbox_div.append('<label>BGM<input type="range" id="bgm" value="0" step=".1" min="0" max="1" oninput="volBGM(this.value);"></label>');
     jQuery('#overlays').append('<div id="stats" style="opacity: 0.85; position: absolute; top:330px; left: 460px; width: 480px; display: none; background-color: #FFFFFF; border-radius: 15px; padding: 5px 15px 5px 15px; transform: translate(0,-50%); white-space: nowrap; overflow:hidden;"><div id="statArea" style="vertical-align:top; width:250px; display:inline-block;"></div><div id="pieArea" style="vertical-align: top; width:200px; height:150px; display:inline-block; vertical-align:top"> </div><div id="gainArea" style="width:500px;  vertical-align:top"></div><div id="lossArea" style="width:500px; "></div><div id="chartArea" style="width:450px; display:inline-block; vertical-align:top"></div></div>');
     jQuery('#stats').hide(0);   
-	jQuery('#playBtn').width('74%');
+	//jQuery('#playBtn').width('74%');
 });
 
 function ResetChart() 
@@ -775,7 +782,7 @@ window.OnGameStart = function(cells)
 window.StartBGM = function ()
 {
     if (document.getElementById("bgm").value==0) return;
-    if (bgmusic.src == "") bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)]; //i guess i'll leave this here ~mevin1
+    if (bgmusic.src == "") bgmusic.src = proto+"//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)]; //i guess i'll leave this here ~mevin1
 	bgmusic.volume = document.getElementById("bgm").value;
     bgmusic.play();
 }
@@ -784,7 +791,7 @@ window.StopBGM = function ()
 {
 	if (document.getElementById("bgm").value==0) return;
 	bgmusic.pause()
-	bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
+	bgmusic.src = proto+"//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
 	bgmusic.load()
 }
 
