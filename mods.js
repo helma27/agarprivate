@@ -4,11 +4,13 @@ var showsh = false;
 
 var showfps = false;
 
+var proto = document.location.protocol;
+
 setInterval(function(){if (showsh) DrawStats(false);},500);
 
 var gamejs = "", modBlocking = true;
 var tester = document.getElementsByTagName("script");
-var i = 0, main_out_url = "http://agar.io/main_out.js", discovered_mainouturl = 0;
+var i = 0, main_out_url = proto+"//agar.io/main_out.js", discovered_mainouturl = 0;
 var W = '';
 var Ja = '';
 var b = '';
@@ -27,7 +29,7 @@ var ssfxlist = [
 ];
 var ssfxs = [];
 for (i=0;i<ssfxlist.length;i++) {
-	var newsfx = new Audio("http://skins.agariomods.com/botb/sfx/" + ssfxlist[i] + ".mp3");
+	var newsfx = new Audio(proto+"//skins.agariomods.com/botb/sfx/" + ssfxlist[i] + ".mp3");
 	newsfx.loop = false;
 	ssfxs.push(newsfx);
 }
@@ -51,7 +53,7 @@ var sfxlist = [
 ];
 var sfxs = [];
 for (i=0;i<sfxlist.length;i++) {
-	var newsfx = new Audio("http://skins.agariomods.com/botb/sfx/" + sfxlist[i] + ".mp3");
+	var newsfx = new Audio(proto+"//skins.agariomods.com/botb/sfx/" + sfxlist[i] + ".mp3");
 	newsfx.loop = false;
 	newsfx.onended = function() {
         $(this).remove();
@@ -82,7 +84,7 @@ var chart_k = '';
 for (i=0; i<tester.length; i++ ){
 	src = tester[i].src;
 	if (src.substring(0, main_out_url.length ) == main_out_url) {
-		discovered_mainouturl = src.replace("http://agar.io/","");
+		discovered_mainouturl = src.replace(proto+"//agar.io/","");
 	}
 }
 
@@ -142,12 +144,12 @@ function agariomodsRuntimeInjection() {
 	document.head.appendChild(script);
 	agariomodsRuntimeHacks();
 	bgmusic = $('#audiotemplate').clone()[0];
-    bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
+    bgmusic.src = proto+"//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
     bgmusic.load();
     bgmusic.loop = false;
     bgmusic.onended = function() {
         var track = tracks[Math.floor(Math.random() * tracks.length)];
-        bgmusic.src = "http://skins.agariomods.com/botb/" + track;
+        bgmusic.src = proto+"//skins.agariomods.com/botb/" + track;
         bgmusic.play();
     }
 	window.onbeforeunload = function() {
@@ -164,7 +166,7 @@ function agariomodsRuntimeInjection() {
 }
 function agariomodsRuntimePatches() {
         gamejs = gamejs.replace(';reddit;',';reddit;'+ourskins+';');
-        gamejs = gamejs.replace(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="http://skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/") {agariomods="http://i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="http://agar.io/skins/" + this.name.toLowerCase() + ".png";}');
+        gamejs = gamejs.replace(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="'+proto+'//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/") {agariomods="'+proto+'//i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="'+proto+'//agar.io/skins/" + this.name.toLowerCase() + ".png";}');
         gamejs = gamejs.replace(W +'['+b+'].src="skins/"+'+b+'+".png"',W+'['+b+'].src=agariomods');
         gamejs = gamejs.replace("this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")", "if (String(c).substring(0, 2) != \"i/\") {this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")}");
         gamejs = gamejs.replace(b+"=this.name.toLowerCase();", b+"=this.name.toLowerCase(); if ("+b+".substring(0, 2) == \"i/\") {" +Ja+ "+="+b+";} ;");
@@ -219,7 +221,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	$( document ).ready(function() {
 		hd = document.getElementById("helloDialog");
 		cachedhd = hd.innerHTML;
-		hd.innerHTML = cachedhd.replace("<center>Agar.io</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:435px;top:-10px; z-index: -1; height:120px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"http://i.imgur.com/TkTWOrc.png\" height=\"120px\"/></a>");
+		hd.innerHTML = cachedhd.replace("<center>Agar.io</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:435px;top:-10px; z-index: -1; height:120px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\""+proto+"//i.imgur.com/TkTWOrc.png\" height=\"120px\"/></a>");
 	});
 	document.getElementById("nick").placeholder = "agariomods.com";
 	nodeDiv.id = "includedContent";
@@ -775,7 +777,7 @@ window.OnGameStart = function(cells)
 window.StartBGM = function ()
 {
     if (document.getElementById("bgm").value==0) return;
-    if (bgmusic.src == "") bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)]; //i guess i'll leave this here ~mevin1
+    if (bgmusic.src == "") bgmusic.src = proto+"//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)]; //i guess i'll leave this here ~mevin1
 	bgmusic.volume = document.getElementById("bgm").value;
     bgmusic.play();
 }
@@ -784,7 +786,7 @@ window.StopBGM = function ()
 {
 	if (document.getElementById("bgm").value==0) return;
 	bgmusic.pause()
-	bgmusic.src = "http://skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
+	bgmusic.src = proto+"//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
 	bgmusic.load()
 }
 
