@@ -257,9 +257,9 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeSpan.addEventListener("click", function (e) {
 		if (modBlocking == false) {
                         //jQuery('#region').style.height = "0px";
-                        //jQuery('#region').hide(); //WHY?
+                        jQuery('#region').hide(); //Why do we have this setup so we have to do this?
                         //jQuery('#gamemode').style.height = "0px";
-                        //jQuery('#gamemode').hide(); //WHY?
+                        jQuery('#gamemode').hide(); //Why do we have this setup so we have to do this?
 			console.log ("clicked refresh");
 			var oldregionval = jQuery('#region').val;
 			jQuery('#region').val("EU-London");
