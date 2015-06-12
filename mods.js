@@ -166,6 +166,7 @@ function agariomodsRuntimeInjection() {
 }
 function agariomodsRuntimePatches() {
         gamejs = gamejs.replace(';reddit;',';reddit;'+ourskins+';');
+		gamejs = gamejs.replace('f.setAcid','f.Suicide=function(){var b=new ArrayBuffer(1);(new DataView(b)).setUint8(0, 20);q.send(b);};f.setAcid');
         gamejs = gamejs.replace(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/" && document.getElementById("imgur").checked) {agariomods="//i.imgur.com/"+this.name.substring(2)+".jpg";} else if (document.getElementById("imgur").checked) {agariomods="//agar.io/skins/" + this.name.toLowerCase() + ".png";}');
         gamejs = gamejs.replace(W +'['+b+'].src="skins/"+'+b+'+".png"',W+'['+b+'].src=agariomods');
         gamejs = gamejs.replace("this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")", "if (String(c).substring(0, 2) != \"i/\") {this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")}");
@@ -177,7 +178,7 @@ function agariomodsRuntimePatches() {
     gamejs = addLeaderboardHook(gamejs);
 	gamejs = addConnectHook(gamejs); 
 	gamejs = addRecieveHook(gamejs);
-	gamejs = addSendHook(gamejs);
+	gamejs = addOnSendHook(gamejs);
     gamejs = addOnDrawHook(gamejs)
 	//gamejs = gamejs.replace('('+chart_s+'='+chart_m+'.x', '(ResetChart(), '+chart_s+'='+chart_m+'.x');
 	//gamejs = gamejs.replace(chart_G+'=Math.max('+chart_G+','+chart_Na+'());', 'var current = '+chart_Na+'();'+chart_G+' = Math.max('+chart_G+', current);');
@@ -187,7 +188,7 @@ function agariomodsRuntimePatches() {
 	console.log ("Begin regression testing of agariomods.com userscript.");
 	testCondition((-1 != gamejs.indexOf(';reddit;'+ourskins)), test++, "add our skinlist to the original game skinlist.");
 	testCondition((-1 != gamejs.indexOf('var agariomods="";var ourskins'  )), test++, "add check for which skin mode we are in. be it no skin, default skin, imgur skin, or an agariomods skin.");
-	testCondition((-1 != gamejs.indexOf('else if ('+b+'.substring(0, 2) == "i/") {agariomods' )),test++,"add imgur check #1");
+	testCondition((-1 != gamejs.indexOf('else if ('+b+'.substring(0, 2) == "i/" && document.getElementById("imgur").checked) {agariomods' )),test++,"add imgur check #1");
 	testCondition((-1 != gamejs.indexOf( b+"=this.name.toLowerCase(); if ("+b+".substring(0, 2) == \"i/\") {" +Ja+ "+="+b+";} ;"  )), test++, "add imgur check #2.");
 	testCondition((-1 != gamejs.indexOf(W+'['+b+'].src=agariomods')), test++, "add agariomods variable to replace src of image");
 	testCondition((-1 != gamejs.indexOf("if (String(c).substring(0, 2) != \"i/\") {this._stroke")), test++, "add imgur check for hiding username when using imgur id");
@@ -197,6 +198,7 @@ function agariomodsRuntimePatches() {
 	//testCondition((-1 != gamejs.indexOf('24, 300, 24),')),  test++, "add mikes resized score rectangle");
 	//testCondition((-1 != gamejs.indexOf('10-24-5), ('+chart_k+' && '+chart_k+'[0] && UpdateChart(current/100, GetRgba('+chart_k+'[0].color, 0.4))));')),  test++, "add mikes chart update and colour setting");
 	console.log ("Testing complete, "+passed+" units passed and "+failed+" units failed.");
+	if (failed) console.log(new Error("UNIT FAILED"));
 }
 function testCondition (condition, id, comment) {
         if(condition) {
@@ -360,10 +362,10 @@ function addRecieveHook(script) {
     return split[0] + match[0] + ';Recieve();' + split[1];
 }
 
-function addSendHook(script) {
+function addOnSendHook(script) {
     var match = script.match(/q\.send\(a\.buffer\)/);    
     var split = script.split(match[0]);
-    return split[0] + match[0] + ';Send();' + split[1];
+    return split[0] + match[0] + ';OnSend();' + split[1];
 }
 
 function addOnHideOverlayHook(script) {
@@ -418,7 +420,8 @@ jQuery(document).ready(function()
 	jQuery('#instructions').remove();
 	jQuery('.glyphicon-cog').addClass("glyphicon-refresh")
 	jQuery('.glyphicon-cog').removeClass("glyphicon-cog");
-	jQuery('.btn-settings').attr('onclick','connect("ws://"+document.getElementById("ip").innerHTML);OnShowOverlay(false);return false;');
+	jQuery('.btn-settings').attr('onclick','connect("ws://"+document.getElementById("ip").innerHTML);OnShowOverlay(false);');
+	jQuery('.btn-settings').attr('type','button');
 	jQuery('#gamemode').removeAttr('required');
 	//jQuery('.btn-settings').removeClass("btn-settings");
 	jQuery('#settings').show();
@@ -845,7 +848,7 @@ window.Recieve = function()
 	if (showpio) document.getElementById("pio-agariomods").children[1].innerHTML = countPI();
 }
 
-window.Send = function()
+window.OnSend = function()
 {
 	if (showpio) document.getElementById("pio-agariomods").children[2].innerHTML = countPO();
 }
@@ -946,15 +949,19 @@ $(document).keydown(function(e) {
 	}
 	//FPS Hotkey
 	if (e.altKey && e.keyCode == 49) {
-		//e.preventDefault(); //unneeded
 		showfps = !showfps;
 		document.getElementById("fps-agariomods").style.display = showfps?"block":"none";
 	}
 	//Packets In Per Second Hotkey
 	if (e.altKey && e.keyCode == 50) {
-		//e.preventDefault(); //unneeded
 		showpio = !showpio;
 		document.getElementById("pio-agariomods").style.display = showpio?"block":"none";
+	}
+	//Suicide
+	if (e.altKey && e.keyCode == 81) {
+		jQuery("#overlays").show()
+		OnShowOverlay(false);
+		Suicide();
 	}
 	//Firefox Fullscreen
 	if (e.ctrlKey && e.keyCode === 70 && navigator.userAgent.match("Firefox")) {
