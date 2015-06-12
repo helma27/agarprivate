@@ -3,14 +3,13 @@ var ourskins = "1up;8ball;agariomods.com;albania;android;anonymous;apple;atari;a
 var showsh = false;
 
 var showfps = false;
-
-var proto = document.location.protocol;
+var showpio = false; //packets in/out per second
 
 setInterval(function(){if (showsh) DrawStats(false);},500);
 
 var gamejs = "", modBlocking = true;
 var tester = document.getElementsByTagName("script");
-var i = 0, main_out_url = proto+"//agar.io/main_out.js", discovered_mainouturl = 0;
+var i = 0, main_out_url = document.location.protocol+"//agar.io/main_out.js", discovered_mainouturl = 0;
 var W = '';
 var Ja = '';
 var b = '';
@@ -29,7 +28,7 @@ var ssfxlist = [
 ];
 var ssfxs = [];
 for (i=0;i<ssfxlist.length;i++) {
-	var newsfx = new Audio(proto+"//skins.agariomods.com/botb/sfx/" + ssfxlist[i] + ".mp3");
+	var newsfx = new Audio("//skins.agariomods.com/botb/sfx/" + ssfxlist[i] + ".mp3");
 	newsfx.loop = false;
 	ssfxs.push(newsfx);
 }
@@ -53,7 +52,7 @@ var sfxlist = [
 ];
 var sfxs = [];
 for (i=0;i<sfxlist.length;i++) {
-	var newsfx = new Audio(proto+"//skins.agariomods.com/botb/sfx/" + sfxlist[i] + ".mp3");
+	var newsfx = new Audio("//skins.agariomods.com/botb/sfx/" + sfxlist[i] + ".mp3");
 	newsfx.loop = false;
 	newsfx.onended = function() {
         $(this).remove();
@@ -84,7 +83,7 @@ var chart_k = '';
 for (i=0; i<tester.length; i++ ){
 	src = tester[i].src;
 	if (src.substring(0, main_out_url.length ) == main_out_url) {
-		discovered_mainouturl = src.replace(proto+"//agar.io/","");
+		discovered_mainouturl = src.replace("//agar.io/","");
 	}
 }
 
@@ -144,12 +143,12 @@ function agariomodsRuntimeInjection() {
 	document.head.appendChild(script);
 	agariomodsRuntimeHacks();
 	bgmusic = $('#audiotemplate').clone()[0];
-    bgmusic.src = proto+"//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
+    bgmusic.src = "//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
     bgmusic.load();
     bgmusic.loop = false;
     bgmusic.onended = function() {
         var track = tracks[Math.floor(Math.random() * tracks.length)];
-        bgmusic.src = proto+"//skins.agariomods.com/botb/" + track;
+        bgmusic.src = "//skins.agariomods.com/botb/" + track;
         bgmusic.play();
     }
 	window.onbeforeunload = function() {
@@ -162,11 +161,12 @@ function agariomodsRuntimeInjection() {
 	$("#chart-container").css("pointerEvents", "none");
 	$("#chart-container-agariomods").css("pointerEvents", "none");
 	$("#fps-agariomods").css("pointerEvents", "none");
+	$("#pi-agariomods").css("pointerEvents", "none");
 
 }
 function agariomodsRuntimePatches() {
         gamejs = gamejs.replace(';reddit;',';reddit;'+ourskins+';');
-        gamejs = gamejs.replace(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="'+proto+'//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/" && document.getElementById("imgur").checked) {agariomods="'+proto+'//i.imgur.com/"+this.name.substring(2)+".jpg";} else if (document.getElementById("imgur").checked) {agariomods="'+proto+'//agar.io/skins/" + this.name.toLowerCase() + ".png";}');
+        gamejs = gamejs.replace(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/" && document.getElementById("imgur").checked) {agariomods="//i.imgur.com/"+this.name.substring(2)+".jpg";} else if (document.getElementById("imgur").checked) {agariomods="//agar.io/skins/" + this.name.toLowerCase() + ".png";}');
         gamejs = gamejs.replace(W +'['+b+'].src="skins/"+'+b+'+".png"',W+'['+b+'].src=agariomods');
         gamejs = gamejs.replace("this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")", "if (String(c).substring(0, 2) != \"i/\") {this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")}");
         gamejs = gamejs.replace(b+"=this.name.toLowerCase();", b+"=this.name.toLowerCase(); if ("+b+".substring(0, 2) == \"i/\") {" +Ja+ "+="+b+";} ;");
@@ -175,6 +175,9 @@ function agariomodsRuntimePatches() {
     gamejs = addOnShowOverlayHook(gamejs);
     gamejs = addOnHideOverlayHook(gamejs); //Because I don't want to detect when we hide it, only when the game does.
     gamejs = addLeaderboardHook(gamejs);
+	gamejs = addConnectHook(gamejs); 
+	gamejs = addRecieveHook(gamejs);
+	gamejs = addSendHook(gamejs);
     gamejs = addOnDrawHook(gamejs)
 	//gamejs = gamejs.replace('('+chart_s+'='+chart_m+'.x', '(ResetChart(), '+chart_s+'='+chart_m+'.x');
 	//gamejs = gamejs.replace(chart_G+'=Math.max('+chart_G+','+chart_Na+'());', 'var current = '+chart_Na+'();'+chart_G+' = Math.max('+chart_G+', current);');
@@ -221,7 +224,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	$( document ).ready(function() {
 		hd = document.getElementById("helloDialog");
 		cachedhd = hd.innerHTML;
-		hd.innerHTML = cachedhd.replace("<center>Agar.io</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:435px;top:-10px; z-index: -1; height:120px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\""+proto+"//i.imgur.com/TkTWOrc.png\" height=\"120px\"/></a>");
+		hd.innerHTML = cachedhd.replace("<center>Agar.io</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:435px;top:-10px; z-index: -1; height:120px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"//i.imgur.com/TkTWOrc.png\" height=\"120px\"/></a>");
 	});
 	document.getElementById("nick").placeholder = "agariomods.com";
 	nodeDiv.id = "includedContent";
@@ -235,8 +238,10 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.margin = "10px";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
-	nodeDiv.innerHTML += "\
-	";
+	nodeDiv.innerHTML += 'v1.9.2: <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font>\
+        <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
+                <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
+        </div>';
 	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
 	jQuery('#region').parent().get(0).appendChild(nodeDiv);
 	var selector = jQuery('#region');
@@ -255,22 +260,8 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeSpan.style.paddingTop = "5px";
 	nodeSpan.style.paddingLeft = "15px";
 	nodeSpan.addEventListener("click", function (e) {
-		if (modBlocking == false) {
-                        //jQuery('#region').style.height = "0px";
-                        jQuery('#region').hide(); //Why do we have this setup so we have to do this?
-                        //jQuery('#gamemode').style.height = "0px";
-                        jQuery('#gamemode').hide(); //Why do we have this setup so we have to do this?
-			console.log ("clicked refresh");
-			var oldregionval = jQuery('#region').val;
-			jQuery('#region').val("EU-London");
-			jQuery('#region').change();
-			jQuery('#region').val("SG-Singapore");
-			jQuery('#region').change();
-			jQuery('#region').val(oldregionval);
-			jQuery('#region').change();
-			jQuery('#gamemode').change();
-			//jQuery(this).fadeOut(100).fadeIn(100);
-		}
+		document.getElementById("iphack").value=document.getElementById("iphack").value.replace(/\s+/g, '');
+		if (document.getElementById("iphack").value.search('(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):[0-9]{3,4}')==0) connect("ws://"+document.getElementById("iphack").value);
 	});
 	nodeInput.className = "form-control";
 	nodeInput.id = "iphack"
@@ -287,12 +278,6 @@ jQuery('#helloDialog').css({width: '450px'});
 	var nodeAudio = document.createElement("audio");		
 	nodeAudio.id = 'audiotemplate';		
 	jQuery(playBtn).parent().get(0).appendChild(nodeAudio);
-	jQuery('#iphack').change(function() {
-		if (jQuery('#iphack').val() == "") {
-			modBlocking = true;
-		}
-		modBlocking = false;
-	});
 	jQuery('#playBtn').off();
 	$('.btn-needs-server').prop('disabled', true);
 	jQuery('#playBtn').click(function() {
@@ -301,33 +286,8 @@ jQuery('#helloDialog').css({width: '450px'});
 	});
 }
 
-(function(window) {
-	var WebSocket_original = window.WebSocket;
-	window.WebSocket_original = WebSocket_original;
-	var newWebSocket = 0;
-	window.WebSocket = function(data) {
-		if (modBlocking == true) {
-			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html('v1.9.2: <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font>\
-        <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
-                <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
-        </div>'); //backticks for multiline strings, cannot be used for single line strings. (oh now I have to un-escape everything) ~Mevin1 Noobs be using outdated browsers, so we have to keep using the ghetto backslashes to escape newlines
-		//This div started to become a box where we threw a bunch of information into, it was starting to get too big for the smallest pc display that is still HD.
-		jQuery('#ip').html(data.replace('ws://', ''));
-		} else {
-			console.log("HAXXED: connecting to " + jQuery('#iphack').val() + "(ignoring: " + data + ")");
-			newWebSocket = new window.WebSocket_original("ws://" + jQuery('#iphack').val());
-			jQuery('#includedContent').html("<h3>Connected to " +  jQuery('#iphack').val() + "</h3><br>Check leaderboard with your friend to ensure you are both on the exact world on the sameserver.<br><br>If you cannot see the same people in the leaderboard as your friend, press the swirly icon next the ip box to try another world on the same game server.");
-        	jQuery('#ip').html(jQuery('#iphack').val());
-			}
-        	return newWebSocket;
-	};
-})(window);
-
-
-
-
-
+	
+			
 
 
 
@@ -383,13 +343,31 @@ function addOnCellEatenHook(script) {
 }
 
 function addOnShowOverlayHook(script) {
-    var match = script.match(/\w+\("#overlays"\).fadeIn\((\w+)\?\w+:\w+\);/);    
+    var match = script.match(/\w+\("#overlays"\)\.fadeIn\((\w+)\?\w+:\w+\);/);    
     var split = script.split(match[0]);
     return split[0] + match[0] + 'OnShowOverlay(' + match[1] + ');' + split[1];
 }
 
+function addConnectHook(script) {
+    var match = script.match(/console\.log\("Connecting to "\+a\);/);
+    var split = script.split(match[0]);
+    return split[0] + match[0] + 'document.getElementById("ip").innerHTML=a.replace(/wss?:\\/\\//,"");' + split[1];
+}
+
+function addRecieveHook(script) {
+    var match = script.match(/Ya\(new DataView\(a\.data\)\)/);    
+    var split = script.split(match[0]);
+    return split[0] + match[0] + ';Recieve();' + split[1];
+}
+
+function addSendHook(script) {
+    var match = script.match(/q\.send\(a\.buffer\)/);    
+    var split = script.split(match[0]);
+    return split[0] + match[0] + ';Send();' + split[1];
+}
+
 function addOnHideOverlayHook(script) {
-    var match = script.match(/\w+\("#overlays"\).hide\(\)/);    
+    var match = script.match(/\w+\("#overlays"\)\.hide\(\)/);    
     var split = script.split(match[0]);
     return split[0] + match[0] + ';OnHideOverlay()' + split[1];
 }
@@ -432,7 +410,10 @@ jQuery(document).ready(function()
 {
     jQuery('body').append('<div id="chart-container" style="display:none; position:absolute; height:176px; width:300px; left:10px; bottom:44px"></div>\
 			   <div id="chart-container-agariomods" style="opacity: 0.7; position:absolute; height:20px; width:300px; right:10px; bottom:10px;">&nbsp;agariomods.com - modding <b>without</b> cheating</div>\
-			   <div id="fps-agariomods" style="color: white; position:absolute; top:5px; left:10px; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>\
+			   <div id="debug" style="position:absolute; top:5px; left:10px;">\
+			   <div id="fps-agariomods" style="color: white; display: none; background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>\
+			   <div id="pio-agariomods" style="color: white; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>PI/O/s: </b><span>0</span>/<span>0</span></div>\
+			   </div>\
 			   ');
 	jQuery('#instructions').remove();
 	jQuery('.glyphicon-cog').addClass("glyphicon-refresh")
@@ -782,7 +763,7 @@ window.OnGameStart = function(cells)
 window.StartBGM = function ()
 {
     if (document.getElementById("bgm").value==0) return;
-    if (bgmusic.src == "") bgmusic.src = proto+"//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)]; //i guess i'll leave this here ~mevin1
+    if (bgmusic.src == "") bgmusic.src = "//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)]; //i guess i'll leave this here ~mevin1
 	bgmusic.volume = document.getElementById("bgm").value;
     bgmusic.play();
 }
@@ -791,7 +772,7 @@ window.StopBGM = function ()
 {
 	if (document.getElementById("bgm").value==0) return;
 	bgmusic.pause()
-	bgmusic.src = proto+"//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
+	bgmusic.src = "//skins.agariomods.com/botb/" + tracks[Math.floor(Math.random() * tracks.length)];
 	bgmusic.load()
 }
 
@@ -859,6 +840,16 @@ window.OnDraw = function(context)
     display_stats && stat_canvas && context.drawImage(stat_canvas, 10, 10);   
 }
 
+window.Recieve = function()
+{
+	if (showpio) document.getElementById("pio-agariomods").children[1].innerHTML = countPI();
+}
+
+window.Send = function()
+{
+	if (showpio) document.getElementById("pio-agariomods").children[2].innerHTML = countPO();
+}
+
 window.countFPS = (function () {
   var lastLoop = (new Date()).getMilliseconds();
   var count = 1;
@@ -874,6 +865,42 @@ window.countFPS = (function () {
     }
     lastLoop = currentLoop;
     return fps;
+  };
+}());
+
+window.countPI = (function () {
+  var lastLoop = (new Date()).getMilliseconds();
+  var count = 1;
+  var packet = 0;
+
+  return function () {
+    var currentLoop = (new Date()).getMilliseconds();
+    if (lastLoop > currentLoop) {
+      packet = count;
+      count = 1;
+    } else {
+      count += 1;
+    }
+    lastLoop = currentLoop;
+    return packet;
+  };
+}());
+
+window.countPO = (function () {
+  var lastLoop = (new Date()).getMilliseconds();
+  var count = 1;
+  var packet = 0;
+
+  return function () {
+    var currentLoop = (new Date()).getMilliseconds();
+    if (lastLoop > currentLoop) {
+      packet = count;
+      count = 1;
+    } else {
+      count += 1;
+    }
+    lastLoop = currentLoop;
+    return packet;
   };
 }());
 
@@ -900,7 +927,7 @@ $(document).ready(function() {
 	$("div#settings input[type=range]").each(function() {
 			$(this).attr("value",(localStorage.getItem("setting"+$(this).parent().text().replace(" ","_"))));
 	});
-});
+	});
 
 var kd = false;
 $(document).keydown(function(e) {
@@ -923,6 +950,12 @@ $(document).keydown(function(e) {
 		showfps = !showfps;
 		document.getElementById("fps-agariomods").style.display = showfps?"block":"none";
 	}
+	//Packets In Per Second Hotkey
+	if (e.altKey && e.keyCode == 50) {
+		//e.preventDefault(); //unneeded
+		showpio = !showpio;
+		document.getElementById("pio-agariomods").style.display = showpio?"block":"none";
+	}
 	//Firefox Fullscreen
 	if (e.ctrlKey && e.keyCode === 70 && navigator.userAgent.match("Firefox")) {
 		e.preventDefault();
@@ -937,6 +970,7 @@ $(document).keydown(function(e) {
 	}
 });
 $(document).keyup(function(e) {
+	//Hide Stats
 	if (e.keyCode == 90) {
 		//e.preventDefault(); //unneeded
 		if (kd == true) {
