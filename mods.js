@@ -165,14 +165,12 @@ function agariomodsRuntimeInjection() {
 
 }
 function agariomodsRuntimePatches() {
-
-	gamejs_patch(';reddit;', ';reddit;'+ourskins+';', "add our skinlist to the original game skinlist.");
-	gamejs_patch('f.setAcid', 'f.Suicide=function(){var b=new ArrayBuffer(1);(new DataView(b)).setUint8(0, 20);q.send(b);};f.setAcid', "suicide");
+		gamejs_patch(';reddit;', ';reddit;'+ourskins+';', "add our skinlist to the original game skinlist.");
+		gamejs_patch('h.setAcid', 'h.Suicide=function(){var b=new ArrayBuffer(1);(new DataView(b)).setUint8(0, 20);r.send(b);};h.setAcid', "suicide");
         gamejs_patch(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/" && document.getElementById("imgur").checked) {agariomods="//i.imgur.com/"+this.name.substring(2)+".jpg";} else if (document.getElementById("imgur").checked) {agariomods="//agar.io/skins/" + this.name.toLowerCase() + ".png";}', "add check for which skin mode we are in. be it no skin, default skin, imgur skin, or an agariomods skin.");
         gamejs_patch(W +'['+b+'].src="skins/"+'+b+'+".png"', W+'['+b+'].src=agariomods', "check for agariomods img src variable");
-        gamejs_patch("this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")", "if (String(c).substring(0, 2) != \"i/\") {this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")}", "add imgur check for hiding username when using imgur id aka c3eg2");
+        gamejs_patch("this.P&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")", "if (String(c).substring(0, 2) != \"i/\") {this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")}", "add imgur check for hiding username when using imgur id aka c3eg2");
         gamejs_patch(b+"=this.name.toLowerCase();", b+"=this.name.toLowerCase(); if ("+b+".substring(0, 2) == \"i/\") {" +Ja+ "+="+b+";} ;", "add imgur check #2.");
-
     gamejs = addChartHooks(gamejs);
     gamejs = addOnCellEatenHook(gamejs);
     gamejs = addOnShowOverlayHook(gamejs);
@@ -181,14 +179,13 @@ function agariomodsRuntimePatches() {
 	gamejs = addConnectHook(gamejs); 
 	gamejs = addRecieveHook(gamejs);
 	gamejs = addOnSendHook(gamejs);
-    	gamejs = addOnDrawHook(gamejs)
-	
-	console.log ("Testing complete, "+passed+" units passed and "+failed+" units failed.");
+    gamejs = addOnDrawHook(gamejs);
+	console.log("Testing complete, "+passed+" units passed and "+failed+" units failed.");
 	if (failed) console.log(new Error("UNIT FAILED"));
 }
-function gamejs_patch(search, replace, purpose) {
-        gamejs = gamejs.replace(search,replace);
-        testCondition((-1 != gamejs.indexOf(replace)), test++, purpose);
+function gamejs_patch(search, replace, purpose) {		
+        gamejs = gamejs.replace(search,replace);		
+        testCondition((-1 != gamejs.indexOf(replace)), test++, purpose);		
 }
 function testCondition (condition, id, comment) {
         if(condition) {
@@ -228,14 +225,15 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.borderRadius = "5px";
 	nodeDiv.style.color = "#dddddd";
 	nodeDiv.style.margin = "10px";
+	nodeDiv.style.marginTop = "0";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
 	nodeDiv.innerHTML += 'v1.9.2: <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font>\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
         </div>';
-	jQuery('#region').parent().get(0).appendChild(document.createElement("br"));
 	jQuery('#region').parent().get(0).appendChild(nodeDiv);
+	jQuery(".form-group:first").replaceWith('<br>');
 	var selector = jQuery('#region');
 	var playBtn = jQuery('#playBtn');
 	var nodeInput = document.createElement("input");
@@ -243,9 +241,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	var nodeBr = document.createElement("br");
 	var nodeLinks = document.createElement("div");
 	nodeLinks.innerHTML = "<big><a href='http://skins.agariomods.com' target='_blank'>SKINS</a> - <a href='http://chat.agariomods.com' target='_blank'>CHAT</a> - <a href='http://agariomods.com' target='_blank'>WEBSITE</a> - <a href='http://agariomods.com/help.html' target='_blank'>HELP</a></big>";
-	nodeLinks.style.position = "absolute";
-	nodeLinks.style.top = "5em";
-
+	nodeLinks.style.marginLeft='10px';
 	nodeSpan.className = "glyphicon glyphicon-chevron-right";
 	nodeSpan.style.fontSize = "1.5em";
 	nodeSpan.style.cssFloat = "left";
@@ -262,7 +258,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeInput.style.cssClear = "right";
 	nodeInput.style.border = "2px solid green";
 	nodeInput.placeholder = "Alternative server ip:port here.";
-	jQuery(playBtn).parent().get(0).appendChild(nodeLinks);
+	jQuery('#locationUnknown').prepend(nodeLinks);
 	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
 	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
 	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
@@ -276,6 +272,8 @@ jQuery('#helloDialog').css({width: '450px'});
 		setNick(document.getElementById('nick').value);
 		return false;
 	});
+	jQuery('.form-group:first').after( "<hr style='margin: 7px; border-width: 2px'>" );
+	jQuery('.form-group:first').removeAttr("class");
 }
 
 	
@@ -329,9 +327,9 @@ function addLeaderboardHook(script) {
 }
 
 function addOnCellEatenHook(script) {
-    var match = script.match(/(\w+)&&(\w+)&&\((\w+)\.destroy/);
+    var match = script.match(/(\w+)&&(\w+)&&\((\w+)\.S/);
     var split = script.split(match[0]);
-    return split[0] + match[1] + '&&' + match[2] + '&&(OnCellEaten('+match[1]+','+match[2]+'),' + match[3] + '.destroy' + split[1];
+    return split[0] + match[1] + '&&' + match[2] + '&&(OnCellEaten('+match[1]+','+match[2]+'),' + match[3] + '.S' + split[1];
 }
 
 function addOnShowOverlayHook(script) {
@@ -347,13 +345,13 @@ function addConnectHook(script) {
 }
 
 function addRecieveHook(script) {
-    var match = script.match(/Ya\(new DataView\(a\.data\)\)/);    
+    var match = script.match(/\w\w\(new DataView\(\w\.data\)\)/);    
     var split = script.split(match[0]);
     return split[0] + match[0] + ';Recieve();' + split[1];
 }
 
 function addOnSendHook(script) {
-    var match = script.match(/q\.send\(a\.buffer\)/);    
+    var match = script.match(/\w+\.send\(\w+\.buffer\)/);    
     var split = script.split(match[0]);
     return split[0] + match[0] + ';OnSend();' + split[1];
 }
@@ -410,7 +408,7 @@ jQuery(document).ready(function()
 	jQuery('#instructions').remove();
 	jQuery('.glyphicon-cog').addClass("glyphicon-refresh")
 	jQuery('.glyphicon-cog').removeClass("glyphicon-cog");
-	jQuery('.btn-settings').attr('onclick','connect("ws://"+document.getElementById("ip").innerHTML);OnShowOverlay(false);');
+	jQuery('.btn-settings').attr('onclick','connect("ws://"+document.getElementById("ip").innerHTML);if(in_game)OnShowOverlay(false);');
 	jQuery('.btn-settings').attr('type','button');
 	jQuery('#gamemode').removeAttr('required');
 	//jQuery('.btn-settings').removeClass("btn-settings");
@@ -504,7 +502,7 @@ function ResetStats()
 function OnGainMass(me, other)
 {
     var mass = other.size * other.size;
-    if (other.isVirus){
+    if (other.d){
         stats.viruses.num++;
         if (document.getElementById("gamemode").value!=":teams") stats.viruses.mass += mass; /*DONE: shouldn't add if game mode is teams. TODO: Find a better way of doing this. ~Mevin1*/
 		sfx_event(7);
@@ -948,7 +946,7 @@ $(document).keydown(function(e) {
 		document.getElementById("pio-agariomods").style.display = showpio?"block":"none";
 	}
 	//Suicide
-	if (e.altKey && e.keyCode == 81) {
+	if (e.altKey && e.keyCode == 81 && in_game) {
 		jQuery("#overlays").show()
 		OnShowOverlay(false);
 		Suicide();
@@ -969,7 +967,6 @@ $(document).keydown(function(e) {
 $(document).keyup(function(e) {
 	//Hide Stats
 	if (e.keyCode == 90) {
-		//e.preventDefault(); //unneeded
 		if (kd == true) {
 			kd = false;
 			document.getElementById("overlays").style.display = "none";
