@@ -948,7 +948,7 @@ $(document).keydown(function(e) {
 		document.getElementById("pio-agariomods").style.display = showpio?"block":"none";
 	}
 	//Suicide
-	if (e.altKey && e.keyCode == 81) {
+	if (e.altKey && e.keyCode == 81 && in_game) {
 		jQuery("#overlays").show()
 		OnShowOverlay(false);
 		Suicide();
