@@ -15,7 +15,7 @@ var Ja = '';
 var b = '';
 var c3eg2 = '';
 var in_game = false;
-		
+var pandb = '';		
 /*bgm*/
 var bgmusic = '';
 $('#audiotemplate').clone()[0];
@@ -97,6 +97,9 @@ if(discovered_mainouturl != 0) {
 		b = gamejs.substr(offset+2,1);
 		offset = gamejs.search(".."+b+"..src");
 		W = gamejs.substr(offset,1);
+		//this.P&&b.strokeText
+		var components = /this.(.)&&b.strokeText/.exec(gamejs);
+		pandb = components[1];
 		var components = /strokeText\((.{1,14})\);/.exec(gamejs);
 		c3eg2 = components[1];
 		var components = /\((.)\=..x,.\=..y\)/.exec(gamejs);		
@@ -166,10 +169,10 @@ function agariomodsRuntimeInjection() {
 }
 function agariomodsRuntimePatches() {
 		gamejs_patch(';reddit;', ';reddit;'+ourskins+';', "add our skinlist to the original game skinlist.");
-		gamejs_patch('h.setAcid', 'h.Suicide=function(){var b=new ArrayBuffer(1);(new DataView(b)).setUint8(0, 20);r.send(b);};h.setAcid', "suicide");
+//		gamejs_patch('.setAcid', '.Suicide=function(){var b=new ArrayBuffer(1);(new DataView(b)).setUint8(0, 20);r.send(b);};h.setAcid', "suicide");
         gamejs_patch(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/" && document.getElementById("imgur").checked) {agariomods="//i.imgur.com/"+this.name.substring(2)+".jpg";} else if (document.getElementById("imgur").checked) {agariomods="//agar.io/skins/" + this.name.toLowerCase() + ".png";}', "add check for which skin mode we are in. be it no skin, default skin, imgur skin, or an agariomods skin.");
         gamejs_patch(W +'['+b+'].src="skins/"+'+b+'+".png"', W+'['+b+'].src=agariomods', "check for agariomods img src variable");
-        gamejs_patch("this.P&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")", "if (String(c).substring(0, 2) != \"i/\") {this._stroke&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")}", "add imgur check for hiding username when using imgur id aka c3eg2");
+        gamejs_patch("this."+pandb+"&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")", "if (String(c).substring(0, 2) != \"i/\") {this."+pandb+"&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")}", "add imgur check for hiding username when using imgur id aka c3eg2");
         gamejs_patch(b+"=this.name.toLowerCase();", b+"=this.name.toLowerCase(); if ("+b+".substring(0, 2) == \"i/\") {" +Ja+ "+="+b+";} ;", "add imgur check #2.");
     gamejs = addChartHooks(gamejs);
     gamejs = addOnCellEatenHook(gamejs);
@@ -228,7 +231,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.marginTop = "0";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
-	nodeDiv.innerHTML += 'v1.9.3-mevinsmegafix: <h2>Woah lots of fixes</h2>Our mod is now uptodate and ready to roll, thanks for your patience!<br><h3><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h3>\
+	nodeDiv.innerHTML += 'v1.9.4-Zeachsux: <h2>a new fix</h2>Our mod is now uptodate and ready to roll, thanks for your patience!<br><h3><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h3>\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
         </div>';
@@ -327,9 +330,12 @@ function addLeaderboardHook(script) {
 }
 
 function addOnCellEatenHook(script) {
-    var match = script.match(/(\w+)&&(\w+)&&\((\w+)\.S/);
+			 //   null!=p&&p.T();
+			   // l&&k&&(k.S()
+//    var match = script.match(/(\w+)&&(\w+)&&\((\w+)\.S/);
+	var match = script.match(/(\w+)&&(\w+)&&\((\w+)\.(\w+)/);
     var split = script.split(match[0]);
-    return split[0] + match[1] + '&&' + match[2] + '&&(OnCellEaten('+match[1]+','+match[2]+'),' + match[3] + '.S' + split[1];
+    return split[0] + match[1] + '&&' + match[2] + '&&(OnCellEaten('+match[1]+','+match[2]+'),' + match[3] + '.' + match[4] + split[1];
 }
 
 function addOnShowOverlayHook(script) {
@@ -345,7 +351,9 @@ function addConnectHook(script) {
 }
 
 function addRecieveHook(script) {
-    var match = script.match(/\w\w\(new DataView\(\w\.data\)\)/);    
+//		  	     Za(new DataView(a.data))    
+var match = script.match(/\w\(new DataView\(..data\)\)/);    
+
     var split = script.split(match[0]);
     return split[0] + match[0] + ';Recieve();' + split[1];
 }
