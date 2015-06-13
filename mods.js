@@ -228,7 +228,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.marginTop = "0";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
-	nodeDiv.innerHTML += 'v1.9.2: <font color="pink">We have many new features. Some can be found in settings, such as music and sound effects, others will be documented more clearly soon.</font>\
+	nodeDiv.innerHTML += 'v1.9.3-mevinsmegafix: <h2>Woah lots of fixes</h2>Our mod is now uptodate and ready to roll, thanks for your patience!<br><h3><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h3>\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
         </div>';
@@ -242,7 +242,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	var nodeLinks = document.createElement("div");
 	nodeLinks.innerHTML = "<big><a href='http://skins.agariomods.com' target='_blank'>SKINS</a> - <a href='http://chat.agariomods.com' target='_blank'>CHAT</a> - <a href='http://agariomods.com' target='_blank'>WEBSITE</a> - <a href='http://agariomods.com/help.html' target='_blank'>HELP</a></big>";
 	nodeLinks.style.marginLeft='10px';
-	nodeSpan.className = "glyphicon glyphicon-chevron-right";
+	nodeSpan.className = "glyphicon glyphicon-refresh";
 	nodeSpan.style.fontSize = "1.5em";
 	nodeSpan.style.cssFloat = "left";
 	nodeSpan.style.paddingTop = "5px";
@@ -408,10 +408,11 @@ jQuery(document).ready(function()
 	jQuery('#instructions').remove();
 	jQuery('.glyphicon-cog').addClass("glyphicon-refresh")
 	jQuery('.glyphicon-cog').removeClass("glyphicon-cog");
-	jQuery('.btn-settings').attr('onclick','connect("ws://"+document.getElementById("ip").innerHTML);if(in_game)OnShowOverlay(false);');
-	jQuery('.btn-settings').attr('type','button');
+	//jQuery('.btn-settings').attr('onclick','connect("ws://"+document.getElementById("ip").innerHTML);if(in_game)OnShowOverlay(false);');
+	//jQuery('.btn-settings').attr('type','button');
 	jQuery('#gamemode').removeAttr('required');
 	//jQuery('.btn-settings').removeClass("btn-settings");
+	jQuery('.btn-settings').hide();
 	jQuery('#settings').show();
   	var checkbox_div = jQuery('#settings input[type=checkbox]').closest('div');
     checkbox_div.append('<label><input type="checkbox" onchange="setAcid($(this).is(\':checked\'));">Acid</label>');
