@@ -171,7 +171,7 @@ function agariomodsRuntimeInjection() {
 function agariomodsRuntimePatches() {
 		gamejs_patch(';reddit;', ';reddit;'+ourskins+';', "add our skinlist to the original game skinlist.");
 //		gamejs_patch('.setAcid', '.Suicide=function(){var b=new ArrayBuffer(1);(new DataView(b)).setUint8(0, 20);r.send(b);};h.setAcid', "suicide");
-        gamejs_patch(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/" && document.getElementById("imgur").checked) {agariomods="//i.imgur.com/"+this.name.substring(2)+".jpg";} else if (document.getElementById("imgur").checked) {agariomods="//agar.io/skins/" + this.name.toLowerCase() + ".png";}', "add check for which skin mode we are in. be it no skin, default skin, imgur skin, or an agariomods skin.");
+        gamejs_patch(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/") {agariomods="//i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="//agar.io/skins/" + this.name.toLowerCase() + ".png";}', "add check for which skin mode we are in. be it no skin, default skin, imgur skin, or an agariomods skin.");
         gamejs_patch(W +'['+b+'].src="skins/"+'+b+'+".png"', W+'['+b+'].src=agariomods', "check for agariomods img src variable");
         gamejs_patch("this."+pandb+"&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")", "if (String(c).substring(0, 2) != \"i/\") {this."+pandb+"&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")}", "add imgur check for hiding username when using imgur id aka c3eg2");
         gamejs_patch(b+"=this.name.toLowerCase();", b+"=this.name.toLowerCase(); if ("+b+".substring(0, 2) == \"i/\") {" +Ja+ "+="+b+";} ;", "add imgur check #2.");
@@ -232,7 +232,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.marginTop = "0";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
-	nodeDiv.innerHTML += 'v1.9.5-moarskin: <h2>380 skins</h2>We have just added around 100 more skins.<h3><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h3>\
+	nodeDiv.innerHTML += 'v1.9.5-moarskin: <h2>380 skins</h2>We have just added around 100 more skins.<h3><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h3>ps. imgur skins should be fixed now - sorry for delay<br>\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
         </div>';
@@ -425,7 +425,7 @@ jQuery(document).ready(function()
 	jQuery('#settings').show();
   	var checkbox_div = jQuery('#settings input[type=checkbox]').closest('div');
     checkbox_div.append('<label><input type="checkbox" onchange="setAcid($(this).is(\':checked\'));">Acid</label>');
-	checkbox_div.append('<label><input id="imgur" type="checkbox">Imgur Skins</label>');
+	//checkbox_div.append('<label><input id="imgur" type="checkbox">Imgur Skins</label>');
 	checkbox_div.append('<label><input type="checkbox" onchange="if(this.checked){jQuery(\'#chart-container\').show()}else{jQuery(\'#chart-container\').hide()}">Show chart</label>');
 	checkbox_div.append('<label>SFX<input id="sfx" type="range" value="0" step=".1" min="0" max="1"></label>');
 	checkbox_div.append('<label>BGM<input type="range" id="bgm" value="0" step=".1" min="0" max="1" oninput="volBGM(this.value);"></label>');
