@@ -1,6 +1,5 @@
 var ourskins = "0chan;18-25;1up;8ball;UmguwJ0;ace;agariomods.com;al sahim;alaska;albania;algeria;anarchy;android;anonymous;aperture;apple;atari;avatar;awesome;awwmuffin;baka;bandaid;bane;baseball;basketball;batman;beats;belarus;belgium;bender;bert;bielarus;bitcoin;black widow;blobfish;bluh;bobross;bobsaget;boo;boogie2988;borg;bp;breakfast;breizh;buckballs;burgundy;butters;byzantium;c;catalonia;catalunya;catman;chaika;charmander;chechenya;checkpointplus;cheese;chickfila;chocolate;chrome;chucknorris;cirno;cj;cling on;coca cola;cokacola;colombia;colombiaa;controless;converse;cookie;coookie;cornella;cornellà;coruja;creeper;creepydoll;csfb;cuba;cyprus;czech;czechia;czechrepublic;darksideofmoon;deadpool;deal with it;deathly hallows;deathstar;demon;derp;desu;dhole;dickbutt;doge;doggie;dolan;domo;domokun;dong;donut;doraemon;dreamcast;drunken;ebin;egg;egoraptor;egypt;eksi;electrokitty;epicface;expand;eye;facebook;fast forward;fastforward;fbi;fidel;fiji;finn;firefox;fishies;flash;florida;fnatic;fnaticc;foe;forocoches;freeman;freemason;friesland;frogout;fuckfacebook;gaben;gabenn;garfield;gaston;generikb;getinmybelly;getinthebox;gimper;github;giygas;gnomechild;gonzo;grammar nazi;grayhat;grima;grumpy;hagrid;halflife;halflife3;halo;handicapped;hap;hatty;hawaii;hawkeye;hebrew;heisenburg;helix;hipsterwhale;hispachan;hitler;homestuck;honeycomb;hosokawa;hue;hydro;iceland;ie;illuminati;illuminatiii;imaqtpie;imgur;imperial japan;imperialists;imperialjapan;instagram;iron man;isaac;isis;isreal;itchyfeetleech;ivysaur;jahrein;james bond;java;jew;jewnose;jimmies;jupiter;kalmar union;kame;kappa;kenny;kingdomoffrance;kingjoffrey;kirby;kitty;klingon;knights templar;knightstemplar;knowyourmeme;kurdistan;kyle;ladle;le snake;lenny;lgbt;liberland;libertyy;liechtenstien;linux;llessur;loadingreadyrun;loki;love;luigi;macedonia;malta;mario;mars;maryland;masterball;mastercheif;mcdonalds;meatboy;meatwad;megamilk;mike tyson;mike;mlg;moldova;mortalkombat;mr burns;mr.bean;mr.popo;n64;naga;nasa;nauru;nazi;nick fury;nick;nickelodeon;nipple;northbrabant;northernlion;nosmoking;notch;nsa;obama;obey;osu;ouch;palau;pandaexpress;pedo;pedobear;peka;penguin;pepe;pepsi;pewdiepie;pi;pig;piggy;pika;pinkfloyd;pinkstylist;pirate;piratebay;pizza;pizzaa;playstation;poop;potato;pt;quantum leap;question;rageface;retard smile;rewind;rockstar;rolfharris;roomba;rss;ryukyu;s.h.e.i.l.d;samoa;satan;scream;seal;serbia;sharingan;shell;shine;shrek;sinistar;sir;skull;skype;skyrim;slack;slovakia;slovenia;slowpoke;smash;snafu;snapchat;soccer;soliare;solomid;somalia;space ace;space;spawn;spiderman;spongegar;spore;spqr;spy;squirtle;stalinjr;star wars rebel;starbucks;starchild;starrynight;stitch;stupid;summit1g;sunface;superman;taco;teamfortress;thor;tintin;tonga;transformer;transformers;triforce;trollface;tubbymcfatfuck;turkey;tv;twitch;twitter;uguu;ukip;uppercase;uruguay;utorrent;vatican;vietnam;virus;voat;voyager;wakawaka;wales;walrus;wazowski;wewlad;white  light;windows;wit my woes;wwf;wykop;xsk;ycm;yinyang;ylilauta;ylilautaa;yoba;yobaa;yobaaa;yourmom;youtube;zeon;zimbabwe;zoella;zoidberg";
 
-
 var showsh = false;
 
 var showfps = false;
@@ -170,13 +169,15 @@ function agariomodsRuntimeInjection() {
 }
 function agariomodsRuntimePatches() {
 		gamejs_patch(';reddit;', ';reddit;'+ourskins+';', "add our skinlist to the original game skinlist.");
-//		gamejs_patch('.setAcid', '.Suicide=function(){var b=new ArrayBuffer(1);(new DataView(b)).setUint8(0, 20);r.send(b);};h.setAcid', "suicide");
-        gamejs_patch(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/") {agariomods="//i.imgur.com/"+this.name.substring(2)+".jpg";} else {agariomods="//agar.io/skins/" + this.name.toLowerCase() + ".png";}', "add check for which skin mode we are in. be it no skin, default skin, imgur skin, or an agariomods skin.");
+        gamejs_patch(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/" && document.getElementById("imgur").checked) {agariomods="//i.imgur.com/"+this.name.substring(2)+".jpg";} else if (document.getElementById("imgur").checked) {agariomods="//agar.io/skins/" + this.name.toLowerCase() + ".png";}', "add check for which skin mode we are in. be it no skin, default skin, imgur skin, or an agariomods skin.");
+		gamejs_patch('xa=!1', 'zz=!1,xa=!1', "colorless virus variable");
         gamejs_patch(W +'['+b+'].src="skins/"+'+b+'+".png"', W+'['+b+'].src=agariomods', "check for agariomods img src variable");
         gamejs_patch("this."+pandb+"&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")", "if (String(c).substring(0, 2) != \"i/\") {this."+pandb+"&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")}", "add imgur check for hiding username when using imgur id aka c3eg2");
         gamejs_patch(b+"=this.name.toLowerCase();", b+"=this.name.toLowerCase(); if ("+b+".substring(0, 2) == \"i/\") {" +Ja+ "+="+b+";} ;", "add imgur check #2.");
     gamejs = addChartHooks(gamejs);
     gamejs = addOnCellEatenHook(gamejs);
+	gamejs = addVirusColorHook(gamejs);
+	gamejs = addFunctions(gamejs);
     gamejs = addOnShowOverlayHook(gamejs);
     gamejs = addOnHideOverlayHook(gamejs); //Because I don't want to detect when we hide it, only when the game does.
     gamejs = addLeaderboardHook(gamejs);
@@ -232,7 +233,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.marginTop = "0";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
-	nodeDiv.innerHTML += 'v1.9.5-moarskin: <h2>380 skins</h2>We have just added around 100 more skins.<h3><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h3>ps. imgur skins should be fixed now - sorry for delay<br>\
+	nodeDiv.innerHTML += 'v1.9.4-Zeachsux: <h2>a new fix</h2>Our mod is now uptodate and ready to roll, thanks for your patience!<br><h3><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h3>\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
         </div>';
@@ -244,7 +245,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	var nodeSpan = document.createElement("span");
 	var nodeBr = document.createElement("br");
 	var nodeLinks = document.createElement("div");
-	nodeLinks.innerHTML = "<big><a href='http://skins.agariomods.com' target='_blank'>SKINS</a> - <a href='http://www.agariomods.com/chat.html' target='_blank'>CHAT</a> - <a href='http://agariomods.com' target='_blank'>WEBSITE</a> - <a href='http://agariomods.com/help.html' target='_blank'>HELP</a></big>";
+	nodeLinks.innerHTML = "<big><a href='http://skins.agariomods.com' target='_blank'>SKINS</a> - <a href='http://agariomods.com/chat.html' target='_blank'>CHAT</a> - <a href='http://agariomods.com' target='_blank'>WEBSITE</a> - <a href='http://agariomods.com/help.html' target='_blank'>HELP</a></big>";
 	nodeLinks.style.marginLeft='10px';
 	nodeSpan.className = "glyphicon glyphicon-refresh";
 	nodeSpan.style.fontSize = "1.5em";
@@ -322,6 +323,19 @@ function addChartHooks(script) {
     var subSplit = split[1].split(match[0]);
     split[1] = subSplit[0] + '-'+match[1]+'),('+my_cells+'&&'+my_cells+'[0]&&OnUpdateMass('+current+'())));' + subSplit[1];
     return split[0] + '"Current: "+~~('+current+'()/100)+"  High: "+~~('+high+'/100)' + split[1];
+}
+
+
+function addFunctions(script) {
+    var match = script.match(/((\w)\.setAcid)/);
+	var split = script.split(match[0]);
+	return split[0]+match[2]+'.Suicide=function(){var b=new ArrayBuffer(1);(new DataView(b)).setUint8(0, 20);q.send(b)};'+match[2]+'.setVColors=function(a){zz=a};'+match[1]+split[1]
+}
+
+function addVirusColorHook(script) {
+    var match = script.match(/(\?\(\w\.fillStyle=")/);
+    var split = script.split(match[0]);
+    return split[0]+'||zz&&this.d'+match[1]+split[1]   
 }
 
 function addLeaderboardHook(script) {
@@ -425,13 +439,12 @@ jQuery(document).ready(function()
 	jQuery('#settings').show();
   	var checkbox_div = jQuery('#settings input[type=checkbox]').closest('div');
     checkbox_div.append('<label><input type="checkbox" onchange="setAcid($(this).is(\':checked\'));">Acid</label>');
-	//checkbox_div.append('<label><input id="imgur" type="checkbox">Imgur Skins</label>');
+	checkbox_div.append('<label><input id="imgur" type="checkbox">Imgur Skins</label>');
 	checkbox_div.append('<label><input type="checkbox" onchange="if(this.checked){jQuery(\'#chart-container\').show()}else{jQuery(\'#chart-container\').hide()}">Show chart</label>');
-	checkbox_div.append('<label>SFX<input id="sfx" type="range" value="0" step=".1" min="0" max="1"></label>');
-	checkbox_div.append('<label>BGM<input type="range" id="bgm" value="0" step=".1" min="0" max="1" oninput="volBGM(this.value);"></label>');
-    jQuery('#overlays').append('<div id="stats" style="opacity: 0.85; position: absolute; top:330px; left: 460px; width: 480px; display: none; background-color: #FFFFFF; border-radius: 15px; padding: 5px 15px 5px 15px; transform: translate(0,-50%); white-space: nowrap; overflow:hidden;"><div id="statArea" style="vertical-align:top; width:250px; display:inline-block;"></div><div id="pieArea" style="vertical-align: top; width:200px; height:150px; display:inline-block; vertical-align:top"> </div><div id="gainArea" style="width:500px;  vertical-align:top"></div><div id="lossArea" style="width:500px; "></div><div id="chartArea" style="width:450px; display:inline-block; vertical-align:top"></div></div>');
+	checkbox_div.append('<label><input type="checkbox" onchange="setVColors($(this).is(\':checked\'));">Colorless Viruses</label>');
+	checkbox_div.append('<div id="sliders"><label>SFX<input id="sfx" type="range" value="0" step=".1" min="0" max="1"></label><label>BGM<input type="range" id="bgm" value="0" step=".1" min="0" max="1" oninput="volBGM(this.value);"></label></div>');    jQuery('#overlays').append('<div id="stats" style="opacity: 0.85; position: absolute; top:330px; left: 460px; width: 480px; display: none; background-color: #FFFFFF; border-radius: 15px; padding: 5px 15px 5px 15px; transform: translate(0,-50%); white-space: nowrap; overflow:hidden;"><div id="statArea" style="vertical-align:top; width:250px; display:inline-block;"></div><div id="pieArea" style="vertical-align: top; width:200px; height:150px; display:inline-block; vertical-align:top"> </div><div id="gainArea" style="width:500px;  vertical-align:top"></div><div id="lossArea" style="width:500px; "></div><div id="chartArea" style="width:450px; display:inline-block; vertical-align:top"></div></div>');
     jQuery('#stats').hide(0);   
-	//jQuery('#playBtn').width('74%');
+	jQuery('#playBtn').width('74%');
 });
 
 function ResetChart() 
@@ -922,11 +935,12 @@ window.onpageshow = function() {
 }
 
 $(document).ready(function() {
+	if (!localStorage.getItem("setting_Imgur Skins")) localStorage.setItem("settingImgur_Skins","true");
 	$("div#settings.checkbox input").each(function() {
-			$(this).attr("checked",(localStorage.getItem("setting"+$(this).parent().text().replace(" ","_")))=="true");
+		$(this).attr("checked",(localStorage.getItem("setting"+$(this).parent().text().replace(" ","_")))=="true");
 	});
 	$("div#settings input[type=range]").each(function() {
-			$(this).attr("value",(localStorage.getItem("setting"+$(this).parent().text().replace(" ","_"))));
+		$(this).attr("value",(localStorage.getItem("setting"+$(this).parent().text().replace(" ","_"))));
 	});
 	});
 
