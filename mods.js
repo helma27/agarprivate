@@ -249,7 +249,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.marginTop = "0";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
-	nodeDiv.innerHTML += '1.9.5: Go catch up with the <a target="_blank" href="http://agariomods.com/documentation.html">Documentation</a><br><h4><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h4>\
+	nodeDiv.innerHTML += '1.9.6: Go catch up with the <a target="_blank" href="http://agariomods.com/documentation.html">Documentation</a><br><h4><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h4><h1>news</h1>Agar.io author has disabled directly connecting as a team to the same server, so this feature is now removed, was fun while it lasted.\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
         </div>';
@@ -269,11 +269,15 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeSpan.style.paddingTop = "2px";
 	nodeSpan.style.width = "15%";
 	nodeSpan.style.height = "33px";
+/*
+ *
 	nodeSpan.addEventListener("click", function (e) {
 		document.getElementById("iphack").value=document.getElementById("iphack").value.replace(/\s+/g, '');
 		var ip = document.getElementById("iphack").value.replace("ws://","");
 		if(ip.length>8)connect("ws://"+ip);
 	});
+*/
+
 //	nodeInput.className = "form-control";
 	nodeInput.id = "iphack"
 	nodeInput.style.width = "85%";
@@ -282,14 +286,14 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeInput.style.padding = "5px;";
 	nodeInput.style.margin = "5px;";	
 	nodeInput.style.border = "2px solid green";
-	nodeInput.innerHTML = "Zeach, the owner of Agar.io has banned this kind of particular feature as he has stopped the ability to connect to a server directly by it's IP. Which, to be fair, is a good idea.";
+//	nodeInput.innerHTML = "Zeach, the owner of Agar.io has banned this kind of particular feature as he has stopped the ability to connect to a server directly by it's IP. Which, to be fair, is a good idea.";
 	jQuery('#locationUnknown').prepend(nodeLinks);
-	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
-	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
-	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
+//	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
+//	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
+//	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
 	//jQuery(playBtn).parent().prepend("<b>Current Server IP: </b><span id='ip'></span>");
-	jQuery(playBtn).parent().prepend("<b>Current Server IP: Feature disabled, please read below.");
-	var nodeAudio = document.createElement("audio");		
+	//jQuery(playBtn).parent().prepend("Zeach, the owner of Agar.io has banned all direct connections as he has stopped the ability to connect to a server directly by it's IP for teaming up. Sorry folks.");
+	var nodeAudio = document.createElement("audio");
 	nodeAudio.id = 'audiotemplate';		
 	jQuery(playBtn).parent().get(0).appendChild(nodeAudio);
 	jQuery('#playBtn').off();
@@ -405,6 +409,7 @@ function addOnShowOverlayHook(script) {
 }
 
 function addConnectHook(script) {
+return script;
     var match = script.match(/console\.log\("Connecting to "\+a\);/);
     var split = script.split(match[0]);
     return split[0] + match[0] + 'document.getElementById("ip").innerHTML=a.replace(/wss?:\\/\\//,"");' + split[1];
