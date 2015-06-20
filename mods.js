@@ -1,11 +1,17 @@
 var ourskins = "0chan;18-25;1up;8ball;UmguwJ0;ace;agariomods.com;al sahim;alaska;albania;algeria;anarchy;android;anonymous;aperture;apple;atari;avatar;awesome;awwmuffin;baka;bandaid;bane;baseball;basketball;batman;beats;belarus;belgium;bender;bert;bielarus;bitcoin;black widow;blobfish;bluh;bobross;bobsaget;boo;boogie2988;borg;bp;breakfast;breizh;buckballs;burgundy;butters;byzantium;c;catalonia;catalunya;catman;chaika;charmander;chechenya;checkpointplus;cheese;chickfila;chocolate;chrome;chucknorris;cirno;cj;cling on;coca cola;cokacola;colombia;colombiaa;controless;converse;cookie;coookie;cornella;cornellà;coruja;creeper;creepydoll;csfb;cuba;cyprus;czech;czechia;czechrepublic;darksideofmoon;deadpool;deal with it;deathly hallows;deathstar;demon;derp;desu;dhole;dickbutt;doge;doggie;dolan;domo;domokun;dong;donut;doraemon;dreamcast;drunken;ebin;egg;egoraptor;egypt;eksi;electrokitty;epicface;expand;eye;facebook;fast forward;fastforward;fbi;fidel;fiji;finn;firefox;fishies;flash;florida;fnatic;fnaticc;foe;forocoches;freeman;freemason;friesland;frogout;fuckfacebook;gaben;gabenn;garfield;gaston;generikb;getinmybelly;getinthebox;gimper;github;giygas;gnomechild;gonzo;grammar nazi;grayhat;grima;grumpy;hagrid;halflife;halflife3;halo;handicapped;hap;hatty;hawaii;hawkeye;hebrew;heisenburg;helix;hipsterwhale;hispachan;hitler;homestuck;honeycomb;hosokawa;hue;hydro;iceland;ie;illuminati;illuminatiii;imaqtpie;imgur;imperial japan;imperialists;imperialjapan;instagram;iron man;isaac;isis;isreal;itchyfeetleech;ivysaur;jahrein;james bond;java;jew;jewnose;jimmies;jupiter;kalmar union;kame;kappa;kenny;kingdomoffrance;kingjoffrey;kirby;kitty;klingon;knights templar;knightstemplar;knowyourmeme;kurdistan;kyle;ladle;le snake;lenny;lgbt;liberland;libertyy;liechtenstien;linux;llessur;loadingreadyrun;loki;love;luigi;macedonia;malta;mario;mars;maryland;masterball;mastercheif;mcdonalds;meatboy;meatwad;megamilk;mike tyson;mike;mlg;moldova;mortalkombat;mr burns;mr.bean;mr.popo;n64;naga;nasa;nauru;nazi;nick fury;nick;nickelodeon;nipple;northbrabant;northernlion;nosmoking;notch;nsa;obama;obey;osu;ouch;palau;pandaexpress;pedo;pedobear;peka;penguin;pepe;pepsi;pewdiepie;pi;pig;piggy;pika;pinkfloyd;pinkstylist;pirate;piratebay;pizza;pizzaa;playstation;poop;potato;pt;quantum leap;question;rageface;retard smile;rewind;rockstar;rolfharris;roomba;rss;ryukyu;s.h.e.i.l.d;samoa;satan;scream;seal;serbia;sharingan;shell;shine;shrek;sinistar;sir;skull;skype;skyrim;slack;slovakia;slovenia;slowpoke;smash;snafu;snapchat;soccer;soliare;solomid;somalia;space ace;space;spawn;spiderman;spongegar;spore;spqr;spy;squirtle;stalinjr;star wars rebel;starbucks;starchild;starrynight;stitch;stupid;summit1g;sunface;superman;taco;teamfortress;thor;tintin;tonga;transformer;transformers;triforce;trollface;tubbymcfatfuck;turkey;tv;twitch;twitter;uguu;ukip;uppercase;uruguay;utorrent;vatican;vietnam;virus;voat;voyager;wakawaka;wales;walrus;wazowski;wewlad;white  light;windows;wit my woes;wwf;wykop;xsk;ycm;yinyang;ylilauta;ylilautaa;yoba;yobaa;yobaaa;yourmom;youtube;zeon;zimbabwe;zoella;zoidberg";
 
 var showsh = false;
+var showt = localStorage.getItem("showt")=="true";
+
+var ldown = false;
 
 var showfps = false;
 var showpio = false; //packets in/out per second
 
-setInterval(function(){if (showsh) DrawStats(false);},500);
+
+if(showt===null){localStorage.setItem("showt","true");showt=true;}
+
+setInterval(function(){if(showsh)DrawStats(false);if(showt)count();},300);
 
 var gamejs = "", modBlocking = true;
 var tester = document.getElementsByTagName("script");
@@ -63,6 +69,7 @@ function sfx_event(id) {
     if (document.getElementById("sfx").value==0) return;
 	var event = jQuery.clone(sfxs[id]);
 	event.volume = document.getElementById("sfx").value;
+	event.load();
     event.play();
 }
 /* lets start to deal with regressions */
@@ -168,14 +175,18 @@ function agariomodsRuntimeInjection() {
 
 }
 function agariomodsRuntimePatches() {
+	gamejs_patch(")&&this",")&&(this","test");
+	gamejs_patch(/\w>\w\/1\.1\?.*-50%\)"\);/,"","fixing menu on resize");
 		gamejs_patch(';reddit;', ';reddit;'+ourskins+';', "add our skinlist to the original game skinlist.");
         gamejs_patch(b+'=this.name.toLowerCase();', b+'=this.name.toLowerCase();var agariomods="";var ourskins = "'+ourskins+'";if(('+b+'.length >0) && (ourskins.split(";").indexOf('+b+')>-1)) {agariomods="//skins.agariomods.com/i/"+'+b+'+".png";} else if ('+b+'.substring(0, 2) == "i/" && document.getElementById("imgur").checked) {agariomods="//i.imgur.com/"+this.name.substring(2)+".jpg";} else if (document.getElementById("imgur").checked) {agariomods="//agar.io/skins/" + this.name.toLowerCase() + ".png";}', "add check for which skin mode we are in. be it no skin, default skin, imgur skin, or an agariomods skin.");
-		gamejs_patch('xa=!1', 'zz=!1,xa=!1', "colorless virus variable");
+		gamejs_patch('xa=!1', 'zz=!1,yq=!1,xx=!1,xz=!1,xa=!1', "adding variables");
         gamejs_patch(W +'['+b+'].src="skins/"+'+b+'+".png"', W+'['+b+'].src=agariomods', "check for agariomods img src variable");
         gamejs_patch("this."+pandb+"&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")", "if (String(c).substring(0, 2) != \"i/\") {this."+pandb+"&&b.strokeText("+c3eg2+");b.fillText("+c3eg2+")}", "add imgur check for hiding username when using imgur id aka c3eg2");
         gamejs_patch(b+"=this.name.toLowerCase();", b+"=this.name.toLowerCase(); if ("+b+".substring(0, 2) == \"i/\") {" +Ja+ "+="+b+";} ;", "add imgur check #2.");
     gamejs = addChartHooks(gamejs);
     gamejs = addOnCellEatenHook(gamejs);
+	gamejs = addTeamMassHook(gamejs);
+	gamejs = addCanvasBGHook(gamejs);
 	gamejs = addVirusColorHook(gamejs);
 	gamejs = addFunctions(gamejs);
     gamejs = addOnShowOverlayHook(gamejs);
@@ -185,6 +196,7 @@ function agariomodsRuntimePatches() {
 	gamejs = addRecieveHook(gamejs);
 	gamejs = addOnSendHook(gamejs);
     gamejs = addOnDrawHook(gamejs);
+	//gamejs = gamejs.replace(/;/g, '\n');
 	console.log("Testing complete, "+passed+" units passed and "+failed+" units failed.");
 	if (failed) console.log(new Error("UNIT FAILED"));
 }
@@ -214,6 +226,10 @@ function agariomodsRuntimeHacks() {
 
 jQuery('#helloDialog').css({opacity: '0.85'});	
 jQuery('#helloDialog').css({width: '450px'});
+    document.body.style.backgroundSize = 'cover';
+    document.body.style.backgroundRepeat = 'no-repeat';
+	document.body.style.backgroundAttachment = "fixed";
+	
 	var nodeDiv = document.createElement("div");
 	$( document ).ready(function() {
 		hd = document.getElementById("helloDialog");
@@ -224,7 +240,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.id = "includedContent";
 	nodeDiv.style.width = "400px"
 	nodeDiv.style.backgroundColor = "#000000";
-	nodeDiv.style.zIndex = 9999999999;
+	nodeDiv.style.zIndex = 999;
 	nodeDiv.style.position = "relative";
 	nodeDiv.style.padding = "8px";
 	nodeDiv.style.borderRadius = "5px";
@@ -233,7 +249,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.marginTop = "0";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
-	nodeDiv.innerHTML += 'v1.9.4-Zeachsux: <h2>a new fix</h2>Our mod is now uptodate and ready to roll, thanks for your patience!<br><h3><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h3>\
+	nodeDiv.innerHTML += '1.9.5: Go catch up with the <a target="_blank" href="http://agariomods.com/documentation.html">Documentation</a><br><h4><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h4>\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
         </div>';
@@ -245,16 +261,18 @@ jQuery('#helloDialog').css({width: '450px'});
 	var nodeSpan = document.createElement("span");
 	var nodeBr = document.createElement("br");
 	var nodeLinks = document.createElement("div");
-	nodeLinks.innerHTML = "<big><a href='http://skins.agariomods.com' target='_blank'>SKINS</a> - <a href='http://agariomods.com/chat.html' target='_blank'>CHAT</a> - <a href='http://agariomods.com' target='_blank'>WEBSITE</a> - <a href='http://agariomods.com/help.html' target='_blank'>HELP</a></big>";
+	nodeLinks.innerHTML = "<big><a href='http://skins.agariomods.com' target='_blank'>SKINS</a> - <a href='http://agariomods.com/chat.html' target='_blank'>CHAT</a> - <a href='http://agariomods.com' target='_blank'>WEBSITE</a> - <a href='http://agariomods.com/help.html' target='_blank'>HELP</a> - <a href onclick=\"alert('---HOTKEYS---\\nHold Z - Show Stats In-Game\\nSuicide - Alt+Q\\nToggle Benchmarker - T\\nClear Benchmarks - Alt+T\\nFPS Counter - Alt+1\\nPackets In/Out Per Second - Alt+2\\nTry Script Lag Recover - Alt+R');return false;\" target='_blank'>HOTKEYS</a></big>";
 	nodeLinks.style.marginLeft='10px';
-	nodeSpan.className = "glyphicon glyphicon-refresh";
+	nodeSpan.className = "glyphicon glyphicon-refresh btn btn-info";
 	nodeSpan.style.fontSize = "1.5em";
 	nodeSpan.style.cssFloat = "left";
-	nodeSpan.style.paddingTop = "5px";
-	nodeSpan.style.paddingLeft = "15px";
+	nodeSpan.style.paddingTop = "2px";
+	nodeSpan.style.width = "15%";
+	nodeSpan.style.height = "33px";
 	nodeSpan.addEventListener("click", function (e) {
 		document.getElementById("iphack").value=document.getElementById("iphack").value.replace(/\s+/g, '');
-		if (document.getElementById("iphack").value.search('(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?)\.(25[0-5]|2[0-4][0-9]|[01]?[0-9][0-9]?):[0-9]{3,4}')==0) connect("ws://"+document.getElementById("iphack").value);
+		var ip = document.getElementById("iphack").value.replace("ws://","");
+		if(ip.length>8)connect("ws://"+ip);
 	});
 	nodeInput.className = "form-control";
 	nodeInput.id = "iphack"
@@ -325,11 +343,35 @@ function addChartHooks(script) {
     return split[0] + '"Current: "+~~('+current+'()/100)+"  High: "+~~('+high+'/100)' + split[1];
 }
 
+function addTeamMassHook(script) {
+	var match = script.match(/1==(\w+)\.length&&\(/);
+    var my_cells = match[1];
+	var match = script.match(/;(\w+)\.(\w+)\(this\.name\)/);
+	var split = script.split(match[0]);
+	var avar = match[2];
+	script = split[0]+";"+match[1]+'.'+match[2]+'(this.name);if(yq){if(p[0]&&N==":teams"&&'+my_cells+'.indexOf(this)==-1){if(this.color.substr(p[0].color.search("ff"),2)=="ff"){this.k.'+match[2]+'(this.name+" ["+~~(this.size*this.size/100)+"]");}}}'+split[1];
+	var match = script.match(/indexOf\((\w+)\)\)\)\{/);
+	var split = script.split(match[0]);
+	return split[0]+'indexOf('+match[1]+')))||(this.size>=32&'+my_cells+'[0]&&N==":teams"&&!this.d)){if(yq){if(this.name==""){this.k=new ka(this.h(),"#FFFFFF",true,"#000000");this.k.'+avar+'(this.name);}};'+split[1];
+	var split = script.split(match[0]);
+}
+
 
 function addFunctions(script) {
     var match = script.match(/((\w)\.setAcid)/);
 	var split = script.split(match[0]);
-	return split[0]+match[2]+'.Suicide=function(){var b=new ArrayBuffer(1);(new DataView(b)).setUint8(0, 20);q.send(b)};'+match[2]+'.setVColors=function(a){zz=a};'+match[1]+split[1]
+	script = split[0]+match[2]+'.Suicide=function(){var b=new ArrayBuffer(1);(new DataView(b)).setUint8(0, 20);q.send(b)};'+match[2]+'.setVColors=function(a){zz=a};'+match[2]+'.setTeamMass=function(a){yq=a;if(a){jQuery(\'#names\').attr(\'checked\',false);check(document.getElementById(\'names\'));}};'+match[2]+'.setBG=function(a){xx=a;if(a){var url=localStorage.getItem("bgurl");if(url==null){url=""};var promp=prompt("Image URL",url);if(null==promp){jQuery("#bgimg").attr("checked",false);check(document.getElementById("bgimg"));xx=!a;return;}localStorage.setItem("bgurl",promp);jQuery("#acid").attr("checked",false);check(document.getElementById("acid"));document.body.style.backgroundImage=\'url("\'+promp+\'")\';xz=confirm("Show Grid Lines?");}};'+match[1]+split[1]
+	var split = script.split("setNames=function(a){");
+	return split[0]+"setNames=function(a){if(!a){jQuery(\'#tmass\').attr(\'checked\',false);check(document.getElementById(\'tmass\'));}"+split[1];
+}
+
+function addCanvasBGHook(script) {
+    var match = script.match(/rRect\(0,0,(\w),(\w)\)/);
+	var split = script.split(match[0]);
+	script = split[0]+'rRect(0,0,'+match[1]+','+match[2]+');xx&&!xz?g.clearRect(0, 0, r, s):'+split[1].substr(1);
+    var match = script.match(/BFF";/);
+	var split = script.split(match[0]);
+	return split[0]+'BFF";xx&&xz?g.clearRect(0,0,r,s):'+split[1];
 }
 
 function addVirusColorHook(script) {
@@ -429,19 +471,21 @@ jQuery(document).ready(function()
 			   </div>\
 			   ');
 	jQuery('#instructions').remove();
-	jQuery('.glyphicon-cog').addClass("glyphicon-refresh")
-	jQuery('.glyphicon-cog').removeClass("glyphicon-cog");
+	//jQuery('.glyphicon-cog').addClass("glyphicon-refresh")
+	//jQuery('.glyphicon-cog').removeClass("glyphicon-cog");
 	//jQuery('.btn-settings').attr('onclick','connect("ws://"+document.getElementById("ip").innerHTML);if(in_game)OnShowOverlay(false);');
 	//jQuery('.btn-settings').attr('type','button');
-	jQuery('#gamemode').removeAttr('required');
+	//jQuery('#gamemode').removeAttr('required');
 	//jQuery('.btn-settings').removeClass("btn-settings");
 	jQuery('.btn-settings').hide();
 	jQuery('#settings').show();
   	var checkbox_div = jQuery('#settings input[type=checkbox]').closest('div');
-    checkbox_div.append('<label><input type="checkbox" onchange="setAcid($(this).is(\':checked\'));">Acid</label>');
-	checkbox_div.append('<label><input id="imgur" type="checkbox">Imgur Skins</label>');
+    checkbox_div.append('<label><input type="checkbox" id="acid" onchange="setAcid($(this).is(\':checked\'));if($(this).is(\':checked\')){$(\'#bgimg\').attr(\'checked\',false);check(document.getElementById(\'bgimg\'));}">Acid</label>');
 	checkbox_div.append('<label><input type="checkbox" onchange="if(this.checked){jQuery(\'#chart-container\').show()}else{jQuery(\'#chart-container\').hide()}">Show chart</label>');
 	checkbox_div.append('<label><input type="checkbox" onchange="setVColors($(this).is(\':checked\'));">Colorless Viruses</label>');
+	checkbox_div.append('<label><input id="imgur" type="checkbox">Imgur Skins</label>');
+	checkbox_div.append('<label><input type="checkbox" id="tmass" onchange="setTeamMass($(this).is(\':checked\'));">Show Teamed Mass</label>');
+	checkbox_div.append('<label><input id="bgimg" type="checkbox" onchange="setBG($(this).is(\':checked\'));">Set Background</label>');
 	checkbox_div.append('<div id="sliders"><label>SFX<input id="sfx" type="range" value="0" step=".1" min="0" max="1"></label><label>BGM<input type="range" id="bgm" value="0" step=".1" min="0" max="1" oninput="volBGM(this.value);"></label></div>');    jQuery('#overlays').append('<div id="stats" style="opacity: 0.85; position: absolute; top:330px; left: 460px; width: 480px; display: none; background-color: #FFFFFF; border-radius: 15px; padding: 5px 15px 5px 15px; transform: translate(0,-50%); white-space: nowrap; overflow:hidden;"><div id="statArea" style="vertical-align:top; width:250px; display:inline-block;"></div><div id="pieArea" style="vertical-align: top; width:200px; height:150px; display:inline-block; vertical-align:top"> </div><div id="gainArea" style="width:500px;  vertical-align:top"></div><div id="lossArea" style="width:500px; "></div><div id="chartArea" style="width:450px; display:inline-block; vertical-align:top"></div></div>');
     jQuery('#stats').hide(0);   
 	jQuery('#playBtn').width('74%');
@@ -616,7 +660,7 @@ function AppendTopN(n, p, list)
 {
 	var a = GetTopN(n,p);
     for (var i = 0; i < a.length; ++i){
-        var text = a[i].name + ' (' + (p == 'gains' ? '+' : '-') + a[i].mass + ' mass)';
+        var text = '<bdi>'+a[i].name + '</bdi> (' + (p == 'gains' ? '+' : '-') + a[i].mass + ' mass)';
         list.append('<li style="font-size: 12px; "><div style="width: 10px; height: 10px; border-radius: 50%; margin-right:5px; background-color: ' + a[i].color + '; display: inline-block;"></div>' + text + '</li>');
     }
 	return a.length > 0;
@@ -756,6 +800,7 @@ jQuery(window).resize(function() {
 
 window.OnGameStart = function(cells)
 {
+	initbench(false);
 	in_game = true;
     my_cells = cells;
     ResetChart();
@@ -767,6 +812,7 @@ window.OnGameStart = function(cells)
 		document.getElementById("overlays").style.display = "none";
 		document.getElementById("overlays").style.backgroundColor = "rgba(0,0,0,.498039)";
 		document.getElementById("overlays").style.pointerEvents = "auto";
+		document.getElementById("stats").style.opacity = 0.85;
 		document.getElementById("helloDialog").style.display = "block";
 		kd = false;
 	}
@@ -797,12 +843,14 @@ window.volBGM = function (vol)
 
 window.OnShowOverlay = function(game_in_progress)
 {
+	bstyle(true);
 	if (!game_in_progress) in_game = false;
     DrawStats(!game_in_progress);
 	if (kd == true) {
 		document.getElementById("overlays").style.display = "block";
 		document.getElementById("overlays").style.backgroundColor = "rgba(0,0,0,.498039)";
 		document.getElementById("overlays").style.pointerEvents = "auto";
+		document.getElementById("stats").style.opacity = 1;
 		document.getElementById("helloDialog").style.display = "block";
 		kd = false;
 	}
@@ -813,6 +861,8 @@ window.OnShowOverlay = function(game_in_progress)
 	else
 	{
 		showsh = false;
+		//document.getElementById("benchmarker").style.display = "none";
+		//showt=false;
 	}
 }
 
@@ -820,6 +870,7 @@ var fired = false; //for some reason OnHideOverlay fires twice
 window.OnHideOverlay = function()
 {
 	if (fired == true) {fired = false; return;} else {fired = true;} //Only continue on first fire
+	bstyle(false);
 	if (showsh == true) showsh = false;
 }
 
@@ -827,6 +878,7 @@ window.OnUpdateMass = function(mass)
 {
     stats.high_score = Math.max(stats.high_score, mass);
     UpdateChart(mass, GetRgba(my_cells[0].color,0.4));
+	benchcheck(mass);
 }
 
 window.OnCellEaten = function(predator, prey)
@@ -919,24 +971,35 @@ window.countPO = (function () {
 }());
 
 window.onpageshow = function() {
+	initbench(true);
+	document.getElementById("bgimg").checked=false;
+		jQuery('#helloDialog').css({transform: ''});
+		jQuery('#helloDialog').css({scale: ''});
     $("div#settings label").change(function() {
         $("div#settings.checkbox input").each(function() {
+			if (this.id=="bgimg")return;
             localStorage.setItem("setting"+$(this).parent().text().replace(" ","_"),this.checked);
         });
         $("div#settings input[type=range]").each(function() {
             localStorage.setItem("setting"+$(this).parent().text().replace(" ","_"),this.value);
         });
     });
-    var evt = document.createEvent("HTMLEvents");
-    evt.initEvent("change", false, true);
 	$("div#settings input").each(function() {
-            this.dispatchEvent(evt);
+            check(this);
 	});
 }
 
+window.check = function(elem){
+    var evt = document.createEvent("HTMLEvents");
+    evt.initEvent("change", false, true);
+    elem.dispatchEvent(evt);
+}
+
 $(document).ready(function() {
-	if (!localStorage.getItem("setting_Imgur Skins")) localStorage.setItem("settingImgur_Skins","true");
+	if (!localStorage.getItem("setting_Imgur Skins")) localStorage.setItem("settingImgur_Skins","true"); localStorage.setItem("settingShow_Chart","true");
 	$("div#settings.checkbox input").each(function() {
+		if (this.id=="bgimg")return;
+		if ($(this).parent().text()==" No names")$(this).attr("id","names");
 		$(this).attr("checked",(localStorage.getItem("setting"+$(this).parent().text().replace(" ","_")))=="true");
 	});
 	$("div#settings input[type=range]").each(function() {
@@ -948,16 +1011,26 @@ var kd = false;
 $(document).keydown(function(e) {
 	//Stats Shortcut
 	if (e.keyCode == 90) {
-		//e.preventDefault(); //unneeded
 		if (kd == false && document.getElementById("overlays").style.display == 'none') {
 			kd = true;
 			document.getElementById("overlays").style.display = "block";
 			document.getElementById("overlays").style.backgroundColor = "rgba(0,0,0,0)";
 			document.getElementById("overlays").style.pointerEvents = "none";
+			document.getElementById("stats").style.opacity = 1;
 			document.getElementById("helloDialog").style.display = "none";
 			showsh = true;
 			DrawStats(false);
 		}
+	}
+	//Benchmarker Shortcut
+	if (e.keyCode == 84&&!e.altKey&&document.activeElement.type!="text") {
+		showt = !showt;
+		localStorage.setItem("showt",showt);
+		document.getElementById("benchmarker").style.display = showt?"block":"none";
+	}
+	//Benchmarker Clear Shortcut
+	if (e.keyCode == 84&&e.altKey) {
+		deleteScores();
 	}
 	//FPS Hotkey
 	if (e.altKey && e.keyCode == 49) {
@@ -987,6 +1060,16 @@ $(document).keydown(function(e) {
 			document.getElementById("overlays").mozRequestFullScreen();
 		}
 	}
+	//EXPERIMENTAL
+	//Attempts to recover from lag by temporarily pausing Javascript
+	//Alt+R
+	if (e.keyCode == 82&&e.altKey) {
+		if(ldown)return;
+		ldown = true
+		console.log("pausing");
+		var currentTime = new Date().getTime();
+		while (currentTime + 500 >= new Date().getTime()){} //0.5 Second Timeout
+	}
 });
 $(document).keyup(function(e) {
 	//Hide Stats
@@ -996,8 +1079,157 @@ $(document).keyup(function(e) {
 			document.getElementById("overlays").style.display = "none";
 			document.getElementById("overlays").style.backgroundColor = "rgba(0,0,0,.498039)";
 			document.getElementById("overlays").style.pointerEvents = "auto";
+			document.getElementById("stats").style.opacity = 0.85;
 			document.getElementById("helloDialog").style.display = "block";
 			showsh = false;
 		}
 	}
+	//EXPERIMENTAL
+	//To prevent extreamly long pause times fron holding down Alt+R
+	if (e.keyCode == 82&&e.altKey) {
+		if(ldown)ldown=false;
+	}
 });
+
+
+//Agar.io Benchmarker Mod
+//Version 0.4 ~ Edited By Mevin1
+/*
+•Changes
+-WTF? An entire other div just for background? nope
+-using Date.now() instead of a benchmarker for timing
+*/
+//Create global vars
+var m, benchmarker;
+var benchmarks = ["250mass", "500mass", "1000mass", "2500mass", "5000mass"/*, "Rank10", "Rank1"*/];
+var mass_benchmarks = [250, 500, 1000, 2500, 5000];
+/*var rank_benchmarks = [10, 1];
+var rankPrev = 11;//broken*/
+var massPrev = 0;
+//Create div
+$("body").append('<div id="benchmarker"></div>');
+function initbench(first) {
+    //Style div
+    $("div#benchmarker").css({
+        "backgroundColor": "rgba(0,0,0,0.4)" /*"transparent"*/ ,
+        "opacity": "1.0",
+        "color": "white",
+        "fontFamily": "Ubuntu,Arial,sans-serif",
+        "position": "fixed",
+        "padding": "10px",
+        "text-align": "center",
+		"pointer-events": "none"/*,
+		"display": "none"*/
+    });
+	if(first){
+		bstyle(true);
+		showt?$("div#benchmarker").css({
+			"display": "block"
+		}):
+		$("div#benchmarker").css({
+			"display": "none"
+		});
+	}
+    //Create HTML to be added to div
+    var newHTML = '<table>' +
+        '<h3>Benchmarker</h3>' +
+        '<span>Time Elapsed: --:--</span>' +
+        '<tr><th>Benchmark</th><th>Time</th><th>Best</th></tr>' + //Headers
+        '<tr id="250mass"><td>250 Mass</td><td class="time">-----</td><td class="best">-----</td></tr>' + //250 Mass
+        '<tr id="500mass"><td>500 Mass</td><td class="time">-----</td><td class="best">-----</td></tr>' + //500 Mass
+        '<tr id="1000mass"><td>1000 Mass</td><td class="time">-----</td><td class="best">-----</td></tr>' + //1000 Mass
+        '<tr id="2500mass"><td>2500 Mass</td><td class="time">-----</td><td class="best">-----</td></tr>' + //2500 Mass
+        '<tr id="5000mass"><td>5000 Mass</td><td class="time">-----</td><td class="best">-----</td></tr>' + //5000 Mass
+        //'<tr id="Rank10"><td>Rank 10</td><td class="time">-----</td><td class="best">-----</td></tr>' + //Rank 10
+        //'<tr id="Rank1"><td>Rank 1</td><td class="time">-----</td><td class="best">-----</td></tr>' + //Rank 1
+        '</table>';
+
+
+    //Add HTML to div
+    $("div#benchmarker").html(newHTML);
+
+    //Load local storage --- best times
+    for (var i = 0; i < benchmarks.length; i++) {
+        if (localStorage.getItem("best_" + benchmarks[i])) {
+            $("#" + benchmarks[i] + " .best").html(localStorage.getItem("best_" + benchmarks[i]));
+        }
+    }
+    //Style the table
+    $("table").css({
+        "margin": "8px",
+        "padding": "8px"
+    });
+    //Centering
+    $("div#benchmarker h3").css("text-align", "center");
+    $("div#benchmarker span").css({
+        "text-align": "center",
+        "display": "inline-block"
+    });
+    //Cells
+    $("td,th").css({
+        "padding": "5px",
+        "text-align": "left"
+    });
+    //Margins
+    //$("div#benchmarker span").css({"margin":"0px","padding":"0px"});
+    $("div#benchmarker h3").css({
+        "margin-top": "4px"
+    });
+}
+function bstyle(over){
+	over?$("div#benchmarker").css({
+        "left": "",
+        "top": "",
+        "right": "5px",
+        "bottom": "5px",
+		"z-index": "1000"
+	}):$("div#benchmarker").css({
+        "left": "5px",
+        "top": "5px",
+        "right": "",
+        "bottom": "",
+		"z-index": "1"
+	});
+}
+function count() { //Occurs every second
+	if (showt&&in_game){
+    $("div#benchmarker span").html("Time Elapsed: " + mToMs(Date.now() - stats.birthday));
+}}
+function mToMs(millis) {
+    var minutes = Math.floor(millis / 60000);
+    var seconds = ((millis % 60000) / 1000).toFixed(0);
+    return minutes + ":" + (seconds < 10 ? '0' : '') + seconds;
+}
+function snp(y) { //Turns XX:XX to XXXX
+    return y.replace(/[^0-9]+/g, '');
+}
+function logBenchmark(benchmark, time) {
+    //Manuallly record benchmark.
+    if ($("#" + benchmark + " .time").html() == "-----") { //Checks if the benchmark time is recorded yet
+        console.log("Benchmark set: " + benchmark + " at " + time);
+        $("#" + benchmark + " .time").html(time); //Record time
+        if (($("#" + benchmark + " .best").html() == "-----") || (snp(time) < snp(localStorage.getItem('best_' + benchmark)))) { //Checks if best time is beaten or undefined
+            console.log("Best time set: " + benchmark + " at " + time);
+            $("#" + benchmark + " .best").html(time); //Record time
+            localStorage.setItem("best_" + benchmark, time); //Save to local storage
+        }
+    }
+}
+function deleteScores() {
+    var prompt = confirm("Are you sure you want to delete your best times?");
+    if (prompt == true) {
+        for (var i = 0; i < benchmarks.length; i++) {
+            localStorage.removeItem("best_" + benchmarks[i]);
+            $("#" + benchmarks[i] + " .best").html("-----");
+        }
+    }
+}
+function benchcheck(mass) {
+    mass = Math.floor(mass / 100);
+    for (var i = 0; i < mass_benchmarks.length; i++) {
+        if ((massPrev < mass_benchmarks[i]) && (mass >= mass_benchmarks[i])) {
+            //Check if mass has passed from below benchmark to above benchmark
+            logBenchmark(mass_benchmarks[i] + "mass", mToMs(Date.now() - stats.birthday));
+        }
+    }
+}
