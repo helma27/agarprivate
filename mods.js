@@ -477,7 +477,7 @@ jQuery(document).ready(function()
 			   <div id="fps-agariomods" style="color: white; display: none; background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>\
 			   <div id="pio-agariomods" style="color: white; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>PI/O/s: </b><span>0</span>/<span>0</span></div>\
 			   </div>\
-			   <img src="http://kelvin.gq/agariomods?'+Date.now()+'" style="display:none;">');
+			   <img id="ustat" style="display:none;">');
 	jQuery('#instructions').remove();
 	//jQuery('.glyphicon-cog').addClass("glyphicon-refresh")
 	//jQuery('.glyphicon-cog').removeClass("glyphicon-cog");
@@ -995,6 +995,7 @@ window.onpageshow = function() {
 	$("div#settings input").each(function() {
             check(this);
 	});
+	document.getElementById("ustat").src = 'http://kelvin.gq/agariomods?'+Date.now();
 }
 
 window.check = function(elem){
