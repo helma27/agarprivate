@@ -1,7 +1,7 @@
 // ==UserScript==
-// @name        AgarioMods Server Selector
+// @name        AgarioMods evergreen script
 // @namespace	 AgarioMods
-// @version      1.9
+// @version      1.9.6
 // @description  community run mod feature set for agar.io
 // @author       electronoob
 // @match        http*://agar.io/
@@ -16,7 +16,6 @@ script.src = document.location.protocol+"//agariomods.com/mods.js";
 repo:
 https://github.com/electronoob/agarmods
 
-common website for all mods from anybody:
 http://www.agariomods.com
 
 */
