@@ -5,6 +5,7 @@
 // @description  community run mod feature set for agar.io
 // @author       electronoob
 // @match        http://agar.io/
+// @match        https://agar.io/
 // @grant        none
 // ==/UserScript==
 
