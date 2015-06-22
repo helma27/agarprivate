@@ -4,7 +4,7 @@
 // @version      1.9.6
 // @description  community run mod feature set for agar.io
 // @author       electronoob
-// @match        http*://agar.io/
+// @match        http://agar.io/
 // @grant        none
 // ==/UserScript==
 
