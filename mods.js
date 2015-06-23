@@ -278,17 +278,17 @@ Go catch up with the <a target="_blank" href="http://agariomods.com/documentatio
 	});
 	nodeInput.className = "form-control";
 //	nodeInput.id = "iphack"
-//	nodeInput.style.width = "85%";
-//	nodeInput.style.cssFloat = "left";
-//	nodeInput.style.cssClear = "right";
-//	nodeInput.style.padding = "5px;";
-//	nodeInput.style.margin = "5px;";	
+	nodeInput.style.width = "85%";
+	nodeInput.style.cssFloat = "left";
+	nodeInput.style.cssClear = "right";
+	nodeInput.style.padding = "5px;";
+	nodeInput.style.margin = "5px;";	
 //	nodeInput.style.border = "2px solid green";
 //	nodeInput.innerHTML = "agario.tampan-gaming.ga:443";
-//	jQuery('#locationUnknown').prepend(nodeLinks);
-//	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
-//	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
-//	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
+	jQuery('#locationUnknown').prepend(nodeLinks);
+	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
+	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
+	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
 	jQuery(playBtn).parent().prepend("<b>Server Sekarang: </b><span id='ip'></span>");
 	var nodeAudio = document.createElement("audio");		
 	nodeAudio.id = 'audiotemplate';		
