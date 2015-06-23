@@ -286,9 +286,9 @@ Go catch up with the <a target="_blank" href="http://agariomods.com/documentatio
 //	nodeInput.style.border = "2px solid green";
 //	nodeInput.innerHTML = "agario.tampan-gaming.ga:443";
 	jQuery('#locationUnknown').prepend(nodeLinks);
-	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
-	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
-	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
+//	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
+//	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
+//	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
 	jQuery(playBtn).parent().prepend("<b>Server Sekarang: </b><span id='ip'></span>");
 	var nodeAudio = document.createElement("audio");		
 	nodeAudio.id = 'audiotemplate';		
