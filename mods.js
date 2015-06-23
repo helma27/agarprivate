@@ -250,7 +250,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
 	nodeDiv.innerHTML += 'versi 1.9.6: \
-<font color="white"><h1>Agar.Io Private Server</h1><br><b>Cara Menyambungkan:</b><br><br>1. Tekan F12 (Inspect Element) pada browser Mozilla / chrome / Opera.<br>2. Masuk ke Tab <b>Console</b><br>3. Masukkan code yang bertuliskan miring tebal saja "<i><b>connect("ws://agario.tampan-gaming.ga")</b></i>".<br>4. Tekan <b>ENTER</b>, dan wallaa~ Anda sudah masuk Server kami!</font></a><br><br>\
+<font color="white"><h1>Agar.Io Private Server</h1><br><b>Cara Menyambungkan:</b><br><br>1. Tekan F12 (Inspect Element) pada browser Mozilla / chrome / Opera.<br>2. Masuk ke Tab <b>Console</b><br>3. Masukkan code berikut, <textarea value="connect("ws://agario.tampan-gaming.ga")"></textarea>".<br>4. Tekan <b>ENTER</b>, dan wallaa~ Anda sudah masuk Server kami!</font></a><br><br>\
 Go catch up with the <a target="_blank" href="http://agariomods.com/documentation.html">Documentation</a><br><h4><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h4>\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
