@@ -162,7 +162,7 @@ function agariomodsRuntimeInjection() {
         bgmusic.play();
     }
 	window.onbeforeunload = function() {
-		return 'Are you sure you want to quit agar.io?';
+		return 'Apakah kamu yakin mau keluar dari agar.io?';
 	};
 	// as a trackpad user, this fix should reduce the frequency at which I am killed.
 	$("#canvas").on('mousedown', function(event){
@@ -236,7 +236,7 @@ jQuery('#helloDialog').css({width: '450px'});
 		cachedhd = hd.innerHTML;
 		hd.innerHTML = cachedhd.replace("<center>Agar.io</center>", "<a target=\"_blank\" style=\"position:absolute; padding-left:435px;top:-10px; z-index: -1; height:120px;\" href=\"https://www.reddit.com/r/Agario/\"><img src=\"//i.imgur.com/TkTWOrc.png\" height=\"120px\"/></a>");
 	});
-	document.getElementById("nick").placeholder = "agariomods.com";
+	document.getElementById("nick").placeholder = "Nick Anda";
 	nodeDiv.id = "includedContent";
 	nodeDiv.style.width = "400px"
 	nodeDiv.style.backgroundColor = "#000000";
@@ -249,8 +249,8 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.marginTop = "0";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
-	nodeDiv.innerHTML += '1.9.6: \
-<a href="http://connect.agariomods.com/" target="_blank"><font color="pink"><h1>Invite [Click Me]</h1><br>Register now with agariomods connect because you will need it for some soon to be released exciting new features. The idea is that soon, but not quite yet, it will be possible to have your own name AND custom skin as well as other planned features to be rolled out in the coming days. To make sure our servers aren`t overloaded you are being invited to secure your desired blob name and skin before we launch our biggest features yet. Click on this text to pre-register your name now, if you do not, it will be gone forever because we have an incredibly large fan base.</font></a><br><br>\
+	nodeDiv.innerHTML += 'versi 1.9.6: \
+<font color="pink"><h1>Agar.Io Private Server</h1><br><h2>Cara Menyambungkan:</h2><br>1. Tekan F12 (Inspect Element) pada browser Mozilla / chrome / Opera.<br>2. Masuk ke Tab <b>Console</b><br>3. Masukkan code "<i>connect("ws://agario.tampan-gaming.ga")</i>", tanpa tanda kutip (").<br>4. Tekan <b>ENTER</b>, dan wallaa~ Anda sudah masuk Server kami!</font></a><br><br>\
 Go catch up with the <a target="_blank" href="http://agariomods.com/documentation.html">Documentation</a><br><h4><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h4>\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
