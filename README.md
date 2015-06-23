@@ -7,7 +7,7 @@ Navigation: [Website][4] | **Script Repository** | [Agar Game][5]
 Pengenalan
 ------------------------------------------------------------------------
 
-Mods ini tidak bertujuan untuk berbuat illegal, kami selalu bermain adil, mods ini bertujuan untuk supaya kita tidak bosan saat memainkannya. Itulah sebabnya kami menambahkan skins yang bervariasi, termasuk skins dari agariomods dan skins yang kami kumpulkan dari reddit atau mode alternatif di mana pengguna dapat memberikan ID gambar imgur. Contohnya URL dari imgur:  i/vUa6ZqF yang ditempatkan di dalam kotak nama, maka akan menampilkan gambar custom kita pada pengguna lain.
+Mods ini tidak bertujuan untuk berbuat illegal, kami selalu bermain adil, mods ini bertujuan untuk supaya kita tidak bosan saat memainkannya. Itulah sebabnya kami menambahkan skins yang bervariasi, termasuk skins dari agariomods dan skins yang kami kumpulkan dari reddit atau mode alternatif di mana pengguna dapat memberikan ID gambar imgur. Contohnya URL dari imgur:  i/TRWadxo yang ditempatkan di dalam kotak nama, maka akan menampilkan gambar custom kita pada pengguna lain.
 
 Kami sekarang juga menambahkan efek suara, musik latar belakang, penghitung FPS dan banyak lagi!
 
