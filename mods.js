@@ -248,7 +248,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.margin = "10px";
 	nodeDiv.style.marginTop = "0";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
-	nodeDiv.style.overflow = "auto"; //add scroll bar
+	nodeDiv.style.overflow = "hide"; //add scroll bar
 	nodeDiv.innerHTML += 'versi 1.9.6: \
 <font color="pink"><h1>Agar.Io Private Server</h1><br><h2>Cara Menyambungkan:</h2><br>1. Tekan F12 (Inspect Element) pada browser Mozilla / chrome / Opera.<br>2. Masuk ke Tab <b>Console</b><br>3. Masukkan code "<i>connect("ws://agario.tampan-gaming.ga")</i>", tanpa tanda kutip (").<br>4. Tekan <b>ENTER</b>, dan wallaa~ Anda sudah masuk Server kami!</font></a><br><br>\
 Go catch up with the <a target="_blank" href="http://agariomods.com/documentation.html">Documentation</a><br><h4><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h4>\
@@ -276,7 +276,7 @@ Go catch up with the <a target="_blank" href="http://agariomods.com/documentatio
 		var ip = document.getElementById("iphack").value.replace("ws://","");
 		if(ip.length>8)connect("ws://"+ip);
 	});
-//	nodeInput.className = "form-control";
+	nodeInput.className = "form-control";
 	nodeInput.id = "iphack"
 	nodeInput.style.width = "85%";
 	nodeInput.style.cssFloat = "left";
@@ -690,36 +690,36 @@ function DrawStats(game_over)
     var seconds = (time - stats.birthday)/1000;
 	
 	var list = jQuery('<ul>');
-    list.append('<li style="font-size: 12px; ">Game time: ' + secondsToHms(seconds) + '</li>');
-    list.append('<li style="font-size: 12px; ">High score: ' + ~~(stats.high_score/100) + '</li>');
+    list.append('<li style="font-size: 12px; ">Lama main: ' + secondsToHms(seconds) + '</li>');
+    list.append('<li style="font-size: 12px; ">Score Tertinggi: ' + ~~(stats.high_score/100) + '</li>');
     if (stats.top_slot == Number.POSITIVE_INFINITY){
-        list.append('<li style="font-size: 12px; ">You didn\'t make the leaderboard</li>');
+        list.append('<li style="font-size: 12px; ">Kamu gagal masuk 10 besar!</li>');
     }
     else{
-        list.append('<li style="font-size: 12px; ">Leaderboard max: ' + stats.top_slot + '</li>');
+        list.append('<li style="font-size: 12px; ">Perebutan Tempat Pertama: ' + stats.top_slot + '</li>');
     }
-    list.append('<li style="font-size: 12px; padding-top: 15px">' + stats.pellets.num + " pellets eaten (" + ~~(stats.pellets.mass/100) + ' mass)</li>');
-    list.append('<li style="font-size: 12px; ">' + stats.cells.num + " cells eaten (" + ~~(stats.cells.mass/100) + ' mass)</li>');
-    list.append('<li style="font-size: 12px; ">' + stats.w.num + " masses eaten (" + ~~(stats.w.mass/100) + ' mass)</li>');
-    list.append('<li style="font-size: 12px; ">' + stats.viruses.num + " viruses eaten (" + ~~(stats.viruses.mass/100) + ' mass)</li>');
-    jQuery('#statArea').append('<b>Game Summary</b>');
+    list.append('<li style="font-size: 12px; padding-top: 15px">' + stats.pellets.num + " pellet termakan (" + ~~(stats.pellets.mass/100) + ' mass)</li>');
+    list.append('<li style="font-size: 12px; ">' + stats.cells.num + " cell termakan (" + ~~(stats.cells.mass/100) + ' mass)</li>');
+    list.append('<li style="font-size: 12px; ">' + stats.w.num + " bobot termakan (" + ~~(stats.w.mass/100) + ' mass)</li>');
+    list.append('<li style="font-size: 12px; ">' + stats.viruses.num + " virus termakan (" + ~~(stats.viruses.mass/100) + ' mass)</li>');
+    jQuery('#statArea').append('<b>Statistik</b>');
     jQuery('#statArea').append(list);
 	
     DrawPie(stats.pellets.mass, stats.w.mass, stats.cells.mass, stats.viruses.mass);
 
-	jQuery('#gainArea').append('<b>Top Gains</b>');
+	jQuery('#gainArea').append('<b>Perolehan Terbanyak</b>');
 	list = jQuery('<ol>');
     if (AppendTopN(5, 'gains', list))
 		jQuery('#gainArea').append(list);
 	else
-		jQuery('#gainArea').append('<ul><li style="font-size: 12px; ">You have not eaten anybody</li></ul>');
+		jQuery('#gainArea').append('<ul><li style="font-size: 12px; ">Kamu belum memakan apapun</li></ul>');
 	 
-    jQuery('#lossArea').append('<b>Top Losses</b>');
+    jQuery('#lossArea').append('<b>Kematian Terbanyak</b>');
 	list = jQuery('<ol>');
 	if (AppendTopN(5, 'losses', list))
 		jQuery('#lossArea').append(list);
     else
-		jQuery('#lossArea').append('<ul><li style="font-size: 12px; ">Nobody has eaten you</li></ul>');
+		jQuery('#lossArea').append('<ul><li style="font-size: 12px; ">Belum ada yang pernah memakanmu</li></ul>');
 	
 	if (stats.time_of_death !== null){
 		jQuery('#chartArea').width(450).height(150);
@@ -773,7 +773,7 @@ function RenderStats(reset)
     context.fillStyle = "#FFFFFF";
 	AppendText("Stats", context, 'heading');
 		
-	var text = stats.pellets.num + " pellets eaten (" + ~~(stats.pellets.mass/100) + ")";
+	var text = stats.pellets.num + " pellets termakan (" + ~~(stats.pellets.mass/100) + ")";
 	AppendText(text, context,'normal');		
 	text = stats.w.num + " mass eaten (" + ~~(stats.w.mass/100) + ")";
 	AppendText(text, context,'normal');
