@@ -28,7 +28,7 @@ Untuk menggunakan Mod ini, silahkan unduh AddOn untuk browser yang anda gunakan:
 - [Greasemonkey (Mozilla Firefox)][2]
 - [Violent monkey (Opera)][7]
 
-Setelajh anda mengunduh dan memasang [Tampermonkey][1], [Greasemonkey][2] atau [Violent monkey][7] silahkan [Klik Disini][3] untuk memasang script.
+Setelah anda mengunduh dan memasang [Tampermonkey][1], [Greasemonkey][2] atau [Violent monkey][7] silahkan [Klik Disini][3] untuk memasang script.
 Setelah semua dilakukan, anda siap memainkan gamenya! Kunjungi [Agar.io][5] dan baca petunjuk penggunaan di kotak info!
 
 Enjoy!
