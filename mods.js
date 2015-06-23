@@ -707,14 +707,14 @@ function DrawStats(game_over)
 	
     DrawPie(stats.pellets.mass, stats.w.mass, stats.cells.mass, stats.viruses.mass);
 
-	jQuery('#gainArea').append('<b>Korban Terakhir:</b>');
+	jQuery('#gainArea').append('<b>Perolehan Terbanyak:</b>');
 	list = jQuery('<ol>');
     if (AppendTopN(5, 'gains', list))
 		jQuery('#gainArea').append(list);
 	else
 		jQuery('#gainArea').append('<ul><li style="font-size: 12px; ">Kamu belum memakan siapapun</li></ul>');
 	 
-    jQuery('#lossArea').append('<b>Dimakan oleh:</b>');
+    jQuery('#lossArea').append('<b>Kerugian Terbanyak:</b>');
 	list = jQuery('<ol>');
 	if (AppendTopN(5, 'losses', list))
 		jQuery('#lossArea').append(list);
