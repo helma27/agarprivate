@@ -468,7 +468,7 @@ function secondsToHms(d)
 jQuery(document).ready(function() 
 {
     jQuery('body').append('<div id="chart-container" style="display:none; position:absolute; height:176px; width:300px; left:10px; bottom:44px"></div>\
-			   <div id="chart-container-agariomods" style="opacity: 0.7; position:absolute; height:20px; width:400px; right:10px; bottom:10px;">&nbsp;TAMPAN MODS - agar.io Mods <b>TAMPAN Private Server</b> by Kagetsu</div>\
+			   <div id="chart-container-agariomods" style="opacity: 0.7; position:absolute; height:20px; width:500px; right:10px; bottom:10px;">&nbsp;TAMPAN MODS - agar.io Mods <b>TAMPAN Private Server</b> by Kagetsu</div>\
 			   <div id="debug" style="position:absolute; top:5px; left:10px;">\
 			   <div id="fps-agariomods" style="color: white; display: none; background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>\
 			   <div id="pio-agariomods" style="color: white; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>PI/O/s: </b><span>0</span>/<span>0</span></div>\
