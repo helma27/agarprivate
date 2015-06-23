@@ -24,11 +24,12 @@ Kami sekarang juga menambahkan efek suara, musik latar belakang, penghitung FPS 
 Instalasi
 ------------------------------------------------------------------------
 Untuk menggunakan Mod ini, silahkan unduh AddOn untuk browser yang anda gunakan:
+PILIH SALAH SATU YANG SESUAI BROWSER KALIAN!!
 - [Tampermonkey (Google Chrome)][1]
 - [Greasemonkey (Mozilla Firefox)][2]
 - [Violent monkey (Opera)][7]
 
-Setelah anda mengunduh dan memasang [Tampermonkey][1], [Greasemonkey][2] atau [Violent monkey][7] silahkan [Klik Disini][3] untuk memasang script.
+Setelah anda mengunduh dan memasang salah satu dari [Tampermonkey][1], [Greasemonkey][2] atau [Violent monkey][7] atau yang sesuai dengan browser kalian, silahkan [KLIK DISINI][3] untuk memasang script.
 Setelah semua dilakukan, anda siap memainkan gamenya! Kunjungi [Agar.io][5] dan baca petunjuk penggunaan di kotak info!
 
 Enjoy!
