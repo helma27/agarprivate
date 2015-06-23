@@ -250,7 +250,7 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
 	nodeDiv.style.overflow = "auto"; //add scroll bar
 	nodeDiv.innerHTML += 'versi 1.9.6: \
-<font color="white"><h1>Agar.Io Private Server</h1><br><b>Cara Menyambungkan:</b><br><br>1. Tekan F12 (Inspect Element) pada browser Mozilla / chrome / Opera.<br>2. Masuk ke Tab <b>Console</b><br>3. Masukkan kode yang bercetak miring tebal berikut, <b><i>connect("ws://agario.tampan-gaming.ga")</input></i></b><br>4. Tekan <b>ENTER</b>, dan wallaa~ Anda sudah masuk Server kami!</font></a><br><br>\
+<font color="white"><h1>Agar.Io Private Server</h1><br><b>Cara Menyambungkan:</b><br><br>1. Tekan F12 (Inspect Element) pada browser Mozilla / chrome / Opera.<br>2. Masuk ke Tab <b>Console</b><br>3. Masukkan kode yang bercetak miring tebal berikut, <b><i>connect("ws://agario.tampan-gaming.ga")</input></i></b><br>4. Tekan <b>ENTER</b>, dan wallaa~ Anda sudah masuk Server kami!<br><b>Cara Mengubah Skin sendiri:</b><br><br>1. Upload gambar ke Imgur.com<br>2. Copy ID gambar, (<i>i/TRWadxo</i> atau setelah http://i.imgur.com/<i>TRWadxo</i> lalu tambahkan "i/" pada awal ID)<br>3. Paste ke kolom Nick Anda</font></a><br><br>\
 Go catch up with the <a target="_blank" href="http://agariomods.com/documentation.html">Documentation</a><br><h4><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h4>\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
@@ -707,14 +707,14 @@ function DrawStats(game_over)
 	
     DrawPie(stats.pellets.mass, stats.w.mass, stats.cells.mass, stats.viruses.mass);
 
-	jQuery('#gainArea').append('<b>Perolehan Terbanyak</b>');
+	jQuery('#gainArea').append('<b>Korban Terakhir:</b>');
 	list = jQuery('<ol>');
     if (AppendTopN(5, 'gains', list))
 		jQuery('#gainArea').append(list);
 	else
-		jQuery('#gainArea').append('<ul><li style="font-size: 12px; ">Kamu belum memakan apapun</li></ul>');
+		jQuery('#gainArea').append('<ul><li style="font-size: 12px; ">Kamu belum memakan siapapun</li></ul>');
 	 
-    jQuery('#lossArea').append('<b>Kematian Terbanyak</b>');
+    jQuery('#lossArea').append('<b>Dimakan oleh:</b>');
 	list = jQuery('<ol>');
 	if (AppendTopN(5, 'losses', list))
 		jQuery('#lossArea').append(list);
