@@ -1225,7 +1225,7 @@ function deleteScores() {
         for (var i = 0; i < benchmarks.length; i++) {
             localStorage.removeItem("best_" + benchmarks[i]);
             $("#" + benchmarks[i] + " .best").html("-----");
-        }
+        } 
     }
 }
 function benchcheck(mass) {
