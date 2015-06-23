@@ -1,15 +1,15 @@
-AgarioMods Evergreen
+Agar.io Kagetsu Private Server (Evergreen)
 ========================================================================
 
 Navigation: [Website][4] | **Script Repository** | [Agar Game][5]
 
 
-Key Features of our mod
+Pengenalan
 ------------------------------------------------------------------------
 
-We do not provide a means to allow cheating, we believe in fair play, but it doesn't have to be boring and vanilla. Which is why we added custom skins, be it in the form of agariomods provided skins which we collect from reddit or the alternative mode where users can provide an imgur image ID. For example:  i/vUa6ZqF   placed inside of the name box, will show our logo on your blob for other users to see. We have just rolled out with an excellent mass-grah mod given to us by mikeyk730.
+Mods ini tidak bertujuan untuk berbuat illegal, kami selalu bermain adil, mods ini bertujuan untuk supaya kita tidak bosan saat memainkannya. Itulah sebabnya kami menambahkan skins yang bervariasi, termasuk skins dari agariomods dan skins yang kami kumpulkan dari reddit atau mode alternatif di mana pengguna dapat memberikan ID gambar imgur. Contohnya URL dari imgur:  i/vUa6ZqF yang ditempatkan di dalam kotak nama, maka akan menampilkan gambar custom kita pada pengguna lain.
 
-We now also have sound effects, background music, FPS counter and more!
+Kami sekarang juga menambahkan efek suara, musik latar belakang, penghitung FPS dan banyak lagi!
 
 
 [1]: https://chrome.google.com/webstore/detail/tampermonkey/dhdgffkkebhmkfjojejmpbldmpobfkfo?utm_source=chrome-ntp-icon
@@ -21,19 +21,15 @@ We now also have sound effects, background music, FPS counter and more!
 [7]: https://addons.opera.com/en/extensions/details/violent-monkey/
 
 
-Introduction
+Instalasi
 ------------------------------------------------------------------------
-This is the source code of AgarioMods Evergreen. Evergreen means that you will never have to re-install the script to update, it does this automatically.
-
-Installation
-------------------------------------------------------------------------
-To install this script please download one of the following 3 items:
+Untuk menggunakan Mod ini, silahkan unduh AddOn untuk browser yang anda gunakan:
 - [Tampermonkey (Google Chrome)][1]
 - [Greasemonkey (Mozilla Firefox)][2]
 - [Violent monkey (Opera)][7]
 
-Once you have downloaded & installed [Tampermonkey][1], [Greasemonkey][2] or [Violent monkey][7] please [Click Here][3] to install the script.
-After this has installed you are ready to go! Visit [Agar.io][5] and read the instructions that appear in the info-box!
+Setelajh anda mengunduh dan memasang [Tampermonkey][1], [Greasemonkey][2] atau [Violent monkey][7] silahkan [Klik Disini][3] untuk memasang script.
+Setelah semua dilakukan, anda siap memainkan gamenya! Kunjungi [Agar.io][5] dan baca petunjuk penggunaan di kotak info!
 
 Enjoy!
 
