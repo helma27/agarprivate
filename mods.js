@@ -248,9 +248,9 @@ jQuery('#helloDialog').css({width: '450px'});
 	nodeDiv.style.margin = "10px";
 	nodeDiv.style.marginTop = "0";
 	nodeDiv.style.maxHeight = "250px"; //The settings and the ad are being pushed down too far on some screens (1366*768). ~Mevin1
-	nodeDiv.style.overflow = "hide"; //add scroll bar
+	nodeDiv.style.overflow = "auto"; //add scroll bar
 	nodeDiv.innerHTML += 'versi 1.9.6: \
-<font color="pink"><h1>Agar.Io Private Server</h1><br><h2>Cara Menyambungkan:</h2><br>1. Tekan F12 (Inspect Element) pada browser Mozilla / chrome / Opera.<br>2. Masuk ke Tab <b>Console</b><br>3. Masukkan code "<i>connect("ws://agario.tampan-gaming.ga")</i>", tanpa tanda kutip (").<br>4. Tekan <b>ENTER</b>, dan wallaa~ Anda sudah masuk Server kami!</font></a><br><br>\
+<font color="white"><h1>Agar.Io Private Server</h1><br><b>Cara Menyambungkan:</b><br><br>1. Tekan F12 (Inspect Element) pada browser Mozilla / chrome / Opera.<br>2. Masuk ke Tab <b>Console</b><br>3. Masukkan code "<i>connect("ws://agario.tampan-gaming.ga")</i>", tanpa tanda kutip (").<br>4. Tekan <b>ENTER</b>, dan wallaa~ Anda sudah masuk Server kami!</font></a><br><br>\
 Go catch up with the <a target="_blank" href="http://agariomods.com/documentation.html">Documentation</a><br><h4><a href="http://www.agariomods.com/help.html" target="_blank"><font color="pink">CLICK HERE FOR HELP</font></a></h4>\
         <div style="background-color: #ffffff; color: #000000; padding: 2px; margin: 0px;">\
                 <small><b>Disable ad blockers</b>&nbsp;- They are breaking the game and our modifications in random and unexpected ways.</small>\
@@ -468,7 +468,7 @@ function secondsToHms(d)
 jQuery(document).ready(function() 
 {
     jQuery('body').append('<div id="chart-container" style="display:none; position:absolute; height:176px; width:300px; left:10px; bottom:44px"></div>\
-			   <div id="chart-container-agariomods" style="opacity: 0.7; position:absolute; height:20px; width:300px; right:10px; bottom:10px;">&nbsp;TAMPAN SERVER - agar.io <b>Private Server</b> by Kagetsu</div>\
+			   <div id="chart-container-agariomods" style="opacity: 0.7; position:absolute; height:20px; width:400px; right:10px; bottom:10px;">&nbsp;TAMPAN SERVER - agar.io <b>Private Server</b> by Kagetsu</div>\
 			   <div id="debug" style="position:absolute; top:5px; left:10px;">\
 			   <div id="fps-agariomods" style="color: white; display: none; background-color: rgba(0,0,0,.5); padding:0 4px;"><b>FPS: </b><span>0</span></div>\
 			   <div id="pio-agariomods" style="color: white; display: none;  background-color: rgba(0,0,0,.5); padding:0 4px;"><b>PI/O/s: </b><span>0</span>/<span>0</span></div>\
