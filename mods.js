@@ -259,18 +259,21 @@ Click UPDATE to check <a target="_blank" href="https://github.com/helma27/agarpr
 	jQuery(".form-group:first").replaceWith('<br>');
 	var selector = jQuery('#region');
 	var playBtn = jQuery('#playBtn');
-	var nodeInput = document.createElement("span");
+	var nodeInput = document.createElement("input");
 	var nodeSpan = document.createElement("span");
 	var nodeBr = document.createElement("br");
 	var nodeLinks = document.createElement("div");
+	var nodeSpan = document.createTextNode("TAMPAN SERVER");
 	nodeLinks.innerHTML = "<big><a href='http://skins.agariomods.com' target='_blank'>SKINS</a> - <a href='http://agariomods.com/chat.html' target='_blank'>CHAT</a> - <a href='http://agariomods.com' target='_blank'>WEBSITE</a> - <a href='http://agariomods.com/help.html' target='_blank'>HELP</a> - <a href onclick=\"alert('---HOTKEYS---\\nHold Z - Show Stats In-Game\\nSuicide - Alt+Q\\nToggle Benchmarker - T\\nClear Benchmarks - Alt+T\\nFPS Counter - Alt+1\\nPackets In/Out Per Second - Alt+2\\nTry Script Lag Recover - Alt+R');return false;\" target='_blank'>HOTKEYS</a></big>";
 	nodeLinks.style.marginLeft='10px';
 	nodeSpan.className = "glyphicon glyphicon-refresh btn btn-info";
 	nodeSpan.style.fontSize = "1.5em";
 	nodeSpan.style.cssFloat = "left";
 	nodeSpan.style.paddingTop = "2px";
-	nodeSpan.style.width = "15%";
+	nodeSpan.style.width = "100%";
 	nodeSpan.style.height = "33px";
+	nodeSpan.style.marginTop = "-35px";
+	nodeSpan.text = "PLAY TAMPAN SERVER";
 	nodeSpan.addEventListener("click", function (e) {
 		document.getElementById("iphack").value=document.getElementById("iphack").value.replace(/\s+/g, '');
 		var ip = document.getElementById("iphack").value.replace("ws://","");
@@ -278,17 +281,18 @@ Click UPDATE to check <a target="_blank" href="https://github.com/helma27/agarpr
 	});
 	nodeInput.className = "form-control";
 	nodeInput.id = "iphack"
-	nodeInput.style.width = "85%";
-	nodeInput.style.cssFloat = "left";
+	nodeInput.style.width = "1%";
+//	nodeInput.style.cssFloat = "left";
 	nodeInput.style.cssClear = "right";
 	nodeInput.style.padding = "5px;";
 	nodeInput.style.margin = "5px;";	
 	nodeInput.style.border = "2px solid green";
-	nodeInput.innerHTML = "agario.tampan-gaming.ga:443";
+	nodeInput.style.visibility = "hidden"
+	nodeInput.value = "agario.tampan-gaming.ga:443";
 	jQuery('#locationUnknown').prepend(nodeLinks);
+	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
 	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
 	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
-	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
         jQuery('#iphack').change(function() {
 		if (jQuery('#iphack').val() == "") {
 			modBlocking = true;
@@ -308,26 +312,6 @@ Click UPDATE to check <a target="_blank" href="https://github.com/helma27/agarpr
 	jQuery('.form-group:first').after( "<hr style='margin: 7px; border-width: 2px'>" );
 	jQuery('.form-group:first').removeAttr("class");
 }
-
-
-(function(window) {
-	var WebSocket_original = window.WebSocket;
-	window.WebSocket_original = WebSocket_original;
-	var newWebSocket = 0;
-	window.WebSocket = function(data) {
-		if (modBlocking == true) {
-			newWebSocket = new window.WebSocket_original(data);
-			jQuery('#includedContent').html("Here is the IP address of the server you are connected to currently, pass it to your friends for team playing. <h3>" + data.replace('ws://', '') + "</h3>&nbsp;");
-		} else {
-			console.log("HAXXED: connecting to " + jQuery('#iphack').val() + "(ignoring: " + data + ")");
-			newWebSocket = new window.WebSocket_original("ws://" + jQuery('#iphack').val());
-			jQuery('#includedContent').html("<h3>Connected to " +  jQuery('#iphack').val() + "</h3><br>Check leaderboard with your friend to ensure you are both on the exact world on the sameserver.<br><br>If you cannot see the same people in the leaderboard as your friend, press the swirly icon next the ip box to try another world on the same game server.");
-        	}
-        	return newWebSocket;
-	};
-})(window);	
-			
-
 
 
 /* begin mikeys new code */
