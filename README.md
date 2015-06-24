@@ -22,6 +22,8 @@ Kami sekarang juga menambahkan efek suara, musik latar belakang, penghitung FPS 
 [5]: http://agar.io
 [6]: https://github.com/electronoob/agarmods/blob/master/LICENSE
 [8]: https://github.com/electronoob
+[9]: http://prntscr.com/7knv2d/direct
+[10]: http://prntscr.com/7knv96/direct
 
 
 Instalasi
@@ -35,13 +37,16 @@ PILIH SALAH SATU YANG SESUAI BROWSER KALIAN!!
 Setelah anda mengunduh dan memasang salah satu dari AddOns diatas yang sesuai dengan browser kalian, silahkan [KLIK DISINI][3] untuk memasang script Mod AGAR.IO TAMPAN SERVER.
 Setelah semua dilakukan, anda siap memainkan gamenya! Kunjungi [Agar.io][5] dan baca petunjuk penggunaan di kotak info!
 
+Apabila sudah muncul Tulisan Agar.Io Private Server pada sebelah kanan layar, maka anda Berhasil memakai MODS! [(SCREENSHOT)][10]
+
+SKEMA PEMASANGAN: INSTALL ADDONS ([Google Chrome][1], [Mozilla Firefox][2] > INSTALL [SCRIPT INI][3] > LALU BUKA [Agar.io][5] > LALU BACA CARA PENGGUNAAN DIBAWAH ATAU DI PANEL MODS!
 
 Cara Menyambungkan
 ------------------------------------------------------------------------
 1. Tekan CTRL+SHIFT+J pada browser Chrome / CTRL+SHIFT+K untuk Mozilla.
 2. Masukkan kode berikut [ connect("ws://agario.tampan-gaming.ga:443") ] DARI "[" hingga "]"
 4. Tekan ENTER
-5. Apabila tulisan " Server Sekarang: " diatas tombol PLAY berubah menjadi agario.tampan-gaming.ga:443, maka anda berhasil terhubung ke Server TAMPAN! 
+5. Apabila tulisan " Server Sekarang: " diatas tombol PLAY berubah menjadi agario.tampan-gaming.ga:443, maka anda berhasil terhubung ke Server TAMPAN! [(SCREENSHOT)][9]
 Jika belum, coba kembali atau contact via TeamSpeak 3: ts.tampan-gaming.ga
 
 Enjoy!
