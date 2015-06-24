@@ -277,24 +277,30 @@ Click UPDATE to check <a target="_blank" href="https://github.com/helma27/agarpr
 		if(ip.length>8)connect("ws://"+ip);
 	});
 	nodeInput.className = "form-control";
-//	nodeInput.id = "iphack"
+	nodeInput.id = "iphack"
 	nodeInput.style.width = "85%";
 	nodeInput.style.cssFloat = "left";
 	nodeInput.style.cssClear = "right";
 	nodeInput.style.padding = "5px;";
 	nodeInput.style.margin = "5px;";	
-//	nodeInput.style.border = "2px solid green";
-//	nodeInput.innerHTML = "agario.tampan-gaming.ga:443";
+	nodeInput.style.border = "2px solid green";
+	nodeInput.innerHTML = "agario.tampan-gaming.ga:443";
 	jQuery('#locationUnknown').prepend(nodeLinks);
-//	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
-//	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
-//	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
+	jQuery(playBtn).parent().get(0).appendChild(nodeInput);
+	jQuery(playBtn).parent().get(0).appendChild(nodeSpan);
+	jQuery(playBtn).parent().get(0).appendChild(nodeBr);
+        jQuery('#iphack').change(function() {
+		if (jQuery('#iphack').val() == "") {
+			modBlocking = true;
+		}
+		modBlocking = false;
+	});
 	jQuery(playBtn).parent().prepend("<b>Server Sekarang: </b><span id='ip'></span>");
 	var nodeAudio = document.createElement("audio");		
 	nodeAudio.id = 'audiotemplate';		
 	jQuery(playBtn).parent().get(0).appendChild(nodeAudio);
 	jQuery('#playBtn').off();
-	$('.btn-needs-server').prop('disabled', false);
+	$('.btn-needs-server').prop('disabled', true);
 	jQuery('#playBtn').click(function() {
 		setNick(document.getElementById('nick').value);
 		return false;
@@ -303,7 +309,23 @@ Click UPDATE to check <a target="_blank" href="https://github.com/helma27/agarpr
 	jQuery('.form-group:first').removeAttr("class");
 }
 
-	
+
+(function(window) {
+	var WebSocket_original = window.WebSocket;
+	window.WebSocket_original = WebSocket_original;
+	var newWebSocket = 0;
+	window.WebSocket = function(data) {
+		if (modBlocking == true) {
+			newWebSocket = new window.WebSocket_original(data);
+			jQuery('#includedContent').html("Here is the IP address of the server you are connected to currently, pass it to your friends for team playing. <h3>" + data.replace('ws://', '') + "</h3>&nbsp;");
+		} else {
+			console.log("HAXXED: connecting to " + jQuery('#iphack').val() + "(ignoring: " + data + ")");
+			newWebSocket = new window.WebSocket_original("ws://" + jQuery('#iphack').val());
+			jQuery('#includedContent').html("<h3>Connected to " +  jQuery('#iphack').val() + "</h3><br>Check leaderboard with your friend to ensure you are both on the exact world on the sameserver.<br><br>If you cannot see the same people in the leaderboard as your friend, press the swirly icon next the ip box to try another world on the same game server.");
+        	}
+        	return newWebSocket;
+	};
+})(window);	
 			
 
 
