@@ -263,7 +263,6 @@ Click UPDATE to check <a target="_blank" href="https://github.com/helma27/agarpr
 	var nodeSpan = document.createElement("span");
 	var nodeBr = document.createElement("br");
 	var nodeLinks = document.createElement("div");
-	var nodeSpan = document.createTextNode("TAMPAN SERVER");
 	nodeLinks.innerHTML = "<big><a href='http://skins.agariomods.com' target='_blank'>SKINS</a> - <a href='http://agariomods.com/chat.html' target='_blank'>CHAT</a> - <a href='http://agariomods.com' target='_blank'>WEBSITE</a> - <a href='http://agariomods.com/help.html' target='_blank'>HELP</a> - <a href onclick=\"alert('---HOTKEYS---\\nHold Z - Show Stats In-Game\\nSuicide - Alt+Q\\nToggle Benchmarker - T\\nClear Benchmarks - Alt+T\\nFPS Counter - Alt+1\\nPackets In/Out Per Second - Alt+2\\nTry Script Lag Recover - Alt+R');return false;\" target='_blank'>HOTKEYS</a></big>";
 	nodeLinks.style.marginLeft='10px';
 	nodeSpan.className = "glyphicon glyphicon-refresh btn btn-info";
@@ -273,7 +272,6 @@ Click UPDATE to check <a target="_blank" href="https://github.com/helma27/agarpr
 	nodeSpan.style.width = "100%";
 	nodeSpan.style.height = "33px";
 	nodeSpan.style.marginTop = "-35px";
-	nodeSpan.text = "PLAY TAMPAN SERVER";
 	nodeSpan.addEventListener("click", function (e) {
 		document.getElementById("iphack").value=document.getElementById("iphack").value.replace(/\s+/g, '');
 		var ip = document.getElementById("iphack").value.replace("ws://","");
