@@ -3,8 +3,8 @@ Agar.io Kagetsu Private Server (Evergreen)
 
 Navigation: [Website][4] | **Script Repository** | [Agar Game][5]
 
-DIHARAPKAN BAGI KALIAN YANG INGIN MEMASUKI AGAR.IO SERVER TAMPAN UNTUK MEMBACA SEMUA KETENTUAN DIBAWAH INI!
-SUPAYA KALIAN TIDAK KESUSAHAN UNTUK MEMASUKI AGAR.IO SERVER TAMPAN!
+**DIHARAPKAN BAGI KALIAN YANG INGIN MEMASUKI AGAR.IO SERVER TAMPAN UNTUK MEMBACA SEMUA KETENTUAN DIBAWAH INI!
+SUPAYA KALIAN TIDAK KESUSAHAN UNTUK MEMASUKI AGAR.IO SERVER TAMPAN!**
 
 
 Pengenalan
@@ -30,21 +30,21 @@ Instalasi
 ------------------------------------------------------------------------
 Untuk menggunakan SERVER TAMPAN GAMING, disarankan untuk memakai Mod's khusus untuk agar.io untuk mempermudah Terhubung dengan Server TAMPAN GAMING. Untuk menggunakan Mod ini, silahkan unduh AddOn untuk browser yang anda gunakan:
 
-PILIH SALAH SATU YANG SESUAI BROWSER KALIAN!!
+**PILIH SALAH SATU YANG SESUAI BROWSER KALIAN!!**
 - [Tampermonkey (Google Chrome)][1]
 - [Greasemonkey (Mozilla Firefox)][2]
 
-Setelah anda mengunduh dan memasang salah satu dari AddOns diatas yang sesuai dengan browser kalian, silahkan [KLIK DISINI][3] untuk memasang script Mod AGAR.IO TAMPAN SERVER.
+**Setelah anda mengunduh dan memasang salah satu dari AddOns diatas yang sesuai dengan browser kalian, silahkan [KLIK DISINI][3] untuk memasang script Mod AGAR.IO TAMPAN SERVER.**
 Setelah semua dilakukan, anda siap memainkan gamenya! Kunjungi [Agar.io][5] dan baca petunjuk penggunaan di kotak info!
 
 Apabila sudah muncul Tulisan Agar.Io Private Server pada sebelah kanan layar, maka anda Berhasil memakai MODS! [(SCREENSHOT)][10]
 
-SKEMA PEMASANGAN: INSTALL ADDONS ([Google Chrome][1], [Mozilla Firefox][2] > INSTALL [SCRIPT INI][3] > LALU BUKA [Agar.io][5] > LALU BACA CARA PENGGUNAAN DIBAWAH ATAU DI PANEL MODS!
+**SKEMA PEMASANGAN: INSTALL ADDONS ([Google Chrome][1], [Mozilla Firefox][2] > INSTALL [SCRIPT INI][3] > LALU BUKA [Agar.io][5] > LALU BACA CARA PENGGUNAAN DIBAWAH ATAU DI PANEL MODS!**
 
 Cara Menyambungkan
 ------------------------------------------------------------------------
-1. Tekan CTRL+SHIFT+J pada browser Chrome / CTRL+SHIFT+K untuk Mozilla.
-2. Masukkan kode berikut [ connect("ws://agario.tampan-gaming.ga:443") ] DARI "[" hingga "]"
+1. Tekan **CTRL+SHIFT+J** pada browser Chrome / **CTRL+SHIFT+K** untuk Mozilla.
+2. Masukkan kode berikut [ **connect("ws://agario.tampan-gaming.ga:443")** ] DARI "[" hingga "]"
 4. Tekan ENTER
 5. Apabila tulisan " Server Sekarang: " diatas tombol PLAY berubah menjadi agario.tampan-gaming.ga:443, maka anda berhasil terhubung ke Server TAMPAN! [(SCREENSHOT)][9]
 Jika belum, coba kembali atau contact via TeamSpeak 3: ts.tampan-gaming.ga
