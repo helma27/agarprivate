@@ -21,7 +21,6 @@ Kami sekarang juga menambahkan efek suara, musik latar belakang, penghitung FPS 
 [4]: http://agariomods.com/
 [5]: http://agar.io
 [6]: https://github.com/electronoob/agarmods/blob/master/LICENSE
-[7]: ts3server://ts.tampan-gaming.ga?nickname=TAMU TAMPAN_1
 [8]: https://github.com/electronoob
 
 
@@ -43,7 +42,7 @@ Cara Menyambungkan
 2. Masukkan kode berikut [ connect("ws://agario.tampan-gaming.ga:443") ] DARI "[" hingga "]"
 4. Tekan ENTER
 5. Apabila tulisan " Server Sekarang: " diatas tombol PLAY berubah menjadi agario.tampan-gaming.ga:443, maka anda berhasil terhubung ke Server TAMPAN! 
-Jika belum, coba kembali atau contact via [TeamSpeak 3][7]
+Jika belum, coba kembali atau contact via TeamSpeak 3: ts.tampan-gaming.ga
 
 Enjoy!
 
