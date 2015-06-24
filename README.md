@@ -3,6 +3,9 @@ Agar.io Kagetsu Private Server (Evergreen)
 
 Navigation: [Website][4] | **Script Repository** | [Agar Game][5]
 
+DIHARAPKAN BAGI KALIAN YANG INGIN MEMASUKI AGAR.IO SERVER TAMPAN UNTUK MEMBACA SEMUA KETENTUAN DIBAWAH INI!
+SUPAYA KALIAN TIDAK KESUSAHAN UNTUK MEMASUKI AGAR.IO SERVER TAMPAN!
+
 
 Pengenalan
 ------------------------------------------------------------------------
@@ -18,7 +21,8 @@ Kami sekarang juga menambahkan efek suara, musik latar belakang, penghitung FPS 
 [4]: http://agariomods.com/
 [5]: http://agar.io
 [6]: https://github.com/electronoob/agarmods/blob/master/LICENSE
-[7]: https://addons.opera.com/en/extensions/details/violent-monkey/
+[7]: ts3server://ts.tampan-gaming.ga?nickname=TAMU TAMPAN_1
+[8]: https://github.com/electronoob
 
 
 Instalasi
@@ -36,13 +40,14 @@ Setelah semua dilakukan, anda siap memainkan gamenya! Kunjungi [Agar.io][5] dan 
 Cara Menyambungkan
 ------------------------------------------------------------------------
 1. Tekan CTRL+SHIFT+J pada browser Chrome / CTRL+SHIFT+K untuk Mozilla.
-2. Masukkan kode berikut [code]connect("ws://agario.tampan-gaming.ga:443")[/code]
+2. Masukkan kode berikut [ connect("ws://agario.tampan-gaming.ga:443") ] DARI "[" hingga "]"
 4. Tekan ENTER
-5. Apabila " Server Sekarang: " dibawah berubah menjadi agario.tampan-gaming.ga:443, maka anda berhasil masuk ke Server TAMPAN! 
-Jika belum, coba kembali atau contact via TeamSpeak 3
+5. Apabila tulisan " Server Sekarang: " diatas tombol PLAY berubah menjadi agario.tampan-gaming.ga:443, maka anda berhasil terhubung ke Server TAMPAN! 
+Jika belum, coba kembali atau contact via [TeamSpeak 3][7]
 
 Enjoy!
 
-License
+DISCLAIMER
 ------------------------------------------------------------------------
-AgarioMods Evergreen is distributed under the terms of the [MIT License][6].
+MOD'S INI BERDASARKAN MODS YANG DIBUAT OLEH [electronoob][8], YANG TELAH KAMI MODIFIKASI.
+THIS MODS WAS BASED ON MODS THAT DEVELOPED BY [electronoob][8], THAT'S HAS BEEN MODIFIED.
