@@ -39,7 +39,7 @@ Setelah semua dilakukan, anda siap memainkan gamenya! Kunjungi [Agar.io][5] dan 
 
 Apabila sudah muncul Tulisan Agar.Io Private Server pada sebelah kanan layar, maka anda Berhasil memakai MODS! [(SCREENSHOT)][10]
 
-**SKEMA PEMASANGAN: INSTALL ADDONS ([Google Chrome][1], [Mozilla Firefox][2] > INSTALL [SCRIPT INI][3] > LALU BUKA [Agar.io][5] > LALU BACA CARA PENGGUNAAN DIBAWAH ATAU DI PANEL MODS!**
+**SKEMA PEMASANGAN: INSTALL ADDONS ([Google Chrome][1], [Mozilla Firefox][2]) > INSTALL [SCRIPT INI][3] > LALU BUKA [Agar.io][5] > LALU BACA CARA PENGGUNAAN DIBAWAH ATAU DI PANEL MODS!**
 
 Cara Menyambungkan
 ------------------------------------------------------------------------
