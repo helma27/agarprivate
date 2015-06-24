@@ -23,14 +23,23 @@ Kami sekarang juga menambahkan efek suara, musik latar belakang, penghitung FPS 
 
 Instalasi
 ------------------------------------------------------------------------
-Untuk menggunakan Mod ini, silahkan unduh AddOn untuk browser yang anda gunakan:
+Untuk menggunakan SERVER TAMPAN GAMING, disarankan untuk memakai Mod's khusus untuk agar.io untuk mempermudah Terhubung dengan Server TAMPAN GAMING. Untuk menggunakan Mod ini, silahkan unduh AddOn untuk browser yang anda gunakan:
+
 PILIH SALAH SATU YANG SESUAI BROWSER KALIAN!!
 - [Tampermonkey (Google Chrome)][1]
 - [Greasemonkey (Mozilla Firefox)][2]
-- [Violent monkey (Opera)][7]
 
-Setelah anda mengunduh dan memasang salah satu dari [Tampermonkey][1], [Greasemonkey][2] atau [Violent monkey][7] atau yang sesuai dengan browser kalian, silahkan [KLIK DISINI][3] untuk memasang script.
+Setelah anda mengunduh dan memasang salah satu dari AddOns diatas yang sesuai dengan browser kalian, silahkan [KLIK DISINI][3] untuk memasang script Mod AGAR.IO TAMPAN SERVER.
 Setelah semua dilakukan, anda siap memainkan gamenya! Kunjungi [Agar.io][5] dan baca petunjuk penggunaan di kotak info!
+
+
+Cara Menyambungkan
+------------------------------------------------------------------------
+1. Tekan CTRL+SHIFT+J pada browser Chrome / CTRL+SHIFT+K untuk Mozilla.
+2. Masukkan kode berikut [code]connect("ws://agario.tampan-gaming.ga:443")[/code]
+4. Tekan ENTER
+5. Apabila " Server Sekarang: " dibawah berubah menjadi agario.tampan-gaming.ga:443, maka anda berhasil masuk ke Server TAMPAN! 
+Jika belum, coba kembali atau contact via TeamSpeak 3
 
 Enjoy!
 
